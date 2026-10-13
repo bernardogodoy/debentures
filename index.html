@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Debêntures Estressadas</title>
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Debêntures">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<style>
+:root{
+  --bg:#f6f7f9;--card:#fff;--ink:#0f172a;--muted:#64748b;--line:#e5e7eb;
+  --up:#b91c1c;--down:#15803d;--accent:#1d4ed8;--chip:#eef2ff;--warn:#92400e;--warnbg:#fef3c7;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0b1120;--card:#111827;--ink:#e5e7eb;--muted:#94a3b8;--line:#1f2937;
+  --up:#f87171;--down:#4ade80;--accent:#93c5fd;--chip:#1e293b;--warn:#fcd34d;--warnbg:#3b2f0b;
+}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+header{position:sticky;top:0;z-index:5;background:var(--bg);padding:14px 16px 8px;border-bottom:1px solid var(--line)}
+h1{font-size:19px;margin:0}
+.sub{color:var(--muted);font-size:12.5px;margin-top:2px}
+.controls{display:flex;gap:8px;margin-top:10px}
+input[type=search],select{font:inherit;font-size:15px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);min-width:0}
+input[type=search]{flex:1}
+.chips{display:flex;gap:6px;margin-top:8px;overflow-x:auto;scrollbar-width:none}
+.chip{border:0;background:var(--chip);color:var(--ink);padding:5px 11px;border-radius:999px;font:inherit;font-size:13px;white-space:nowrap;cursor:pointer}
+.chip.on{background:var(--accent);color:var(--bg)}
+main{padding:10px 12px 40px;max-width:720px;margin:0 auto}
+.emissor{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:10px 0;overflow:hidden}
+.emissor h2{font-size:15px;margin:0;padding:10px 14px;display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line)}
+.emissor h2 small{color:var(--muted);font-weight:400;font-size:12px}
+.serie{padding:10px 14px;border-top:1px solid var(--line);cursor:pointer}
+.serie:first-of-type{border-top:0}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.cod{font-weight:600;font-variant-numeric:tabular-nums}
+.meta{color:var(--muted);font-size:12px}
+.taxa{text-align:right;font-variant-numeric:tabular-nums}
+.taxa b{font-size:17px}
+.taxa .idx{color:var(--muted);font-size:11px;display:block}
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:6px;font-size:12px;font-variant-numeric:tabular-nums}
+.nums div span{display:block;color:var(--muted);font-size:10.5px;text-transform:uppercase;letter-spacing:.02em}
+.up{color:var(--up)}.down{color:var(--down)}
+.badge{font-size:10.5px;background:var(--warnbg);color:var(--warn);padding:1px 6px;border-radius:6px;margin-left:6px;font-weight:500}
+.det{display:none;margin-top:8px;font-size:12.5px}
+.serie.open .det{display:block}
+.det table{width:100%;border-collapse:collapse}
+.det td{padding:3px 0;border-bottom:1px dashed var(--line)}
+.det td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+svg.spark{display:block;width:100%;height:56px;margin-top:6px}
+footer{color:var(--muted);font-size:11.5px;text-align:center;padding:10px 16px 30px;line-height:1.5}
+.vazio{color:var(--muted);text-align:center;padding:40px 0}
+</style>
+</head>
+<body>
+<header>
+  <h1>Debêntures estressadas</h1>
+  <div class="sub" id="sub">Carregando…</div>
+  <div class="controls">
+    <input type="search" id="q" placeholder="Buscar emissor ou código" autocomplete="off">
+    <select id="ord" aria-label="Ordenar">
+      <option value="emissor">Emissor</option>
+      <option value="taxa">Maior taxa</option>
+      <option value="par">Menor % par</option>
+      <option value="var">Maior Δ taxa 1d</option>
+    </select>
+  </div>
+  <div class="chips" id="chips">
+    <button class="chip on" data-f="todos">Todas</button>
+    <button class="chip" data-f="DI">DI +</button>
+    <button class="chip" data-f="IPCA">IPCA +</button>
+    <button class="chip" data-f="semtaxa">Sem taxa ANBIMA</button>
+  </div>
+</header>
+<main id="lista"><div class="vazio">Carregando dados…</div></main>
+<footer>
+  Fonte: ANBIMA — Mercado Secundário de Debêntures (taxas indicativas, divulgadas todo dia útil).<br>
+  Em séries DI+ a taxa é o spread sobre o DI; em IPCA+ é a taxa real. “Sem taxa” = ANBIMA não divulga taxa indicativa (em geral, papel em reestruturação ou default); aparece só o PU de referência.<br>
+  Δ em pontos-base (taxa) e pontos percentuais (% do par). Toque numa série para ver detalhes.
+</footer>
+<script>
+const $ = s => document.querySelector(s);
+const fmt = (v, d=2) => v==null ? "—" : v.toLocaleString("pt-BR",{minimumFractionDigits:d,maximumFractionDigits:d});
+const dataBR = iso => iso ? iso.split("-").reverse().join("/") : "—";
+let DADOS = null, filtro = "todos";
+
+function delta(v, mult, invert){
+  if (v==null) return '<span class="meta">—</span>';
+  const x = v*mult; if (Math.abs(x) < 0.05) return '0';
+  // taxa subindo = piora (vermelho); % par caindo = piora (vermelho)
+  const ruim = invert ? x < 0 : x > 0;
+  return `<span class="${ruim?'up':'down'}">${x>0?'+':''}${fmt(x, mult===100?0:1)}</span>`;
+}
+
+function spark(hist, idx){
+  const pts = hist.map(h => h[idx]).map((v,i)=>[i,v]).filter(p=>p[1]!=null);
+  if (pts.length < 2) return '<div class="meta" style="margin-top:6px">Histórico ainda curto para o gráfico.</div>';
+  const ys = pts.map(p=>p[1]), mn = Math.min(...ys), mx = Math.max(...ys), n = hist.length-1 || 1;
+  const W=300,H=56,pad=4, y = v => mx===mn ? H/2 : pad + (H-2*pad)*(1-(v-mn)/(mx-mn));
+  const d = pts.map((p,i)=>`${i?'L':'M'}${(p[0]/n*W).toFixed(1)},${y(p[1]).toFixed(1)}`).join(" ");
+  const lbl = idx===1 ? "Taxa indicativa" : "% do par";
+  return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><path d="${d}" fill="none" stroke="currentColor" stroke-width="1.6" vector-effect="non-scaling-stroke" style="color:var(--accent)"/></svg>
+  <div class="row meta"><span>${lbl} · ${dataBR(hist[0][0])}</span><span>mín ${fmt(mn)} · máx ${fmt(mx)}</span></div>`;
+}
+
+function serieHTML(s){
+  const tipo = (s.indice||"").startsWith("IPCA") ? "IPCA +" : (s.indice||"").includes("% do DI") ? "% do DI" : "DI +";
+  const semTaxa = s.taxa_indicativa==null;
+  const taxa = semTaxa ? `<b>${fmt(s.pct_par,1)}%</b><span class="idx">do par</span>`
+                       : `<b>${tipo==="% do DI" ? fmt(s.taxa_indicativa) + "%" : tipo + " " + fmt(s.taxa_indicativa) + "%"}</b><span class="idx">taxa indicativa</span>`;
+  return `<div class="serie" onclick="this.classList.toggle('open')">
+    <div class="row">
+      <div><span class="cod">${s.codigo}</span>${semTaxa?'<span class="badge">sem taxa</span>':''}
+        <div class="meta">Venc. ${s.vencimento||"—"} · emissão ${s.indice||"—"}</div></div>
+      <div class="taxa">${taxa}</div>
+    </div>
+    <div class="nums">
+      <div><span>% par</span>${fmt(s.pct_par,1)}</div>
+      <div><span>Duration</span>${s.duration_anos==null?"—":fmt(s.duration_anos,1)+" a"}</div>
+      <div><span>Δ taxa 1d</span>${delta(s.var_taxa_1d,100,false)}</div>
+      <div><span>Δ taxa 5d</span>${delta(s.var_taxa_5d,100,false)}</div>
+    </div>
+    <div class="det">
+      <table>
+        <tr><td>PU</td><td>R$ ${fmt(s.pu,6)}</td></tr>
+        <tr><td>Taxa de compra / venda</td><td>${fmt(s.taxa_compra,4)} / ${fmt(s.taxa_venda,4)}</td></tr>
+        <tr><td>Δ % par 1d / 5d (p.p.)</td><td>${delta(s.var_pct_par_1d,1,true)} / ${delta(s.var_pct_par_5d,1,true)}</td></tr>
+        ${s.ref_ntnb?`<tr><td>NTN-B de referência</td><td>${s.ref_ntnb}</td></tr>`:''}
+        <tr><td>Emissor (ANBIMA)</td><td style="font-size:11px">${s.nome||"—"}</td></tr>
+      </table>
+      ${spark(s.historico, semTaxa?2:1)}
+    </div>
+  </div>`;
+}
+
+function render(){
+  if (!DADOS) return;
+  const q = $("#q").value.trim().toUpperCase(), ord = $("#ord").value;
+  let ss = DADOS.series.filter(s => {
+    if (q && !(s.codigo.includes(q) || (s.emissor||"").toUpperCase().includes(q) || (s.nome||"").includes(q))) return false;
+    if (filtro==="DI") return !(s.indice||"").startsWith("IPCA");
+    if (filtro==="IPCA") return (s.indice||"").startsWith("IPCA");
+    if (filtro==="semtaxa") return s.taxa_indicativa==null;
+    return true;
+  });
+  const el = $("#lista");
+  if (!ss.length){ el.innerHTML = '<div class="vazio">Nenhuma série encontrada.</div>'; return; }
+  if (ord !== "emissor"){
+    const k = {taxa: s => -(s.taxa_indicativa ?? -1e9), par: s => s.pct_par ?? 1e9, var: s => -(s.var_taxa_1d ?? -1e9)}[ord];
+    ss = [...ss].sort((a,b)=>k(a)-k(b));
+    el.innerHTML = `<section class="emissor">${ss.map(s => serieHTML(s).replace('<div class="meta">', `<div class="meta"><b>${s.emissor}</b> · `)).join("")}</section>`;
+    return;
+  }
+  const grupos = {};
+  ss.forEach(s => (grupos[s.emissor] ??= []).push(s));
+  el.innerHTML = DADOS.emissores.filter(e=>grupos[e]).map(e => {
+    const g = grupos[e], comTaxa = g.filter(s=>s.taxa_indicativa!=null).length;
+    return `<section class="emissor"><h2>${e}<small>${g.length} série${g.length>1?'s':''}${comTaxa<g.length?` · ${g.length-comTaxa} sem taxa`:''}</small></h2>${g.map(serieHTML).join("")}</section>`;
+  }).join("");
+}
+
+$("#q").addEventListener("input", render);
+$("#ord").addEventListener("change", render);
+$("#chips").addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on", c===b));
+  filtro = b.dataset.f; render();
+});
+
+fetch("data/debentures.json?t=" + Date.now()).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(d => {
+    DADOS = d;
+    $("#sub").textContent = `Taxas de ${dataBR(d.data_referencia)} · ${d.series.length} séries · ${d.emissores.length} emissores`;
+    render();
+  })
+  .catch(() => { $("#lista").innerHTML = '<div class="vazio">Ainda não há dados. O robô roda todo dia útil à noite.</div>'; $("#sub").textContent = "Sem dados"; });
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+[
+  {"nome": "CSN", "prefixos": ["CSNA"]},
+  {"nome": "CSN Mineração", "prefixos": ["CMIN"]},
+  {"nome": "Braskem", "prefixos": ["BRKM"]},
+  {"nome": "Raízen", "prefixos": ["RAIZ"]},
+  {"nome": "GPA", "prefixos": ["CBRD"]},
+  {"nome": "Hapvida", "prefixos": ["HAPV"]},
+  {"nome": "Oncoclínicas", "prefixos": ["ONCO"]},
+  {"nome": "Viveo (CM Hospitalar)", "prefixos": ["VVEO", "CMPH"]},
+  {"nome": "Eletropaulo (Enel SP)", "prefixos": ["ELPL"]},
+  {"nome": "CEEE-G", "prefixos": ["CGEE"]},
+  {"nome": "Ciclus Ambiental", "prefixos": ["CCLS"]},
+  {"nome": "CVC", "prefixos": ["CVCB"]},
+  {"nome": "Equipav Saneamento", "prefixos": ["AEGE"]},
+  {"nome": "Tupi Energias Renováveis", "prefixos": ["TUPW"]},
+  {"nome": "Qualicorp", "prefixos": ["QUAL"]}
+]
