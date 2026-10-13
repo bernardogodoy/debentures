@@ -110,7 +110,9 @@ function spark(hist, idx){
 function serieHTML(s){
   const tipo = (s.indice||"").startsWith("IPCA") ? "IPCA +" : (s.indice||"").includes("% do DI") ? "% do DI" : "DI +";
   const semTaxa = s.taxa_indicativa==null;
-  const taxa = semTaxa ? `<b>${fmt(s.pct_par,1)}%</b><span class="idx">do par</span>`
+  const semPreco = semTaxa && s.pct_par==null;
+  const taxa = semPreco ? `<b class="meta">sem preço</b><span class="idx">ANBIMA não divulga</span>`
+             : semTaxa ? `<b>${fmt(s.pct_par,1)}%</b><span class="idx">do par</span>`
                        : `<b>${tipo==="% do DI" ? fmt(s.taxa_indicativa) + "%" : tipo + " " + fmt(s.taxa_indicativa) + "%"}</b><span class="idx">taxa indicativa</span>`;
   return `<div class="serie" onclick="this.classList.toggle('open')">
     <div class="row">
@@ -158,6 +160,8 @@ function render(){
   const grupos = {};
   ss.forEach(s => (grupos[s.emissor] ??= []).push(s));
   el.innerHTML = DADOS.emissores.filter(e=>grupos[e]).map(e => {
+    const peso = s => s.taxa_indicativa!=null ? 0 : s.pct_par!=null ? 1 : 2;
+    grupos[e].sort((a,b)=>peso(a)-peso(b));
     const g = grupos[e], comTaxa = g.filter(s=>s.taxa_indicativa!=null).length;
     return `<section class="emissor"><h2>${e}<small>${g.length} série${g.length>1?'s':''}${comTaxa<g.length?` · ${g.length-comTaxa} sem taxa`:''}</small></h2>${g.map(serieHTML).join("")}</section>`;
   }).join("");
