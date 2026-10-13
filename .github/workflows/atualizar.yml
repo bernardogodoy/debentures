@@ -11,6 +11,10 @@ on:
       dias:
         description: "Dias úteis para buscar (backfill)"
         default: "8"
+      snd_completo:
+        description: "Rebaixar o histórico completo de negócios do SND"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -28,7 +32,10 @@ jobs:
         with:
           python-version: "3.12"
       - name: Baixar e processar
-        run: python scripts/update.py --dias "${{ github.event.inputs.dias || '8' }}"
+        run: |
+          EXTRA=""
+          if [ "${{ github.event.inputs.snd_completo }}" = "true" ]; then EXTRA="--snd-completo"; fi
+          python scripts/update.py --dias "${{ github.event.inputs.dias || '8' }}" $EXTRA
       - name: Salvar dados
         run: |
           git config user.name "github-actions[bot]"

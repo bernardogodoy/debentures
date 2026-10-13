@@ -54,6 +54,23 @@ main{padding:10px 12px 40px;max-width:720px;margin:0 auto}
 svg.spark{display:block;width:100%;height:56px;margin-top:6px}
 footer{color:var(--muted);font-size:11.5px;text-align:center;padding:10px 16px 30px;line-height:1.5}
 .vazio{color:var(--muted);text-align:center;padding:40px 0}
+.det{cursor:default}
+.gctl{display:flex;justify-content:space-between;gap:6px;margin:10px 0 4px;flex-wrap:wrap}
+.seg{display:flex;background:var(--chip);border-radius:9px;padding:2px}
+.seg button{border:0;background:none;color:var(--muted);font:inherit;font-size:12px;padding:4px 9px;border-radius:7px;cursor:pointer}
+.seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.leitura{font-size:12px;min-height:34px;margin-top:4px;font-variant-numeric:tabular-nums}
+.leitura b{font-weight:600}
+svg.graf{display:block;width:100%;height:190px;touch-action:pan-y;user-select:none}
+svg.graf text{font-size:10px;fill:var(--muted);font-variant-numeric:tabular-nums}
+.leg{display:flex;gap:12px;font-size:11px;color:var(--muted);margin-top:2px}
+.leg i{display:inline-block;width:10px;height:3px;border-radius:2px;margin-right:4px;vertical-align:middle}
+.leg i.pt{width:7px;height:7px;border-radius:50%}
+.negs{width:100%;border-collapse:collapse;margin-top:8px;font-size:12px}
+.negs th{font-weight:500;color:var(--muted);text-align:right;font-size:10.5px;padding:2px 0}
+.negs th:first-child,.negs td:first-child{text-align:left}
+.negs td{text-align:right;padding:3px 0;border-top:1px dashed var(--line);font-variant-numeric:tabular-nums}
+.nota{font-size:11px;color:var(--muted);margin-top:6px}
 </style>
 </head>
 <body>
@@ -78,7 +95,7 @@ footer{color:var(--muted);font-size:11.5px;text-align:center;padding:10px 16px 3
 </header>
 <main id="lista"><div class="vazio">Carregando dados…</div></main>
 <footer>
-  Fonte: ANBIMA — Mercado Secundário de Debêntures (taxas indicativas, divulgadas todo dia útil).<br>
+  Fontes: ANBIMA — taxas e PU indicativos (todo dia útil); SND/debentures.com.br — negócios efetivamente registrados (PU médio e % do PU da curva).<br>
   Em séries DI+ a taxa é o spread sobre o DI; em IPCA+ é a taxa real. “Sem taxa” = ANBIMA não divulga taxa indicativa (em geral, papel em reestruturação ou default); aparece só o PU de referência.<br>
   Δ em pontos-base (taxa) e pontos percentuais (% do par). Toque numa série para ver detalhes.
 </footer>
@@ -114,7 +131,7 @@ function serieHTML(s){
   const taxa = semPreco ? `<b class="meta">sem preço</b><span class="idx">ANBIMA não divulga</span>`
              : semTaxa ? `<b>${fmt(s.pct_par,1)}%</b><span class="idx">do par</span>`
                        : `<b>${tipo==="% do DI" ? fmt(s.taxa_indicativa) + "%" : tipo + " " + fmt(s.taxa_indicativa) + "%"}</b><span class="idx">taxa indicativa</span>`;
-  return `<div class="serie" onclick="this.classList.toggle('open')">
+  return `<div class="serie" data-cod="${s.codigo}" onclick="abrir(event,this)">
     <div class="row">
       <div><span class="cod">${s.codigo}</span>${semTaxa?'<span class="badge">sem taxa</span>':''}
         <div class="meta">Venc. ${s.vencimento||"—"} · emissão ${s.indice||"—"}</div></div>
@@ -132,11 +149,93 @@ function serieHTML(s){
         <tr><td>Taxa de compra / venda</td><td>${fmt(s.taxa_compra,4)} / ${fmt(s.taxa_venda,4)}</td></tr>
         <tr><td>Δ % par 1d / 5d (p.p.)</td><td>${delta(s.var_pct_par_1d,1,true)} / ${delta(s.var_pct_par_5d,1,true)}</td></tr>
         ${s.ref_ntnb?`<tr><td>NTN-B de referência</td><td>${s.ref_ntnb}</td></tr>`:''}
+        ${s.ultimo_negocio?`<tr><td>Último negócio (SND)</td><td>${dataBR(s.ultimo_negocio.data)} · ${fmt(s.ultimo_negocio.pct_curva,1)}% · ${s.ultimo_negocio.n} neg.</td></tr>`:''}
         <tr><td>Emissor (ANBIMA)</td><td style="font-size:11px">${s.nome||"—"}</td></tr>
       </table>
-      ${spark(s.historico, semTaxa?2:1)}
+      <div class="grafico"><div class="nota">Carregando histórico…</div></div>
     </div>
   </div>`;
+}
+
+const CACHE = {}, ESTADO = {};
+function abrir(ev, el){
+  if (ev.target.closest(".det")) return;          // cliques dentro do detalhe não fecham
+  el.classList.toggle("open");
+  if (el.classList.contains("open")) carregar(el);
+}
+async function carregar(el){
+  const cod = el.dataset.cod, box = el.querySelector(".grafico");
+  try {
+    if (!CACHE[cod]) CACHE[cod] = await fetch(`data/series/${cod}.json?t=${DADOS.data_referencia}`).then(r=>{ if(!r.ok) throw 0; return r.json(); });
+    const d = CACHE[cod];
+    ESTADO[cod] ??= { modo: d.anbima.some(a=>a[1]!=null) ? "preco" : "preco", per: "tudo" };
+    desenhar(box, d);
+  } catch(e){ box.innerHTML = '<div class="nota">Histórico ainda não disponível para esta série.</div>'; }
+}
+const ts = iso => Date.parse(iso + "T12:00:00");
+const PER = {"1m":31, "3m":92, "6m":183, "1a":366, "tudo":1e6};
+
+function desenhar(box, d){
+  const st = ESTADO[d.codigo], temTaxa = d.anbima.some(a=>a[1]!=null);
+  if (!temTaxa) st.modo = "preco";
+  const fim = Math.max(ts(d.atualizado), ...(d.negocios.length?[ts(d.negocios.at(-1)[0])]:[]));
+  const ini = fim - PER[st.per]*864e5;
+  // séries: ANBIMA (linha) e SND (pontos)
+  const linha = d.anbima.filter(a=>ts(a[0])>=ini).map(a=>({t:ts(a[0]), d:a[0], v: st.modo==="taxa"?a[1]:a[3], pu:a[2], taxa:a[1], par:a[3]})).filter(p=>p.v!=null);
+  const pts = st.modo==="preco" ? d.negocios.filter(n=>ts(n[0])>=ini && n[6]!=null).map(n=>({t:ts(n[0]), d:n[0], v:n[6], qtd:n[1], n:n[2], pu:n[4], min:n[3], max:n[5]})) : [];
+  const todos = [...linha, ...pts];
+  const ctl = `<div class="gctl">
+      <div class="seg" data-k="modo"><button data-v="preco" class="${st.modo==="preco"?"on":""}">Preço (% par)</button><button data-v="taxa" class="${st.modo==="taxa"?"on":""}" ${temTaxa?"":"disabled style='opacity:.4'"}>Taxa</button></div>
+      <div class="seg" data-k="per">${Object.keys(PER).map(k=>`<button data-v="${k}" class="${st.per===k?"on":""}">${k==="tudo"?"Tudo":k.toUpperCase()}</button>`).join("")}</div>
+    </div>`;
+  if (todos.length < 1){
+    box.innerHTML = ctl + '<div class="nota">Sem dados nesse período.</div>';
+  } else {
+    const W=340, H=190, L=38, R=8, T=8, B=20;
+    const t0 = Math.min(...todos.map(p=>p.t)), t1 = Math.max(...todos.map(p=>p.t));
+    let y0 = Math.min(...todos.map(p=>p.v)), y1 = Math.max(...todos.map(p=>p.v));
+    const pad = (y1-y0)*0.08 || Math.max(Math.abs(y1)*0.02, 0.5); y0-=pad; y1+=pad;
+    const X = t => L + (t1===t0 ? (W-L-R)/2 : (t-t0)/(t1-t0)*(W-L-R));
+    const Y = v => T + (1-(v-y0)/(y1-y0))*(H-T-B);
+    const dec = (y1-y0) < 3 ? 2 : 1;
+    let g = "";
+    for (let i=0;i<=3;i++){ const v=y0+(y1-y0)*i/3, y=Y(v);
+      g += `<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" stroke="var(--line)"/><text x="${L-4}" y="${y+3}" text-anchor="end">${fmt(v,dec)}</text>`; }
+    const fmtX = t => { const x=new Date(t); return x.toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit",year: (t1-t0)>200*864e5?"2-digit":undefined}); };
+    [t0,(t0+t1)/2,t1].forEach((t,i)=> g += `<text x="${X(t)}" y="${H-5}" text-anchor="${["start","middle","end"][i]}">${fmtX(t)}</text>`);
+    if (st.modo==="preco" && y0<100 && y1>100) g += `<line x1="${L}" x2="${W-R}" y1="${Y(100)}" y2="${Y(100)}" stroke="var(--muted)" stroke-dasharray="3 3" opacity=".6"/>`;
+    const maxVol = Math.max(1, ...pts.map(p=>(p.qtd||0)*(p.pu||0)));
+    g += pts.map(p=>`<circle cx="${X(p.t).toFixed(1)}" cy="${Y(p.v).toFixed(1)}" r="${(1.6+3.2*Math.sqrt(((p.qtd||0)*(p.pu||0))/maxVol)).toFixed(1)}" fill="var(--warn)" opacity=".55"/>`).join("");
+    if (linha.length>1) g += `<path d="${linha.map((p,i)=>`${i?"L":"M"}${X(p.t).toFixed(1)},${Y(p.v).toFixed(1)}`).join("")}" fill="none" stroke="var(--accent)" stroke-width="2" vector-effect="non-scaling-stroke"/>`;
+    else if (linha.length===1) g += `<circle cx="${X(linha[0].t)}" cy="${Y(linha[0].v)}" r="3" fill="var(--accent)"/>`;
+    g += `<line class="cur" x1="0" x2="0" y1="${T}" y2="${H-B}" stroke="var(--ink)" opacity="0"/>`;
+    const legenda = st.modo==="preco"
+      ? `<div class="leg"><span><i style="background:var(--accent)"></i>Indicativo ANBIMA</span><span><i class="pt" style="background:var(--warn)"></i>Negócios SND (tamanho = volume)</span></div>`
+      : `<div class="leg"><span><i style="background:var(--accent)"></i>Taxa indicativa ANBIMA (${(d.anbima.find(a=>a[1]!=null)||[""])[0] ? "desde "+dataBR(d.anbima.find(a=>a[1]!=null)[0]) : ""})</span></div>`;
+    box.innerHTML = ctl + `<div class="leitura">Toque no gráfico para ver os valores.</div><svg class="graf" viewBox="0 0 ${W} ${H}">${g}</svg>` + legenda;
+    const svg = box.querySelector("svg"), cur = svg.querySelector(".cur"), lei = box.querySelector(".leitura");
+    const datas = [...new Set(todos.map(p=>p.t))].sort((a,b)=>a-b);
+    const mover = e => {
+      const r = svg.getBoundingClientRect(), x = (e.clientX - r.left) / r.width * W;
+      const tt = t0 + (x-L)/(W-L-R)*(t1-t0);
+      const t = datas.reduce((a,b)=>Math.abs(b-tt)<Math.abs(a-tt)?b:a);
+      cur.setAttribute("x1",X(t)); cur.setAttribute("x2",X(t)); cur.setAttribute("opacity",".35");
+      const a = linha.find(p=>p.t===t), n = pts.find(p=>p.t===t);
+      let txt = `<b>${dataBR(new Date(t).toISOString().slice(0,10))}</b>`;
+      if (a) txt += st.modo==="taxa" ? ` · Taxa ${fmt(a.taxa,2)}% · ${fmt(a.par,1)}% par` : ` · ANBIMA ${fmt(a.par,2)}% par${a.taxa!=null?` · taxa ${fmt(a.taxa,2)}%`:""}`;
+      if (n) txt += `<br>Negócios: ${n.n} · ${fmt(n.qtd,0)} deb. · PU médio R$ ${fmt(n.pu,2)} · ${fmt(n.v,2)}% curva`;
+      lei.innerHTML = txt;
+    };
+    svg.addEventListener("pointerdown", mover); svg.addEventListener("pointermove", e => { if (e.pointerType==="mouse" || e.buttons) mover(e); });
+  }
+  const neg = d.negocios.slice(-6).reverse();
+  box.innerHTML += neg.length
+    ? `<table class="negs"><tr><th>Negócios (SND)</th><th>Qtd</th><th>Neg.</th><th>PU médio</th><th>% curva</th></tr>${neg.map(n=>`<tr><td>${dataBR(n[0])}</td><td>${fmt(n[1],0)}</td><td>${fmt(n[2],0)}</td><td>${fmt(n[4],2)}</td><td>${fmt(n[6],2)}</td></tr>`).join("")}</table><div class="nota">${d.negocios.length} dias com negócios desde ${dataBR(d.negocios[0][0])}.</div>`
+    : `<div class="nota">Sem negócios registrados no SND.</div>`;
+  box.querySelectorAll(".seg").forEach(seg => seg.addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b || b.disabled) return;
+    st[seg.dataset.k] = b.dataset.v; desenhar(box, d);
+  }));
 }
 
 function render(){
