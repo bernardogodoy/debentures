@@ -146,7 +146,7 @@ function serieHTML(s){
       <div><span>Δ taxa 1d</span>${delta(s.var_taxa_1d,100,false)}</div>
       <div><span>Δ taxa 5d</span>${delta(s.var_taxa_5d,100,false)}</div>
     </div>
-    <div class="det">
+    <div class="det" onclick="event.stopPropagation()">
       <table>
         <tr><td>PU</td><td>R$ ${fmt(s.pu,6)}</td></tr>
         <tr><td>Taxa de compra / venda</td><td>${fmt(s.taxa_compra,4)} / ${fmt(s.taxa_venda,4)}</td></tr>
@@ -166,7 +166,9 @@ const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).
 const COR = { anbima: "#2563eb", neg: "#ea580c", media: "#c2410c", vol: "rgba(148,163,184,.45)" };
 
 function abrir(ev, el){
-  if (ev.target.closest(".det")) return;          // cliques dentro do detalhe não fecham a série
+  // cliques dentro do detalhe (gráfico, botões, tabela) nunca fecham a série — mesmo que o botão
+  // clicado tenha sido redesenhado antes de o evento chegar aqui
+  if (ev.composedPath().some(n => n.classList && n.classList.contains("det"))) return;
   el.classList.toggle("open");
   const cod = el.dataset.cod;
   if (el.classList.contains("open")) carregar(el);
@@ -303,10 +305,12 @@ function montar(box, d){
   });
 
   box.querySelector('.seg[data-k=per]').addEventListener("click", e => {
+    e.stopPropagation();
     const b = e.target.closest("button"); if (!b) return;
     programado = 1; aplicarPeriodo(b.dataset.v); setTimeout(() => programado = 0, 50);
   });
   box.querySelector('.seg[data-k=modo]').addEventListener("click", e => {
+    e.stopPropagation();
     const b = e.target.closest("button"); if (!b || b.disabled || b.dataset.v === st.modo) return;
     st.modo = b.dataset.v; montar(box, d);   // o contêiner tem altura fixa: a página não pula
   });
