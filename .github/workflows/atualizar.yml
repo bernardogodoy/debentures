@@ -1,0 +1,42 @@
+name: Atualizar taxas ANBIMA
+
+on:
+  schedule:
+    # ANBIMA publica as taxas até 20h (Brasília). 23:37 UTC = 20:37 BRT, seg–sex.
+    - cron: "37 23 * * 1-5"
+    # Repescagem na manhã seguinte (07:17 BRT), caso o arquivo tenha atrasado.
+    - cron: "17 10 * * 2-6"
+  workflow_dispatch:
+    inputs:
+      dias:
+        description: "Dias úteis para buscar (backfill)"
+        default: "8"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: atualizar
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Baixar e processar
+        run: python scripts/update.py --dias "${{ github.event.inputs.dias || '8' }}"
+      - name: Salvar dados
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "Sem mudanças."
+          else
+            git commit -m "Taxas ANBIMA $(date -u +%Y-%m-%d)"
+            git push
+          fi
