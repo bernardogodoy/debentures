@@ -100,7 +100,7 @@ footer{color:var(--muted);font-size:11.5px;text-align:center;padding:10px 16px 3
 <footer>
   Fontes: ANBIMA — taxas e PU indicativos (todo dia útil); SND/debentures.com.br — negócios efetivamente registrados (PU médio e % do PU da curva).<br>
   Em séries DI+ a taxa é o spread sobre o DI; em IPCA+ é a taxa real. “Sem taxa” = ANBIMA não divulga taxa indicativa (em geral, papel em reestruturação ou default); aparece só o PU de referência.<br>
-  Δ em pontos-base (taxa) e pontos percentuais (% do par). Toque numa série para ver detalhes.
+  Δ em pontos-base (taxa) e pontos percentuais (% do par). Toque numa série para ver detalhes.<br>Gráficos: <a href="https://www.tradingview.com/" style="color:inherit">TradingView Lightweight Charts™</a>.
 </footer>
 <script>
 const $ = s => document.querySelector(s);
@@ -215,7 +215,7 @@ function montar(box, d){
   const escuro = matchMedia("(prefers-color-scheme: dark)").matches;
   const chart = LightweightCharts.createChart(cont, {
     autoSize: true,
-    layout: { background: { type: "solid", color: "transparent" }, textColor: css("--muted"), fontSize: 11,
+    layout: { background: { type: "solid", color: "transparent" }, textColor: css("--muted"), fontSize: 11, attributionLogo: false,
               fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif' },
     grid: { vertLines: { visible: false }, horzLines: { color: escuro ? "rgba(255,255,255,.06)" : "rgba(15,23,42,.06)" } },
     rightPriceScale: { borderVisible: false, scaleMargins: { top: 0.08, bottom: 0.22 } },
