@@ -229,9 +229,9 @@ function desenhar(box, d){
     svg.addEventListener("pointerdown", mover); svg.addEventListener("pointermove", e => { if (e.pointerType==="mouse" || e.buttons) mover(e); });
   }
   const neg = d.negocios.slice(-6).reverse();
-  box.innerHTML += neg.length
+  box.insertAdjacentHTML('beforeend', neg.length
     ? `<table class="negs"><tr><th>Negócios (SND)</th><th>Qtd</th><th>Neg.</th><th>PU médio</th><th>% curva</th></tr>${neg.map(n=>`<tr><td>${dataBR(n[0])}</td><td>${fmt(n[1],0)}</td><td>${fmt(n[2],0)}</td><td>${fmt(n[4],2)}</td><td>${fmt(n[6],2)}</td></tr>`).join("")}</table><div class="nota">${d.negocios.length} dias com negócios desde ${dataBR(d.negocios[0][0])}.</div>`
-    : `<div class="nota">Sem negócios registrados no SND.</div>`;
+    : `<div class="nota">Sem negócios registrados no SND.</div>`);
   box.querySelectorAll(".seg").forEach(seg => seg.addEventListener("click", e => {
     const b = e.target.closest("button"); if (!b || b.disabled) return;
     st[seg.dataset.k] = b.dataset.v; desenhar(box, d);
