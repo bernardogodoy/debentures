@@ -38,6 +38,8 @@ jobs:
         with:
           python-version: "3.12"
       - name: Baixar e processar
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: |
           EXTRA=""
           if [ "${{ github.event.inputs.snd_completo }}" = "true" ]; then EXTRA="--snd-completo"; fi
@@ -47,6 +49,8 @@ jobs:
           python scripts/update.py --dias "$DIAS" $EXTRA
           python scripts/mercado.py || echo "Aba Juros e crédito: falha na coleta (dados anteriores mantidos)"
       - name: Salvar dados
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

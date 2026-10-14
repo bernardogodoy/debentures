@@ -1,10 +1,12 @@
 """Dados da aba "Juros e crédito".
 
-1. Curva de juros americana: Treasury constant maturity (FRED, séries DGS*), desde 2000.
+1. Curva de juros americana: Daily Treasury Par Yield Curve (home.treasury.gov), desde 2000.
 2. Curva de juros brasileira: ETTJ da ANBIMA (prefixada, IPCA/real e inflação implícita).
    A ANBIMA só deixa baixar ~1 mês para trás, então o histórico é acumulado em data/mercado/br.json.
 3. ICE BofA US High Yield OAS (FRED BAMLH0A0HYM2). O FRED só mostra os últimos ~3 anos
    desse índice, então o histórico também é acumulado (nada é apagado).
+   O download direto do FRED (fredgraph.csv) não responde a servidores do GitHub; por isso o
+   robô usa a API oficial do FRED quando há a chave FRED_API_KEY (segredo do repositório).
 
 Uso: python scripts/mercado.py [--dias-br 30]
 """
@@ -15,6 +17,7 @@ import csv
 import datetime as dt
 import io
 import json
+import os
 import sys
 import time
 import urllib.parse
@@ -26,25 +29,28 @@ DIR = RAIZ / "data" / "mercado"
 BRT = dt.timezone(dt.timedelta(hours=-3))
 UA = {"User-Agent": "Mozilla/5.0 (debentures-tracker)"}
 
-US_TENORES = [  # (série FRED, rótulo, anos)
-    ("DGS1MO", "1M", 1 / 12), ("DGS3MO", "3M", 0.25), ("DGS6MO", "6M", 0.5), ("DGS1", "1A", 1),
-    ("DGS2", "2A", 2), ("DGS3", "3A", 3), ("DGS5", "5A", 5), ("DGS7", "7A", 7), ("DGS10", "10A", 10),
-    ("DGS20", "20A", 20), ("DGS30", "30A", 30),
+US_TENORES = [  # (coluna no CSV do Tesouro, rótulo, anos)
+    ("1 Mo", "1M", 1 / 12), ("3 Mo", "3M", 0.25), ("6 Mo", "6M", 0.5), ("1 Yr", "1A", 1),
+    ("2 Yr", "2A", 2), ("3 Yr", "3A", 3), ("5 Yr", "5A", 5), ("7 Yr", "7A", 7), ("10 Yr", "10A", 10),
+    ("20 Yr", "20A", 20), ("30 Yr", "30A", 30),
 ]
-US_DESDE = "2000-01-01"
+US_DESDE = 2000
+TESOURO = ("https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/"
+           "{a}/all?type=daily_treasury_yield_curve&field_tdr_date_value={a}&page&_format=csv")
+FRED_API = "https://api.stlouisfed.org/fred/series/observations?series_id={}&api_key={}&file_type=json"
 HY_SERIE = "BAMLH0A0HYM2"
 FRED = "https://fred.stlouisfed.org/graph/fredgraph.csv?id={}"
 ANBIMA_ETTJ = "https://www.anbima.com.br/informacoes/est-termo/CZ-down.asp"
 
 
-def http(url: str, dados: bytes | None = None, tentativas=3) -> bytes | None:
+def http(url: str, dados: bytes | None = None, tentativas=3, timeout=90) -> bytes | None:
     for i in range(tentativas):
         try:
             req = urllib.request.Request(url, data=dados, headers=UA)
-            with urllib.request.urlopen(req, timeout=90) as r:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
                 return r.read()
         except Exception as e:
-            print(f"  erro em {url}: {e}", file=sys.stderr)
+            print(f"  erro em {url.split('api_key=')[0]}: {e}", file=sys.stderr)
             time.sleep(4 * (i + 1))
     return None
 
@@ -59,8 +65,16 @@ def gravar(caminho: Path, obj):
 
 
 def fred(serie: str) -> dict[str, float] | None:
-    bruto = http(FRED.format(serie))
+    chave = os.environ.get("FRED_API_KEY", "").strip()
+    if chave:
+        bruto = http(FRED_API.format(serie, chave), timeout=60)
+        if not bruto:
+            return None
+        obs = json.loads(bruto).get("observations", [])
+        return {o["date"]: float(o["value"]) for o in obs if o.get("value") not in (None, "", ".")}
+    bruto = http(FRED.format(serie), tentativas=1, timeout=25)
     if not bruto:
+        print(f"  FRED {serie}: sem resposta e sem FRED_API_KEY configurada", file=sys.stderr)
         return None
     out = {}
     for linha in csv.reader(io.StringIO(bruto.decode("utf-8"))):
@@ -73,27 +87,55 @@ def fred(serie: str) -> dict[str, float] | None:
 
 
 # ---------------------------------------------------------------- EUA
+def tesouro_ano(ano: int) -> dict[str, list] | None:
+    bruto = http(TESOURO.format(a=ano), timeout=60)
+    if not bruto:
+        return None
+    linhas = list(csv.reader(io.StringIO(bruto.decode("utf-8-sig"))))
+    if not linhas or linhas[0][0].strip() != "Date":
+        return None
+    cab = [c.strip() for c in linhas[0]]
+    col = [cab.index(t[0]) if t[0] in cab else None for t in US_TENORES]
+    out = {}
+    for l in linhas[1:]:
+        try:
+            m, d, a = l[0].split("/")
+        except ValueError:
+            continue
+        vals = []
+        for c in col:
+            try:
+                vals.append(float(l[c]) if c is not None and l[c].strip() not in ("", "N/A") else None)
+            except (ValueError, IndexError):
+                vals.append(None)
+        if any(v is not None for v in vals):
+            out[f"{a}-{m}-{d}"] = vals
+    return out
+
+
 def atualizar_us():
     arq = DIR / "us.json"
-    atual = ler(arq, {"tenores": [t[1] for t in US_TENORES], "anos": [t[2] for t in US_TENORES], "dados": {}})
-    por_data: dict[str, list] = {d: v for d, v in atual["dados"].items()}
+    atual = ler(arq, {"dados": {}})
+    atual["tenores"] = [t[1] for t in US_TENORES]
+    atual["anos"] = [t[2] for t in US_TENORES]
+    hoje = dt.datetime.now(BRT).date()
+    tem = set(int(d[:4]) for d in atual["dados"])
+    # anos que faltam (primeira carga) + o ano corrente (e o anterior, no começo de janeiro)
+    anos = [a for a in range(US_DESDE, hoje.year + 1) if a not in tem]
+    anos += [hoje.year] + ([hoje.year - 1] if hoje.month == 1 else [])
     ok = 0
-    for i, (serie, rot, _) in enumerate(US_TENORES):
-        s = fred(serie)
-        if s is None:
-            print(f"  FRED {serie}: falhou, mantendo dados salvos")
+    for a in sorted(set(anos)):
+        dados = tesouro_ano(a)
+        if dados is None:
+            print(f"  Tesouro {a}: falhou, mantendo dados salvos")
             continue
+        atual["dados"].update(dados)
         ok += 1
-        for d, v in s.items():
-            if d < US_DESDE:
-                continue
-            linha = por_data.setdefault(d, [None] * len(US_TENORES))
-            linha[i] = v
-        time.sleep(0.5)
-    # descarta dias sem nenhum vértice (feriados)
-    atual["dados"] = {d: por_data[d] for d in sorted(por_data) if any(x is not None for x in por_data[d])}
+        time.sleep(0.3)
+    atual["dados"] = {d: atual["dados"][d] for d in sorted(atual["dados"])}
     gravar(arq, atual)
-    print(f"  EUA: {len(atual['dados'])} dias, último {max(atual['dados'])} ({ok}/{len(US_TENORES)} séries baixadas)")
+    if atual["dados"]:
+        print(f"  EUA: {len(atual['dados'])} dias, de {min(atual['dados'])} a {max(atual['dados'])} ({ok} ano(s) baixado(s))")
 
 
 # ---------------------------------------------------------------- HY OAS
