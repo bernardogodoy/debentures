@@ -162,6 +162,15 @@ def main():
     lista, mapa = carregar_emissores()
     hist = ler_json(HISTORICO, {})
     fichas: dict = hist.pop("_fichas", {})
+    # prefixos já acompanhados na última rodada; se entrou emissor novo, os dias ainda
+    # disponíveis na ANBIMA são baixados de novo para preencher o histórico dele
+    prefixos_atuais = sorted(mapa)
+    prefixos_antes = hist.pop("_prefixos", None)
+    if prefixos_antes is None:
+        prefixos_antes = sorted({c[:4].upper() for c in fichas}) or prefixos_atuais
+    novos_prefixos = set(prefixos_atuais) - set(prefixos_antes)
+    if novos_prefixos:
+        print(f"  emissores novos ({', '.join(sorted(novos_prefixos))}): refazendo os dias disponíveis na ANBIMA")
 
     def registrar(data_iso: str, linhas: list[dict]):
         dia = {}
@@ -188,7 +197,7 @@ def main():
     else:
         for d in dias_uteis_recentes(args.dias):
             iso = d.isoformat()
-            if hist.get(iso):
+            if hist.get(iso) and not novos_prefixos:
                 continue
             texto = baixar_anbima(d)
             if texto is None:
@@ -257,6 +266,7 @@ def main():
         "emissores": [e["nome"] for e in lista], "series": series,
     }, compacto=False)
     hist["_fichas"] = fichas
+    hist["_prefixos"] = prefixos_atuais
     gravar_json(HISTORICO, hist)
     print(f"OK: {len(series)} séries em {ultima}; ANBIMA desde {datas[0]} ({len(datas)} pregões)")
 

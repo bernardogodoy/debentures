@@ -6,6 +6,10 @@ on:
     - cron: "37 23 * * 1-5"
     # Repescagem na manhã seguinte (07:17 BRT), caso o arquivo tenha atrasado.
     - cron: "17 10 * * 2-6"
+  # Emissor novo em emissores.json: roda na hora, com janela que cobre os ~20 dias úteis da ANBIMA
+  push:
+    branches: [main]
+    paths: [emissores.json]
   workflow_dispatch:
     inputs:
       dias:
@@ -35,7 +39,9 @@ jobs:
         run: |
           EXTRA=""
           if [ "${{ github.event.inputs.snd_completo }}" = "true" ]; then EXTRA="--snd-completo"; fi
-          python scripts/update.py --dias "${{ github.event.inputs.dias || '8' }}" $EXTRA
+          DIAS="${{ github.event.inputs.dias || '8' }}"
+          if [ "${{ github.event_name }}" = "push" ]; then DIAS=25; fi
+          python scripts/update.py --dias "$DIAS" $EXTRA
       - name: Salvar dados
         run: |
           git config user.name "github-actions[bot]"
