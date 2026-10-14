@@ -127,7 +127,29 @@ function spark(hist, idx){
   <div class="row meta"><span>${lbl} · ${dataBR(hist[0][0])}</span><span>mín ${fmt(mn)} · máx ${fmt(mx)}</span></div>`;
 }
 
+function serieSndHTML(s){
+  const u = s.ultimo_negocio || {};
+  return `<div class="serie" data-cod="${s.codigo}" onclick="abrir(event,this)">
+    <div class="row">
+      <div><span class="cod">${s.codigo}</span><span class="badge">só SND</span>
+        <div class="meta">Sem precificação ANBIMA · último negócio ${dataBR(u.data)}</div></div>
+      <div class="taxa"><b>${fmt(s.pct_par,1)}%</b><span class="idx">da curva · últ. negócio</span></div>
+    </div>
+    <div class="nums">
+      <div><span>PU médio</span>${fmt(s.pu,2)}</div>
+      <div><span>Negócios</span>${u.n ?? "—"} · ${fmt(u.qtd,0)}</div>
+      <div><span>Δ vs neg. ant.</span>${delta(s.var_pct_par_1d,1,true)}</div>
+      <div><span>Dias c/ neg.</span>${s.negocios_dias}</div>
+    </div>
+    <div class="det" onclick="event.stopPropagation()">
+      <div class="nota">Série que a ANBIMA não precifica. Os valores são de negócios efetivamente registrados no SND (debentures.com.br), desde ${dataBR(s.negocios_desde)}; dias sem negócio ficam vazios.</div>
+      <div class="grafico"><div class="nota">Carregando histórico…</div></div>
+    </div>
+  </div>`;
+}
+
 function serieHTML(s){
+  if (s.fonte === "snd") return serieSndHTML(s);
   const tipo = (s.indice||"").startsWith("IPCA") ? "IPCA +" : (s.indice||"").includes("% do DI") ? "% do DI" : "DI +";
   const semTaxa = s.taxa_indicativa==null;
   const semPreco = semTaxa && s.pct_par==null;
@@ -331,7 +353,7 @@ function render(){
   const q = $("#q").value.trim().toUpperCase(), ord = $("#ord").value;
   let ss = DADOS.series.filter(s => {
     if (q && !(s.codigo.includes(q) || (s.emissor||"").toUpperCase().includes(q) || (s.nome||"").includes(q))) return false;
-    if (filtro==="DI") return !(s.indice||"").startsWith("IPCA");
+    if (filtro==="DI") return !!s.indice && !s.indice.startsWith("IPCA");
     if (filtro==="IPCA") return (s.indice||"").startsWith("IPCA");
     if (filtro==="semtaxa") return s.taxa_indicativa==null;
     return true;
@@ -347,7 +369,7 @@ function render(){
   const grupos = {};
   ss.forEach(s => (grupos[s.emissor] ??= []).push(s));
   el.innerHTML = DADOS.emissores.filter(e=>grupos[e]).map(e => {
-    const peso = s => s.taxa_indicativa!=null ? 0 : s.pct_par!=null ? 1 : 2;
+    const peso = s => s.taxa_indicativa!=null ? 0 : s.fonte==="snd" ? 2 : s.pct_par!=null ? 1 : 3;
     grupos[e].sort((a,b)=>peso(a)-peso(b));
     const g = grupos[e], comTaxa = g.filter(s=>s.taxa_indicativa!=null).length;
     return `<section class="emissor"><h2>${e}<small>${g.length} série${g.length>1?'s':''}${comTaxa<g.length?` · ${g.length-comTaxa} sem taxa`:''}</small></h2>${g.map(serieHTML).join("")}</section>`;

@@ -101,6 +101,11 @@ def carregar_emissores():
     return lista, mapa
 
 
+def carregar_so_snd(lista) -> dict[str, str]:
+    """Séries que a ANBIMA não precifica, acompanhadas só pelos negócios do SND: {codigo: emissor}."""
+    return {c.upper(): e["nome"] for e in lista for c in e.get("snd", [])}
+
+
 def dias_uteis_recentes(n: int) -> list[dt.date]:
     hoje = dt.datetime.now(BRT).date()
     dias, d = [], hoje
@@ -160,6 +165,7 @@ def main():
     args = ap.parse_args()
 
     lista, mapa = carregar_emissores()
+    so_snd = carregar_so_snd(lista)
     hist = ler_json(HISTORICO, {})
     fichas: dict = hist.pop("_fichas", {})
     # prefixos já acompanhados na última rodada; se entrou emissor novo, os dias ainda
@@ -216,9 +222,11 @@ def main():
     codigos = sorted(set(hist[ultima]) | {c for c, f in fichas.items() if f.get("emissor")})
     codigos = [c for c in codigos if mapa.get(c[:4].upper())]
 
-    negocios = {} if args.sem_snd else atualizar_snd(codigos, args.snd_completo)
+    codigos_snd = [c for c in sorted(so_snd) if c not in hist[ultima]]
+    todos = codigos + [c for c in codigos_snd if c not in codigos]
+    negocios = {} if args.sem_snd else atualizar_snd(todos, args.snd_completo)
     if args.sem_snd:
-        negocios = {c: ler_json(DIR_NEGOCIOS / f"{c}.json", []) for c in codigos}
+        negocios = {c: ler_json(DIR_NEGOCIOS / f"{c}.json", []) for c in todos}
 
     def var(cod, base, idx):
         if not base:
@@ -254,6 +262,29 @@ def main():
             "negocios_desde": neg[0][0] if neg else None,
             "ultimo_negocio": {"data": ult_neg[0], "qtd": ult_neg[1], "n": ult_neg[2],
                                "pu_medio": ult_neg[4], "pct_curva": ult_neg[6]} if ult_neg else None,
+        })
+
+    # séries só com negócios do SND: o número principal é o % do PU da curva no último negócio
+    for cod in codigos_snd:
+        neg = negocios.get(cod, [])
+        if not neg:
+            continue
+        gravar_json(DIR_SERIES / f"{cod}.json", {
+            "codigo": cod, "emissor": so_snd[cod], "atualizado": neg[-1][0], "anbima": [], "negocios": neg,
+        })
+        u = neg[-1]
+        ant = neg[-2] if len(neg) > 1 else None
+        series.append({
+            "codigo": cod, "emissor": so_snd[cod], "fonte": "snd", "nome": None,
+            "vencimento": None, "indice": None, "ref_ntnb": None,
+            "taxa_indicativa": None, "taxa_compra": None, "taxa_venda": None,
+            "pu": u[4], "pct_par": u[6], "duration_anos": None,
+            "var_taxa_1d": None, "var_taxa_5d": None,
+            "var_pct_par_1d": round(u[6] - ant[6], 4) if ant and u[6] is not None and ant[6] is not None else None,
+            "var_pct_par_5d": None,
+            "historico": [[n[0], None, n[6]] for n in neg[-PONTOS_MINI:]],
+            "negocios_dias": len(neg), "negocios_desde": neg[0][0],
+            "ultimo_negocio": {"data": u[0], "qtd": u[1], "n": u[2], "pu_medio": u[4], "pct_curva": u[6]},
         })
 
     ordem = {e["nome"]: i for i, e in enumerate(lista)}

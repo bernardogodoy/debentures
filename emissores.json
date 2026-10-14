@@ -14,5 +14,7 @@
   {"nome": "Aegea Saneamento", "prefixos": ["AEGP"]},
   {"nome": "Equipav Saneamento", "prefixos": ["AEGE"]},
   {"nome": "Tupi Energias Renováveis", "prefixos": ["TUPW"]},
-  {"nome": "Qualicorp", "prefixos": ["QUAL"]}
+  {"nome": "Qualicorp", "prefixos": ["QUAL"]},
+  {"nome": "Americanas", "prefixos": ["AMER"], "snd": ["AMERE2", "AMERF2", "AMERG2"]},
+  {"nome": "Light", "prefixos": ["LIGH"], "snd": ["LIGH2B", "LIGHB9", "LIGHC0", "LIGHC4", "LIGHC5", "LIGHC7", "LIGHE2"]}
 ]
