@@ -140,7 +140,7 @@ svg.curva .tx{font-size:11px;fill:var(--muted);font-variant-numeric:tabular-nums
       <div class="chartbox hist1"></div>
       <div class="legmini"><span><i style="background:#2563eb"></i>Inclinação 10A − 2A (p.p.; vermelho = curva invertida)</span></div>
       <div class="chartbox hist2 baixo"></div>
-      <div class="nota">Fonte: U.S. Treasury via FRED (séries DGS1MO…DGS30), histórico desde 2000.</div>
+      <div class="nota">Fonte: U.S. Department of the Treasury, Daily Treasury Par Yield Curve, histórico desde 2000.</div>
     </div>
   </section>
   <section class="painel" id="p-br">
@@ -484,7 +484,7 @@ async function abrirMercado(){
   [MERC.us, MERC.br, MERC.hy] = await Promise.all([get("us"), get("br"), get("hy")]);
   MERC.carregado = true;
   const ult = [MERC.us && Object.keys(MERC.us.dados).at(-1), MERC.br && Object.keys(MERC.br.dados).at(-1), MERC.hy && MERC.hy.at(-1)[0]].filter(Boolean).sort().at(-1);
-  MERC.sub = ult ? `Dados até ${dataBR(ult)} · FRED e ANBIMA` : "Sem dados ainda";
+  MERC.sub = ult ? `Dados até ${dataBR(ult)} · Tesouro dos EUA, ANBIMA e FRED` : "Sem dados ainda";
   $("#sub").textContent = MERC.sub;
   painelUS(); painelBR(); painelHY();
 }
