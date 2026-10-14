@@ -281,8 +281,8 @@ function montar(box, d){
     const ref = principal.data().length ? principal : media;
     if (K === 6) ref.createPriceLine({ price: 100, color: css("--muted"), lineWidth: 1, lineStyle: 2, axisLabelVisible: false, title: "par" });
 
-    leg.innerHTML = `<span><i style="background:${COR.anbima}"></i>Indicativo ANBIMA</span>
-      ${temNeg?`<span><i style="background:${COR.media}"></i>Média dos negócios (20 pregões, pond. volume)</span>
+    leg.innerHTML = `${d.anbima.length?`<span><i style="background:${COR.anbima}"></i>Indicativo ANBIMA</span>`:""}
+      ${temNeg?`<span><i style="background:${COR.media}"></i>Média dos negócios (20 pregões, pond. volume${K===4?", PU em R$":""})</span>
       <span><i class="pt" style="background:${COR.neg}"></i>Negócio do dia (SND)</span>
       <span><i style="background:${COR.vol};height:8px"></i>Volume</span>`:""}`;
   } else {
@@ -300,7 +300,7 @@ function montar(box, d){
     let s = `<b>${dataBR(iso)}</b>`;
     if (a) s += st.modo==="taxa" ? ` · taxa <b>${fmt(a[1],2)}%</b> · ${fmt(a[3],1)}% par`
                                  : ` · ANBIMA <b>${fmt(a[3],2)}%</b> par${a[1]!=null?` · taxa ${fmt(a[1],2)}%`:""}`;
-    if (n && st.modo==="preco") s += `<br><span style="color:${COR.media}">Negócios:</span> ${fmt(n[6],2)}% curva · PU médio R$ ${fmt(n[4],2)} · ${n[2]} neg. · ${fmtVol((n[1]||0)*(n[4]||0))}`;
+    if (n && st.modo==="preco") s += `<br><span style="color:${COR.media}">Negócios:</span> ${n[6]!=null?`${fmt(n[6],2)}% curva · `:""}PU médio R$ ${fmt(n[4],2)} · ${n[2]} neg. · ${fmtVol((n[1]||0)*(n[4]||0))}`;
     lei.innerHTML = s;
   };
   const padrao = () => {
