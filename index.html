@@ -133,7 +133,8 @@ function serieSndHTML(s){
     <div class="row">
       <div><span class="cod">${s.codigo}</span><span class="badge">só SND</span>
         <div class="meta">Sem precificação ANBIMA · último negócio ${dataBR(u.data)}</div></div>
-      <div class="taxa"><b>${fmt(s.pct_par,1)}%</b><span class="idx">da curva · últ. negócio</span></div>
+      <div class="taxa">${s.pct_par!=null ? `<b>${fmt(s.pct_par,1)}%</b><span class="idx">da curva · últ. negócio</span>`
+                                            : `<b>R$ ${fmt(s.pu,2)}</b><span class="idx">PU médio · últ. negócio</span>`}</div>
     </div>
     <div class="nums">
       <div><span>PU médio</span>${fmt(s.pu,2)}</div>
@@ -206,11 +207,11 @@ async function carregar(el){
 }
 
 // média dos negócios (% da curva) ponderada por volume financeiro, janela de N pregões com negócio
-function mediaMovel(neg, n=20){
+function mediaMovel(neg, n=20, k=6){
   const out = [];
   for (let i=0;i<neg.length;i++){
     let s=0, w=0;
-    for (let j=Math.max(0,i-n+1); j<=i; j++){ const x=neg[j]; if (x[6]==null) continue; const p=(x[1]||0)*(x[4]||0)||1; s+=x[6]*p; w+=p; }
+    for (let j=Math.max(0,i-n+1); j<=i; j++){ const x=neg[j]; if (x[k]==null) continue; const p=(x[1]||0)*(x[4]||0)||1; s+=x[k]*p; w+=p; }
     if (w) out.push({ time: neg[i][0], value: +(s/w).toFixed(3) });
   }
   return out;
@@ -259,6 +260,7 @@ function montar(box, d){
   const fmtVol = v => v >= 1e6 ? `R$ ${fmt(v/1e6,1)} mi` : `R$ ${fmt(v/1e3,0)} mil`;
 
   let principal;
+  const K = d.negocios.some(n=>n[6]!=null) ? 6 : 4;   // % do PU da curva; sem ela, PU médio em R$
   if (st.modo === "preco"){
     const vol = chart.addHistogramSeries({ priceScaleId: "vol", priceFormat: { type: "volume" }, color: COR.vol,
                                            lastValueVisible: false, priceLineVisible: false });
@@ -268,16 +270,16 @@ function montar(box, d){
     const pts = chart.addLineSeries({ color: "rgba(234,88,12,.35)", lineVisible: false, pointMarkersVisible: true,
                                       pointMarkersRadius: 1.6, lastValueVisible: false, priceLineVisible: false,
                                       crosshairMarkerVisible: false });
-    pts.setData(d.negocios.filter(n=>n[6]!=null).map(n => ({ time: n[0], value: n[6] })));
+    pts.setData(d.negocios.filter(n=>n[K]!=null).map(n => ({ time: n[0], value: n[K] })));
 
     const media = chart.addLineSeries({ color: COR.media, lineWidth: 2, lastValueVisible: false, priceLineVisible: false,
                                         crosshairMarkerVisible: false });
-    media.setData(mediaMovel(d.negocios));
+    media.setData(mediaMovel(d.negocios, 20, K));
 
     principal = chart.addLineSeries({ color: COR.anbima, lineWidth: 3, title: "", lastValueVisible: true, priceLineVisible: false });
     principal.setData(d.anbima.filter(a=>a[3]!=null).map(a => ({ time: a[0], value: a[3] })));
     const ref = principal.data().length ? principal : media;
-    ref.createPriceLine({ price: 100, color: css("--muted"), lineWidth: 1, lineStyle: 2, axisLabelVisible: false, title: "par" });
+    if (K === 6) ref.createPriceLine({ price: 100, color: css("--muted"), lineWidth: 1, lineStyle: 2, axisLabelVisible: false, title: "par" });
 
     leg.innerHTML = `<span><i style="background:${COR.anbima}"></i>Indicativo ANBIMA</span>
       ${temNeg?`<span><i style="background:${COR.media}"></i>Média dos negócios (20 pregões, pond. volume)</span>
