@@ -86,8 +86,7 @@ footer{color:var(--muted);font-size:11.5px;text-align:center;padding:10px 16px 3
 .cmp{align-items:center;margin:8px 0 2px;flex-wrap:wrap}
 .cmp .rot{font-size:12px;color:var(--muted);margin-right:2px}
 .cmp .chip:disabled{opacity:.4;cursor:default}
-svg.curva{display:block;width:100%;height:260px;touch-action:pan-y;user-select:none;color:var(--ink)}
-@media (min-width:700px){svg.curva{height:340px}}
+svg.curva{display:block;width:100%;touch-action:pan-y;user-select:none;color:var(--ink)}
 svg.curva .gl{stroke:var(--line)} svg.curva .gl.v{stroke-dasharray:2 4}
 svg.curva .tx{font-size:11px;fill:var(--muted);font-variant-numeric:tabular-nums}
 .histctl{display:flex;justify-content:flex-end;margin:6px 0}
@@ -460,7 +459,9 @@ $("#chips").addEventListener("click", e => {
 });
 
 // ===================================================================== aba "Juros e crédito"
-const MERC = { carregado: false, us: null, br: null, hy: null, graficos: [] };
+const MERC = { carregado: false, us: null, br: null, hy: null, graficos: [], redesenhos: [] };
+let _rz; addEventListener("resize", () => { clearTimeout(_rz); _rz = setTimeout(() => {
+  if (!document.getElementById("mercado").hidden) MERC.redesenhos.forEach(f => f()); }, 200); });
 const LGD = 0.60;   // perda dado default usada no default implícito: default = OAS / 60%
 const CMP = [["1S", 7, "1 semana"], ["1M", 30, "1 mês"], ["1A", 365, "1 ano"]];
 const CORES_CMP = { hoje: "#2563eb", "1S": "#0d9488", "1M": "#d97706", "1A": "#9333ea" };
@@ -551,7 +552,8 @@ function periodos(box, graficos, fim, lista, inicial){
 // ---------- gráfico de curva (eixo x = prazo, escala raiz para abrir a parte curta)
 function graficoCurva(box, curvas, rotulos, unidade="% a.a."){
   // curvas: [{nome, cor, tracejada, pts:[[anos, taxa]...]}]; rotulos: [[anos, "texto"]...]
-  const W = 640, H = 300, L = 8, R = 46, T = 14, B = 26;
+  // desenha na largura real do contêiner (sem esticar o texto dos eixos)
+  const W = Math.max(300, Math.round(box.clientWidth || 640)), H = W < 600 ? 260 : 340, L = 8, R = 46, T = 14, B = 26;
   const todos = curvas.flatMap(c => c.pts);
   if (!todos.length) { box.innerHTML = '<div class="nota">Sem dados.</div>'; return; }
   const xmax = Math.max(...todos.map(p => p[0])), xmin = Math.min(...todos.map(p => p[0]));
@@ -571,7 +573,7 @@ function graficoCurva(box, curvas, rotulos, unidade="% a.a."){
     if (c.marcadores) g += c.pts.map(p => `<circle cx="${X(p[0]).toFixed(1)}" cy="${Y(p[1]).toFixed(1)}" r="3" fill="${c.cor}"/>`).join("");
   });
   g += `<line class="cur" x1="0" x2="0" y1="${T}" y2="${H-B}" stroke="currentColor" opacity="0"/>`;
-  box.innerHTML = `<div class="leitura"></div><svg class="curva" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${g}</svg>
+  box.innerHTML = `<div class="leitura"></div><svg class="curva" viewBox="0 0 ${W} ${H}" style="height:${H}px">${g}</svg>
     <div class="leg">${curvas.map(c => `<span><i style="background:${c.cor}${c.tracejada ? ";opacity:.75" : ""}"></i>${c.nome}</span>`).join("")}</div>`;
   const svg = box.querySelector("svg"), cur = svg.querySelector(".cur"), lei = box.querySelector(".leitura");
   const xs = [...new Set(curvas[0].pts.map(p => p[0]))];
@@ -631,7 +633,7 @@ function painelUS(){
       if (est[k] && d && d !== ultCompleta) curvas.push({ nome: `${nome} (${dataBR(d)})`, cor: CORES_CMP[k], tracejada: true, pts: pts(d) }); });
     graficoCurva(box.querySelector(".curvabox"), curvas, D.anos.map((a, i) => [a, D.tenores[i]]).filter(([a]) => ![1/12, 20].includes(a)));
   };
-  desenhar();
+  desenhar(); MERC.redesenhos.push(desenhar);
 
   // histórico: 2A e 10A, e a inclinação 10A − 2A embaixo
   const g1 = graficoTempo(box.querySelector(".hist1"));
@@ -695,7 +697,7 @@ function painelBR(){
     g.timeScale().fitContent();
     box.querySelector(".nota-hist").textContent = `Histórico coletado desde ${dataBR(datas[0])} (a ANBIMA só disponibiliza ~1 mês para trás; a série cresce a cada dia útil).`;
   }
-  desenhar();
+  desenhar(); MERC.redesenhos.push(desenhar);
 }
 
 // ---------- 3. High Yield OAS e default implícito
