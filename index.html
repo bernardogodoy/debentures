@@ -68,6 +68,33 @@ footer{color:var(--muted);font-size:11.5px;text-align:center;padding:10px 16px 3
 .leg{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:11.5px;color:var(--muted);margin-top:6px}
 .leg i{display:inline-block;width:12px;height:3px;border-radius:2px;margin-right:5px;vertical-align:middle}
 .leg i.pt{width:7px;height:7px;border-radius:50%}
+.tabs{display:flex;gap:4px;margin:0 0 10px;border-bottom:1px solid var(--line)}
+.tabs button{border:0;background:none;font:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:6px 4px 8px;margin-right:14px;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer}
+.tabs button.on{color:var(--ink);border-bottom-color:var(--accent)}
+#mercado{padding:10px 12px 40px;max-width:1100px;margin:0 auto}
+.painel{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:10px 0 18px;padding:14px 14px 12px}
+.painel h2{font-size:16px;margin:0 0 10px}
+.painel h2 small{font-weight:400;color:var(--muted);font-size:12.5px;margin-left:4px}
+.painel h3{font-size:13px;margin:18px 0 4px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:8px}
+@media (max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpis div{background:var(--bg);border-radius:10px;padding:8px 10px}
+.kpis span{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.02em}
+.kpis b{display:block;font-size:19px;font-variant-numeric:tabular-nums;margin:2px 0}
+.kpis small{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.kpis small.up,.kpis b.up{color:var(--up)} .kpis small.down,.kpis b.down{color:var(--down)}
+.cmp{align-items:center;margin:8px 0 2px;flex-wrap:wrap}
+.cmp .rot{font-size:12px;color:var(--muted);margin-right:2px}
+.cmp .chip:disabled{opacity:.4;cursor:default}
+svg.curva{display:block;width:100%;height:260px;touch-action:pan-y;user-select:none;color:var(--ink)}
+@media (min-width:700px){svg.curva{height:340px}}
+svg.curva .gl{stroke:var(--line)} svg.curva .gl.v{stroke-dasharray:2 4}
+svg.curva .tx{font-size:11px;fill:var(--muted);font-variant-numeric:tabular-nums}
+.histctl{display:flex;justify-content:flex-end;margin:6px 0}
+.legmini{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:11.5px;color:var(--muted);margin-top:6px}
+.legmini i{display:inline-block;width:12px;height:3px;border-radius:2px;margin-right:5px;vertical-align:middle}
+.chartbox.baixo{height:160px}
+@media (min-width:700px){.chartbox.baixo{height:200px}}
 .dica{font-size:11px;color:var(--muted);opacity:.8;margin-top:4px}
 .negs{width:100%;border-collapse:collapse;margin-top:8px;font-size:12px}
 .negs th{font-weight:500;color:var(--muted);text-align:right;font-size:10.5px;padding:2px 0}
@@ -78,8 +105,10 @@ footer{color:var(--muted);font-size:11.5px;text-align:center;padding:10px 16px 3
 </head>
 <body>
 <header>
+  <nav class="tabs"><button data-aba="deb" class="on">Debêntures</button><button data-aba="mercado">Juros e crédito</button></nav>
   <h1>Debêntures estressadas</h1>
   <div class="sub" id="sub">Carregando…</div>
+  <div id="ctl-deb">
   <div class="controls">
     <input type="search" id="q" placeholder="Buscar emissor ou código" autocomplete="off">
     <select id="ord" aria-label="Ordenar">
@@ -95,9 +124,53 @@ footer{color:var(--muted);font-size:11.5px;text-align:center;padding:10px 16px 3
     <button class="chip" data-f="IPCA">IPCA +</button>
     <button class="chip" data-f="semtaxa">Sem taxa ANBIMA</button>
   </div>
+  </div>
 </header>
 <main id="lista"><div class="vazio">Carregando dados…</div></main>
-<footer>
+<main id="mercado" hidden>
+  <section class="painel" id="p-us">
+    <h2>Curva de juros americana <small>Treasuries, taxa nominal</small></h2>
+    <div class="corpo">
+      <div class="kpis"></div>
+      <div class="cmp chips"></div>
+      <div class="curvabox"></div>
+      <h3>Histórico</h3>
+      <div class="histctl"><div class="seg" data-k="per"></div></div>
+      <div class="legmini"><span><i style="background:#0d9488"></i>2 anos</span><span><i style="background:#2563eb"></i>10 anos</span></div>
+      <div class="chartbox hist1"></div>
+      <div class="legmini"><span><i style="background:#2563eb"></i>Inclinação 10A − 2A (p.p.; vermelho = curva invertida)</span></div>
+      <div class="chartbox hist2 baixo"></div>
+      <div class="nota">Fonte: U.S. Treasury via FRED (séries DGS1MO…DGS30), histórico desde 2000.</div>
+    </div>
+  </section>
+  <section class="painel" id="p-br">
+    <h2>Curva de juros brasileira <small>ETTJ ANBIMA</small></h2>
+    <div class="corpo">
+      <div class="kpis"></div>
+      <div class="gctl"><div class="seg" data-k="tipo"><button data-v="pre" class="on">Prefixada</button><button data-v="ipca">IPCA+ (real)</button><button data-v="infl">Inflação implícita</button></div></div>
+      <div class="cmp chips"></div>
+      <div class="curvabox"></div>
+      <h3>Histórico de vértices</h3>
+      <div class="chartbox hist1"></div>
+      <div class="nota nota-hist"></div>
+      <div class="nota">Fonte: ANBIMA, Estrutura a Termo das Taxas de Juros Estimada (prefixada, IPCA e inflação implícita), em % a.a., base 252.</div>
+    </div>
+  </section>
+  <section class="painel" id="p-hy">
+    <h2>ICE BofA US High Yield OAS <small>e default implícito</small></h2>
+    <div class="corpo">
+      <div class="kpis"></div>
+      <div class="histctl"><div class="seg" data-k="per"></div></div>
+      <div class="leitura"></div>
+      <div class="legmini"><span><i style="background:#2563eb"></i>Option-adjusted spread (% a.a.)</span></div>
+      <div class="chartbox hist1"></div>
+      <div class="legmini"><span><i style="background:#dc2626"></i>Default implícito (% a.a.) = OAS ÷ 60%</span></div>
+      <div class="chartbox hist2"></div>
+      <div class="nota">Fonte: ICE BofA US High Yield Index OAS (FRED, BAMLH0A0HYM2). O FRED publica só os últimos ~3 anos deste índice; o site guarda tudo o que já coletou. Default implícito = spread ÷ 60% (perda dado default de 60%, isto é, recuperação de 40%).</div>
+    </div>
+  </section>
+</main>
+<footer id="rodape-deb">
   Fontes: ANBIMA — taxas e PU indicativos (todo dia útil); SND/debentures.com.br — negócios efetivamente registrados (PU médio e % do PU da curva).<br>
   Em séries DI+ a taxa é o spread sobre o DI; em IPCA+ é a taxa real. “Sem taxa” = ANBIMA não divulga taxa indicativa (em geral, papel em reestruturação ou default); aparece só o PU de referência.<br>
   Δ em pontos-base (taxa) e pontos percentuais (% do par). Toque numa série para ver detalhes.<br>Gráficos: <a href="https://www.tradingview.com/" style="color:inherit">TradingView Lightweight Charts™</a>.
@@ -386,10 +459,284 @@ $("#chips").addEventListener("click", e => {
   filtro = b.dataset.f; render();
 });
 
+// ===================================================================== aba "Juros e crédito"
+const MERC = { carregado: false, us: null, br: null, hy: null, graficos: [] };
+const LGD = 0.60;   // perda dado default usada no default implícito: default = OAS / 60%
+const CMP = [["1S", 7, "1 semana"], ["1M", 30, "1 mês"], ["1A", 365, "1 ano"]];
+const CORES_CMP = { hoje: "#2563eb", "1S": "#0d9488", "1M": "#d97706", "1A": "#9333ea" };
+
+function trocarAba(aba){
+  const merc = aba === "mercado";
+  document.getElementById("lista").hidden = merc;
+  document.getElementById("ctl-deb").hidden = merc;
+  document.getElementById("rodape-deb").hidden = merc;
+  document.getElementById("mercado").hidden = !merc;
+  document.querySelectorAll(".tabs button").forEach(b => b.classList.toggle("on", b.dataset.aba === aba));
+  document.querySelector("h1").textContent = merc ? "Juros e crédito" : "Debêntures estressadas";
+  try { history.replaceState(null, "", merc ? "#mercado" : location.pathname + location.search); } catch(e){}
+  if (merc) abrirMercado(); else if (DADOS) $("#sub").textContent = subtituloDeb();
+}
+
+async function abrirMercado(){
+  if (MERC.carregado) { $("#sub").textContent = MERC.sub; return; }
+  $("#sub").textContent = "Carregando…";
+  const get = n => fetch(`data/mercado/${n}.json?t=${new Date().toISOString().slice(0,13)}`).then(r => r.ok ? r.json() : null).catch(() => null);
+  [MERC.us, MERC.br, MERC.hy] = await Promise.all([get("us"), get("br"), get("hy")]);
+  MERC.carregado = true;
+  const ult = [MERC.us && Object.keys(MERC.us.dados).at(-1), MERC.br && Object.keys(MERC.br.dados).at(-1), MERC.hy && MERC.hy.at(-1)[0]].filter(Boolean).sort().at(-1);
+  MERC.sub = ult ? `Dados até ${dataBR(ult)} · FRED e ANBIMA` : "Sem dados ainda";
+  $("#sub").textContent = MERC.sub;
+  painelUS(); painelBR(); painelHY();
+}
+
+// ---------- utilidades
+const diasAntes = (iso, n) => { const d = new Date(iso + "T12:00:00"); d.setDate(d.getDate() - n); return d.toISOString().slice(0,10); };
+function dataAte(datas, alvo){  // última data disponível <= alvo (datas em ordem)
+  let r = null; for (const d of datas) { if (d <= alvo) r = d; else break; } return r;
+}
+const pb = v => v == null ? "—" : `${v > 0 ? "+" : ""}${fmt(v * 100, 0)} bps`;
+const corDelta = (v, ruimSeSobe=true) => v == null || Math.abs(v) < 1e-9 ? "" : ((v > 0) === ruimSeSobe ? "up" : "down");
+
+function graficoTempo(cont, opcoes = {}){
+  const escuro = matchMedia("(prefers-color-scheme: dark)").matches;
+  const ch = LightweightCharts.createChart(cont, Object.assign({
+    autoSize: true,
+    layout: { background: { type: "solid", color: "transparent" }, textColor: css("--muted"), fontSize: 11, attributionLogo: false,
+              fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif' },
+    grid: { vertLines: { visible: false }, horzLines: { color: escuro ? "rgba(255,255,255,.06)" : "rgba(15,23,42,.06)" } },
+    rightPriceScale: { borderVisible: false, scaleMargins: { top: 0.1, bottom: 0.08 } },
+    timeScale: { borderVisible: false, fixLeftEdge: true, fixRightEdge: true, minBarSpacing: 0.02 },
+    crosshair: { mode: LightweightCharts.CrosshairMode.Magnet,
+                 vertLine: { color: css("--muted"), style: 2, labelBackgroundColor: css("--ink") },
+                 horzLine: { color: css("--muted"), style: 2, labelBackgroundColor: css("--ink") } },
+    handleScroll: { mouseWheel: false, pressedMouseMove: true, horzTouchDrag: true, vertTouchDrag: false },
+    handleScale: { mouseWheel: true, pinch: true, axisPressedMouseMove: { time: true, price: false } },
+    localization: { locale: "pt-BR", priceFormatter: v => fmt(v, 2), dateFormat: "dd/MM/yy" },
+  }, opcoes));
+  MERC.graficos.push(ch);
+  return ch;
+}
+
+// botões de período que só mexem na janela visível do(s) gráfico(s) (não redesenham nada)
+function periodos(box, graficos, fim, lista, inicial){
+  const seg = box.querySelector(".seg[data-k=per]");
+  seg.innerHTML = lista.map(([k]) => `<button data-v="${k}">${k}</button>`).join("");
+  let prog = 0;
+  const aplicar = k => {
+    prog = 1;
+    seg.querySelectorAll("button").forEach(b => b.classList.toggle("on", b.dataset.v === k));
+    const meses = lista.find(p => p[0] === k)[1];
+    graficos.forEach(g => {
+      if (!meses) return g.timeScale().fitContent();
+      const ini = new Date(fim + "T12:00:00"); ini.setMonth(ini.getMonth() - meses);
+      try { g.timeScale().setVisibleRange({ from: ini.toISOString().slice(0,10), to: fim }); } catch(e){ g.timeScale().fitContent(); }
+    });
+    setTimeout(() => prog = 0, 80);
+  };
+  seg.addEventListener("click", e => { const b = e.target.closest("button"); if (b) aplicar(b.dataset.v); });
+  graficos.forEach(g => g.timeScale().subscribeVisibleLogicalRangeChange(() => {
+    if (!prog) seg.querySelectorAll("button").forEach(b => b.classList.remove("on"));
+  }));
+  // gráficos empilhados andam juntos (por data, com trava contra eco entre eles)
+  let sincronizando = false;
+  if (graficos.length > 1) graficos.forEach(g => g.timeScale().subscribeVisibleTimeRangeChange(r => {
+    if (!r || sincronizando) return;
+    sincronizando = true;
+    graficos.forEach(o => { if (o !== g) try { o.timeScale().setVisibleRange(r); } catch(e){} });
+    sincronizando = false;
+  }));
+  requestAnimationFrame(() => aplicar(inicial));
+}
+
+// ---------- gráfico de curva (eixo x = prazo, escala raiz para abrir a parte curta)
+function graficoCurva(box, curvas, rotulos, unidade="% a.a."){
+  // curvas: [{nome, cor, tracejada, pts:[[anos, taxa]...]}]; rotulos: [[anos, "texto"]...]
+  const W = 640, H = 300, L = 8, R = 46, T = 14, B = 26;
+  const todos = curvas.flatMap(c => c.pts);
+  if (!todos.length) { box.innerHTML = '<div class="nota">Sem dados.</div>'; return; }
+  const xmax = Math.max(...todos.map(p => p[0])), xmin = Math.min(...todos.map(p => p[0]));
+  const fx = a => Math.sqrt(a), X = a => L + (fx(a) - fx(xmin)) / (fx(xmax) - fx(xmin) || 1) * (W - L - R);
+  let y0 = Math.min(...todos.map(p => p[1])), y1 = Math.max(...todos.map(p => p[1]));
+  const pad = Math.max((y1 - y0) * 0.12, 0.1); y0 -= pad; y1 += pad;
+  const Y = v => T + (1 - (v - y0) / (y1 - y0)) * (H - T - B);
+  const passo = [0.1,0.2,0.25,0.5,1,2,5].find(s => (y1 - y0) / s <= 6) || 5;
+  let g = "";
+  for (let v = Math.ceil(y0 / passo) * passo; v <= y1; v += passo)
+    g += `<line x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}" class="gl"/><text x="${W-R+6}" y="${Y(v)+3.5}" class="tx">${fmt(v, passo < 1 ? 2 : 1)}</text>`;
+  rotulos.filter(([a]) => a >= xmin - 1e-9 && a <= xmax + 1e-9).forEach(([a, t]) =>
+    g += `<line x1="${X(a)}" x2="${X(a)}" y1="${T}" y2="${H-B}" class="gl v"/><text x="${X(a)}" y="${H-8}" text-anchor="middle" class="tx">${t}</text>`);
+  [...curvas].reverse().forEach(c => {
+    const d = c.pts.map((p, i) => `${i ? "L" : "M"}${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join("");
+    g += `<path d="${d}" fill="none" stroke="${c.cor}" stroke-width="${c.tracejada ? 1.8 : 2.8}" ${c.tracejada ? 'stroke-dasharray="5 4"' : ""} stroke-linejoin="round" stroke-linecap="round"/>`;
+    if (c.marcadores) g += c.pts.map(p => `<circle cx="${X(p[0]).toFixed(1)}" cy="${Y(p[1]).toFixed(1)}" r="3" fill="${c.cor}"/>`).join("");
+  });
+  g += `<line class="cur" x1="0" x2="0" y1="${T}" y2="${H-B}" stroke="currentColor" opacity="0"/>`;
+  box.innerHTML = `<div class="leitura"></div><svg class="curva" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${g}</svg>
+    <div class="leg">${curvas.map(c => `<span><i style="background:${c.cor}${c.tracejada ? ";opacity:.75" : ""}"></i>${c.nome}</span>`).join("")}</div>`;
+  const svg = box.querySelector("svg"), cur = svg.querySelector(".cur"), lei = box.querySelector(".leitura");
+  const xs = [...new Set(curvas[0].pts.map(p => p[0]))];
+  const rot = a => { const r = rotulos.find(([x]) => Math.abs(x - a) < 1e-6); return r ? r[1] : (a < 1 ? `${fmt(a * 12, 0)} meses` : `${fmt(a, a % 1 ? 1 : 0)} anos`); };
+  const ler = a => {
+    const val = c => { const p = c.pts.find(p => Math.abs(p[0] - a) < 1e-6); return p ? p[1] : null; };
+    const hoje = val(curvas[0]);
+    lei.innerHTML = `<b>${rot(a)}</b> · ` + curvas.map((c, i) => {
+      const v = val(c); if (v == null) return "";
+      const dif = i && hoje != null ? ` <span class="${corDelta(hoje - v)}">(${pb(hoje - v)})</span>` : "";
+      return `<span style="color:${c.cor}">${c.nome}</span> <b>${fmt(v, 2)}%</b>${dif}`;
+    }).filter(Boolean).join(" · ");
+    cur.setAttribute("x1", X(a)); cur.setAttribute("x2", X(a)); cur.setAttribute("opacity", ".3");
+  };
+  const mover = e => {
+    const r = svg.getBoundingClientRect(), x = (e.clientX - r.left) / r.width * W;
+    ler(xs.reduce((m, a) => Math.abs(X(a) - x) < Math.abs(X(m) - x) ? a : m));
+  };
+  svg.addEventListener("pointerdown", mover);
+  svg.addEventListener("pointermove", e => { if (e.pointerType === "mouse" || e.buttons) mover(e); });
+  // leitura inicial: vértice de 10 anos (ou o mais longo disponível)
+  ler(xs.reduce((m, a) => Math.abs(a - 10) < Math.abs(m - 10) ? a : m));
+}
+
+function chipsComparacao(box, datas, ultima, estado, redesenhar){
+  const desde = datas[0];
+  box.innerHTML = `<span class="rot">Comparar com</span>` + CMP.map(([k, n, nome]) => {
+    const d = dataAte(datas, diasAntes(ultima, n));
+    const ok = d && d !== ultima && d >= desde;
+    return `<button class="chip ${estado[k] && ok ? "on" : ""}" data-k="${k}" ${ok ? "" : "disabled"} title="${ok ? dataBR(d) : `histórico começa em ${dataBR(desde)}`}">${nome}</button>`;
+  }).join("");
+  box.onclick = e => { const b = e.target.closest("button"); if (!b || b.disabled) return; estado[b.dataset.k] = !estado[b.dataset.k]; redesenhar(); };
+}
+
+// ---------- 1. curva americana
+function painelUS(){
+  const box = document.getElementById("p-us"), D = MERC.us;
+  if (!D) { box.querySelector(".corpo").innerHTML = '<div class="nota">Dados ainda não coletados.</div>'; return; }
+  const datas = Object.keys(D.dados), ult = datas.at(-1);
+  // último dia com todos os vértices
+  const ultCompleta = [...datas].reverse().find(d => D.dados[d].every(v => v != null)) || ult;
+  const idx = r => D.tenores.indexOf(r);
+  const val = (d, r) => D.dados[d] ? D.dados[d][idx(r)] : null;
+  const at = (n, r) => { const d = dataAte(datas, diasAntes(ultCompleta, n)); return d ? val(d, r) : null; };
+  const s10 = val(ultCompleta, "10A"), s2 = val(ultCompleta, "2A"), s3m = val(ultCompleta, "3M");
+  box.querySelector(".kpis").innerHTML = [
+    ["3 meses", s3m, s3m - at(30, "3M")], ["2 anos", s2, s2 - at(30, "2A")], ["10 anos", s10, s10 - at(30, "10A")],
+    ["10A − 2A", s10 - s2, (s10 - s2) - (at(30, "10A") - at(30, "2A"))],
+  ].map(([n, v, d]) => `<div><span>${n}</span><b>${fmt(v, 2)}%</b><small class="${corDelta(d)}">${pb(d)} em 1 mês</small></div>`).join("");
+
+  const est = { "1M": true, "1A": true };
+  const desenhar = () => {
+    chipsComparacao(box.querySelector(".cmp"), datas, ultCompleta, est, desenhar);
+    const pts = d => D.anos.map((a, i) => [a, D.dados[d][i]]).filter(p => p[1] != null);
+    const curvas = [{ nome: `Hoje (${dataBR(ultCompleta)})`, cor: CORES_CMP.hoje, pts: pts(ultCompleta), marcadores: true }];
+    CMP.forEach(([k, n, nome]) => { const d = dataAte(datas, diasAntes(ultCompleta, n));
+      if (est[k] && d && d !== ultCompleta) curvas.push({ nome: `${nome} (${dataBR(d)})`, cor: CORES_CMP[k], tracejada: true, pts: pts(d) }); });
+    graficoCurva(box.querySelector(".curvabox"), curvas, D.anos.map((a, i) => [a, D.tenores[i]]).filter(([a]) => ![1/12, 20].includes(a)));
+  };
+  desenhar();
+
+  // histórico: 2A e 10A, e a inclinação 10A − 2A embaixo
+  const g1 = graficoTempo(box.querySelector(".hist1"));
+  const l2 = g1.addLineSeries({ color: "#0d9488", lineWidth: 2, priceLineVisible: false, title: "2A" });
+  const l10 = g1.addLineSeries({ color: "#2563eb", lineWidth: 2, priceLineVisible: false, title: "10A" });
+  l2.setData(datas.filter(d => val(d, "2A") != null).map(d => ({ time: d, value: val(d, "2A") })));
+  l10.setData(datas.filter(d => val(d, "10A") != null).map(d => ({ time: d, value: val(d, "10A") })));
+  const g2 = graficoTempo(box.querySelector(".hist2"), { rightPriceScale: { borderVisible: false, scaleMargins: { top: 0.1, bottom: 0.1 } } });
+  const inc = g2.addBaselineSeries({ baseValue: { type: "price", price: 0 }, lineWidth: 2, priceLineVisible: false,
+    topLineColor: "#2563eb", topFillColor1: "rgba(37,99,235,.18)", topFillColor2: "rgba(37,99,235,.02)",
+    bottomLineColor: "#dc2626", bottomFillColor1: "rgba(220,38,38,.02)", bottomFillColor2: "rgba(220,38,38,.18)" });
+  inc.setData(datas.filter(d => val(d, "10A") != null && val(d, "2A") != null).map(d => ({ time: d, value: +(val(d, "10A") - val(d, "2A")).toFixed(2) })));
+  periodos(box.querySelector(".histctl"), [g1, g2], ult, [["1A",12],["5A",60],["10A",120],["Tudo",0]], "5A");
+}
+
+// ---------- 2. curva brasileira
+const TIPOS_BR = { pre: ["Prefixada", "% a.a."], ipca: ["IPCA+ (real)", "% a.a."], infl: ["Inflação implícita", "% a.a."] };
+const ROT_BR = [[0.25,"3M"],[0.5,"6M"],[1,"1A"],[2,"2A"],[3,"3A"],[5,"5A"],[10,"10A"],[15,"15A"],[20,"20A"],[30,"30A"]];
+function interp(pts, a){  // pts em anos crescentes
+  if (!pts.length || a < pts[0][0] - 1e-9 || a > pts.at(-1)[0] + 1e-9) return null;
+  for (let i = 1; i < pts.length; i++) if (a <= pts[i][0] + 1e-9) {
+    const [x0, y0] = pts[i-1], [x1, y1] = pts[i]; return y0 + (y1 - y0) * (a - x0) / (x1 - x0 || 1);
+  }
+  return pts.at(-1)[1];
+}
+function painelBR(){
+  const box = document.getElementById("p-br"), D = MERC.br;
+  if (!D || !Object.keys(D.dados).length) { box.querySelector(".corpo").innerHTML = '<div class="nota">Dados ainda não coletados.</div>'; return; }
+  const datas = Object.keys(D.dados), ult = datas.at(-1);
+  const curva = (d, tipo) => (D.dados[d][tipo] || []).map(([du, v]) => [du / 252, v]).filter(p => p[0] <= 30.01);
+  const v = (d, tipo, a) => d ? interp(curva(d, tipo), a) : null;
+  const d1m = dataAte(datas, diasAntes(ult, 30)) || datas[0];
+  box.querySelector(".kpis").innerHTML = [
+    ["Pré 1 ano", "pre", 1], ["Pré 5 anos", "pre", 5], ["IPCA+ 5 anos", "ipca", 5], ["IPCA+ 10 anos", "ipca", 10],
+  ].map(([n, t, a]) => { const x = v(ult, t, a), y = v(d1m, t, a), dd = x != null && y != null && d1m !== ult ? x - y : null;
+    return `<div><span>${n}</span><b>${fmt(x, 2)}%</b><small class="${corDelta(dd)}">${dd == null ? "—" : pb(dd)} desde ${dataBR(d1m)}</small></div>`; }).join("");
+
+  const est = { tipo: "pre", "1S": true, "1M": true };
+  const desenhar = () => {
+    box.querySelectorAll(".seg[data-k=tipo] button").forEach(b => b.classList.toggle("on", b.dataset.v === est.tipo));
+    chipsComparacao(box.querySelector(".cmp"), datas, ult, est, desenhar);
+    const curvas = [{ nome: `Hoje (${dataBR(ult)})`, cor: CORES_CMP.hoje, pts: curva(ult, est.tipo) }];
+    CMP.forEach(([k, n, nome]) => { const d = dataAte(datas, diasAntes(ult, n));
+      if (est[k] && d && d !== ult) curvas.push({ nome: `${nome} (${dataBR(d)})`, cor: CORES_CMP[k], tracejada: true, pts: curva(d, est.tipo) }); });
+    graficoCurva(box.querySelector(".curvabox"), curvas, ROT_BR);
+    histBR();
+  };
+  box.querySelector(".seg[data-k=tipo]").onclick = e => { const b = e.target.closest("button"); if (b) { est.tipo = b.dataset.v; desenhar(); } };
+
+  // histórico de vértices fixos da curva escolhida
+  const g = graficoTempo(box.querySelector(".hist1"));
+  const vert = { pre: [[1,"#0d9488"],[5,"#2563eb"]], ipca: [[5,"#0d9488"],[10,"#2563eb"]], infl: [[1,"#0d9488"],[5,"#2563eb"]] };
+  let linhas = [];
+  function histBR(){
+    linhas.forEach(l => g.removeSeries(l)); linhas = [];
+    vert[est.tipo].forEach(([a, cor]) => {
+      const l = g.addLineSeries({ color: cor, lineWidth: 2, priceLineVisible: false, title: `${a}A` });
+      l.setData(datas.map(d => ({ time: d, value: v(d, est.tipo, a) })).filter(p => p.value != null).map(p => ({ time: p.time, value: +p.value.toFixed(3) })));
+      linhas.push(l);
+    });
+    g.timeScale().fitContent();
+    box.querySelector(".nota-hist").textContent = `Histórico coletado desde ${dataBR(datas[0])} (a ANBIMA só disponibiliza ~1 mês para trás; a série cresce a cada dia útil).`;
+  }
+  desenhar();
+}
+
+// ---------- 3. High Yield OAS e default implícito
+function painelHY(){
+  const box = document.getElementById("p-hy"), D = MERC.hy;
+  if (!D || !D.length) { box.querySelector(".corpo").innerHTML = '<div class="nota">Dados ainda não coletados.</div>'; return; }
+  const ult = D.at(-1), datas = D.map(p => p[0]);
+  const em = n => { const d = dataAte(datas, diasAntes(ult[0], n)); return d ? D[datas.indexOf(d)][1] : null; };
+  const vals = D.map(p => p[1]).sort((a, b) => a - b);
+  const pct = Math.round(vals.filter(x => x <= ult[1]).length / vals.length * 100);
+  const m1 = em(30), a1 = em(365);
+  box.querySelector(".kpis").innerHTML = `
+    <div><span>OAS (${dataBR(ult[0])})</span><b>${fmt(ult[1], 2)}%</b><small>${fmt(ult[1] * 100, 0)} bps</small></div>
+    <div><span>Default implícito</span><b>${fmt(ult[1] / LGD, 2)}%</b><small>ao ano</small></div>
+    <div><span>Δ 1 mês</span><b class="${corDelta(m1 == null ? null : ult[1] - m1)}">${m1 == null ? "—" : pb(ult[1] - m1)}</b><small>${m1 == null ? "" : `default ${fmt((ult[1] - m1) / LGD * 100, 0)} bps`}</small></div>
+    <div><span>Percentil</span><b>${pct}º</b><small>desde ${dataBR(datas[0])}</small></div>`;
+  const g1 = graficoTempo(box.querySelector(".hist1"), { localization: { locale: "pt-BR", priceFormatter: v => fmt(v, 2) + "%", dateFormat: "dd/MM/yy" } });
+  const s1 = g1.addAreaSeries({ lineColor: "#2563eb", topColor: "rgba(37,99,235,.22)", bottomColor: "rgba(37,99,235,.02)", lineWidth: 2, priceLineVisible: false });
+  s1.setData(D.map(([d, v]) => ({ time: d, value: v })));
+  const g2 = graficoTempo(box.querySelector(".hist2"), { localization: { locale: "pt-BR", priceFormatter: v => fmt(v, 2) + "%", dateFormat: "dd/MM/yy" } });
+  const s2 = g2.addAreaSeries({ lineColor: "#dc2626", topColor: "rgba(220,38,38,.20)", bottomColor: "rgba(220,38,38,.02)", lineWidth: 2, priceLineVisible: false });
+  s2.setData(D.map(([d, v]) => ({ time: d, value: +(v / LGD).toFixed(3) })));
+  const lei = box.querySelector(".leitura");
+  const ler = t => {
+    const iso = typeof t === "string" ? t : `${t.year}-${String(t.month).padStart(2,"0")}-${String(t.day).padStart(2,"0")}`;
+    const i = datas.indexOf(iso); if (i < 0) return;
+    lei.innerHTML = `<b>${dataBR(iso)}</b> · OAS <b>${fmt(D[i][1], 2)}%</b> (${fmt(D[i][1] * 100, 0)} bps) · <span style="color:#dc2626">default implícito <b>${fmt(D[i][1] / LGD, 2)}%</b> a.a.</span>`;
+  };
+  [g1, g2].forEach(g => g.subscribeCrosshairMove(p => p && p.time ? ler(p.time) : ler(ult[0])));
+  ler(ult[0]);
+  periodos(box.querySelector(".histctl"), [g1, g2], ult[0], [["3M",3],["6M",6],["1A",12],["Tudo",0]], "Tudo");
+}
+
+const subtituloDeb = () => `Taxas de ${dataBR(DADOS.data_referencia)} · ${DADOS.series.length} séries · ${DADOS.emissores.length} emissores`;
+document.querySelector(".tabs").addEventListener("click", e => { const b = e.target.closest("button"); if (b) trocarAba(b.dataset.aba); });
+if (location.hash.startsWith("#mercado")) trocarAba("mercado");
+
 fetch("data/debentures.json?t=" + Date.now()).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
   .then(d => {
     DADOS = d;
-    $("#sub").textContent = `Taxas de ${dataBR(d.data_referencia)} · ${d.series.length} séries · ${d.emissores.length} emissores`;
+    if (!location.hash.startsWith("#mercado")) $("#sub").textContent = subtituloDeb();
     render();
   })
   .catch(() => { $("#lista").innerHTML = '<div class="vazio">Ainda não há dados. O robô roda todo dia útil à noite.</div>'; $("#sub").textContent = "Sem dados"; });

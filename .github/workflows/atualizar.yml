@@ -45,6 +45,7 @@ jobs:
           if [ "${{ github.event_name }}" = "push" ]; then DIAS=25; fi
           echo "ARGS=--dias $DIAS $EXTRA" >> "$GITHUB_ENV"
           python scripts/update.py --dias "$DIAS" $EXTRA
+          python scripts/mercado.py || echo "Aba Juros e crédito: falha na coleta (dados anteriores mantidos)"
       - name: Salvar dados
         run: |
           git config user.name "github-actions[bot]"
@@ -58,5 +59,6 @@ jobs:
             echo "Push recusado; refazendo sobre a versão mais recente (tentativa $tentativa)"
             git fetch -q origin main && git reset -q --hard origin/main
             python scripts/update.py $ARGS
+            python scripts/mercado.py || true
           done
           exit 1

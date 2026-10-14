@@ -1,0 +1,211 @@
+"""Dados da aba "Juros e crédito".
+
+1. Curva de juros americana: Treasury constant maturity (FRED, séries DGS*), desde 2000.
+2. Curva de juros brasileira: ETTJ da ANBIMA (prefixada, IPCA/real e inflação implícita).
+   A ANBIMA só deixa baixar ~1 mês para trás, então o histórico é acumulado em data/mercado/br.json.
+3. ICE BofA US High Yield OAS (FRED BAMLH0A0HYM2). O FRED só mostra os últimos ~3 anos
+   desse índice, então o histórico também é acumulado (nada é apagado).
+
+Uso: python scripts/mercado.py [--dias-br 30]
+"""
+from __future__ import annotations
+
+import argparse
+import csv
+import datetime as dt
+import io
+import json
+import sys
+import time
+import urllib.parse
+import urllib.request
+from pathlib import Path
+
+RAIZ = Path(__file__).resolve().parent.parent
+DIR = RAIZ / "data" / "mercado"
+BRT = dt.timezone(dt.timedelta(hours=-3))
+UA = {"User-Agent": "Mozilla/5.0 (debentures-tracker)"}
+
+US_TENORES = [  # (série FRED, rótulo, anos)
+    ("DGS1MO", "1M", 1 / 12), ("DGS3MO", "3M", 0.25), ("DGS6MO", "6M", 0.5), ("DGS1", "1A", 1),
+    ("DGS2", "2A", 2), ("DGS3", "3A", 3), ("DGS5", "5A", 5), ("DGS7", "7A", 7), ("DGS10", "10A", 10),
+    ("DGS20", "20A", 20), ("DGS30", "30A", 30),
+]
+US_DESDE = "2000-01-01"
+HY_SERIE = "BAMLH0A0HYM2"
+FRED = "https://fred.stlouisfed.org/graph/fredgraph.csv?id={}"
+ANBIMA_ETTJ = "https://www.anbima.com.br/informacoes/est-termo/CZ-down.asp"
+
+
+def http(url: str, dados: bytes | None = None, tentativas=3) -> bytes | None:
+    for i in range(tentativas):
+        try:
+            req = urllib.request.Request(url, data=dados, headers=UA)
+            with urllib.request.urlopen(req, timeout=90) as r:
+                return r.read()
+        except Exception as e:
+            print(f"  erro em {url}: {e}", file=sys.stderr)
+            time.sleep(4 * (i + 1))
+    return None
+
+
+def ler(caminho: Path, padrao):
+    return json.loads(caminho.read_text(encoding="utf-8")) if caminho.exists() else padrao
+
+
+def gravar(caminho: Path, obj):
+    caminho.parent.mkdir(parents=True, exist_ok=True)
+    caminho.write_text(json.dumps(obj, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
+
+def fred(serie: str) -> dict[str, float] | None:
+    bruto = http(FRED.format(serie))
+    if not bruto:
+        return None
+    out = {}
+    for linha in csv.reader(io.StringIO(bruto.decode("utf-8"))):
+        if len(linha) == 2 and linha[0][:2] in ("19", "20") and linha[1] not in ("", "."):
+            try:
+                out[linha[0]] = float(linha[1])
+            except ValueError:
+                pass
+    return out
+
+
+# ---------------------------------------------------------------- EUA
+def atualizar_us():
+    arq = DIR / "us.json"
+    atual = ler(arq, {"tenores": [t[1] for t in US_TENORES], "anos": [t[2] for t in US_TENORES], "dados": {}})
+    por_data: dict[str, list] = {d: v for d, v in atual["dados"].items()}
+    ok = 0
+    for i, (serie, rot, _) in enumerate(US_TENORES):
+        s = fred(serie)
+        if s is None:
+            print(f"  FRED {serie}: falhou, mantendo dados salvos")
+            continue
+        ok += 1
+        for d, v in s.items():
+            if d < US_DESDE:
+                continue
+            linha = por_data.setdefault(d, [None] * len(US_TENORES))
+            linha[i] = v
+        time.sleep(0.5)
+    # descarta dias sem nenhum vértice (feriados)
+    atual["dados"] = {d: por_data[d] for d in sorted(por_data) if any(x is not None for x in por_data[d])}
+    gravar(arq, atual)
+    print(f"  EUA: {len(atual['dados'])} dias, último {max(atual['dados'])} ({ok}/{len(US_TENORES)} séries baixadas)")
+
+
+# ---------------------------------------------------------------- HY OAS
+def atualizar_hy():
+    arq = DIR / "hy.json"
+    atual = dict(ler(arq, []))
+    s = fred(HY_SERIE)
+    if s is None:
+        print("  HY OAS: falhou, mantendo dados salvos")
+        return
+    atual.update(s)
+    gravar(arq, [[d, atual[d]] for d in sorted(atual)])
+    print(f"  HY OAS: {len(atual)} dias, de {min(atual)} a {max(atual)}")
+
+
+# ---------------------------------------------------------------- Brasil
+def _num(txt: str):
+    txt = (txt or "").strip()
+    if not txt:
+        return None
+    try:
+        return float(txt.replace(".", "").replace(",", "."))
+    except ValueError:
+        return None
+
+
+def parse_ettj(texto: str):
+    """Devolve {'pre': [[du, taxa]...], 'ipca': [...], 'infl': [...]} ou None."""
+    linhas = [l.strip() for l in texto.splitlines()]
+    pre, ipca, infl, curto = {}, [], [], {}
+    secao = None
+    for l in linhas:
+        if not l:
+            secao = None if secao != "ettj_cab" else secao
+            continue
+        if l.startswith("ETTJ Infla"):
+            secao = "ettj_cab"; continue
+        if l.startswith("PREFIXADOS (CIRCULAR"):
+            secao = "circ_cab"; continue
+        if l.startswith("Erro T"):
+            secao = None; continue
+        if secao == "ettj_cab" and l.startswith("Vertices"):
+            secao = "ettj"; continue
+        if secao == "circ_cab" and l.startswith("Vertices"):
+            secao = "circ"; continue
+        p = l.split(";")
+        if secao == "ettj" and len(p) >= 4:
+            du = _num(p[0])
+            if du is None:
+                continue
+            a, b, c = _num(p[1]), _num(p[2]), _num(p[3])
+            if a is not None: ipca.append([int(du), a])
+            if b is not None: pre[int(du)] = b
+            if c is not None: infl.append([int(du), c])
+        elif secao == "circ" and len(p) >= 2:
+            du, tx = _num(p[0]), _num(p[1])
+            if du is not None and tx is not None and int(du) < 252:
+                curto[int(du)] = tx
+    if not pre or not ipca:
+        return None
+    pre.update(curto)
+    return {"pre": [[k, pre[k]] for k in sorted(pre)], "ipca": ipca, "infl": infl}
+
+
+def baixar_ettj(d: dt.date):
+    corpo = urllib.parse.urlencode({
+        "escolha": "2", "Idioma": "PT", "saida": "csv",
+        "Dt_Ref_Ver": d.strftime("%Y%m%d"), "Dt_Ref": d.strftime("%d/%m/%Y"),
+    }).encode()
+    bruto = http(ANBIMA_ETTJ, corpo, tentativas=2)
+    if not bruto:
+        return None
+    texto = bruto.decode("latin-1")
+    if not texto.startswith(d.strftime("%d/%m/%Y")):
+        return None  # data indisponível (feriado ou fora da janela da ANBIMA)
+    return parse_ettj(texto)
+
+
+def atualizar_br(dias: int):
+    arq = DIR / "br.json"
+    atual = ler(arq, {"dados": {}})
+    hoje = dt.datetime.now(BRT).date()
+    d, vistos, novos = hoje, 0, 0
+    while vistos < dias:
+        if d.weekday() < 5:
+            vistos += 1
+            iso = d.isoformat()
+            if iso not in atual["dados"]:
+                curva = baixar_ettj(d)
+                if curva:
+                    atual["dados"][iso] = curva
+                    novos += 1
+                time.sleep(0.4)
+        d -= dt.timedelta(days=1)
+    atual["dados"] = {k: atual["dados"][k] for k in sorted(atual["dados"])}
+    gravar(arq, atual)
+    if atual["dados"]:
+        print(f"  Brasil: {len(atual['dados'])} dias (+{novos}), de {min(atual['dados'])} a {max(atual['dados'])}")
+    else:
+        print("  Brasil: nenhum dia disponível")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--dias-br", type=int, default=30)
+    args = ap.parse_args()
+    for nome, f in (("EUA", atualizar_us), ("HY", atualizar_hy), ("Brasil", lambda: atualizar_br(args.dias_br))):
+        try:
+            f()
+        except Exception as e:  # uma fonte fora do ar não derruba as outras
+            print(f"  {nome}: erro inesperado: {e}", file=sys.stderr)
+
+
+if __name__ == "__main__":
+    main()
