@@ -32,6 +32,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main   # execuções enfileiradas partem da versão mais recente, não do commit que as disparou
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -41,15 +43,20 @@ jobs:
           if [ "${{ github.event.inputs.snd_completo }}" = "true" ]; then EXTRA="--snd-completo"; fi
           DIAS="${{ github.event.inputs.dias || '8' }}"
           if [ "${{ github.event_name }}" = "push" ]; then DIAS=25; fi
+          echo "ARGS=--dias $DIAS $EXTRA" >> "$GITHUB_ENV"
           python scripts/update.py --dias "$DIAS" $EXTRA
       - name: Salvar dados
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/
-          if git diff --cached --quiet; then
-            echo "Sem mudanças."
-          else
-            git commit -m "Taxas ANBIMA $(date -u +%Y-%m-%d)"
-            git push
-          fi
+          for tentativa in 1 2 3; do
+            git add data/
+            if git diff --cached --quiet; then echo "Sem mudanças."; exit 0; fi
+            git commit -q -m "Taxas ANBIMA $(date -u +%Y-%m-%d)"
+            if git push; then exit 0; fi
+            # outra execução salvou antes: parte da versão nova e refaz o processamento por cima dela
+            echo "Push recusado; refazendo sobre a versão mais recente (tentativa $tentativa)"
+            git fetch -q origin main && git reset -q --hard origin/main
+            python scripts/update.py $ARGS
+          done
+          exit 1
