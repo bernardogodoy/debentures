@@ -2,7 +2,7 @@
  "data_referencia": "2026-10-14",
  "data_anterior": "2026-10-13",
  "anbima_desde": "2026-09-14",
- "gerado_em": "2026-10-15T15:04+00:00",
+ "gerado_em": "2026-10-15T22:24+00:00",
  "fonte": "ANBIMA (taxas indicativas) e SND/debentures.com.br (negócios)",
  "emissores": [
   "CSN",
@@ -22,7 +22,10 @@
   "Tupi Energias Renováveis",
   "Qualicorp",
   "Americanas",
-  "Light"
+  "Light",
+  "Unigel",
+  "InterCement Brasil",
+  "InterCement Participações"
  ],
  "series": [
   {
@@ -4741,14 +4744,14 @@
      98.1938
     ]
    ],
-   "negocios_dias": 58,
+   "negocios_dias": 59,
    "negocios_desde": "2025-08-29",
    "ultimo_negocio": {
-    "data": "2026-09-30",
-    "qtd": 1944.0,
-    "n": 2.0,
-    "pu_medio": 1028.646919,
-    "pct_curva": 97.42
+    "data": "2026-10-14",
+    "qtd": 6166.0,
+    "n": 8.0,
+    "pu_medio": 1041.98152,
+    "pct_curva": 98.2
    }
   },
   {
@@ -5158,14 +5161,14 @@
      75.6909
     ]
    ],
-   "negocios_dias": 303,
+   "negocios_dias": 304,
    "negocios_desde": "2025-04-04",
    "ultimo_negocio": {
-    "data": "2026-10-13",
-    "qtd": 194.0,
-    "n": 4.0,
-    "pu_medio": 713.937821,
-    "pct_curva": 65.3
+    "data": "2026-10-14",
+    "qtd": 32.0,
+    "n": 2.0,
+    "pu_medio": 710.985768,
+    "pct_curva": 64.98
    }
   },
   {
@@ -8094,6 +8097,81 @@
    "var_pct_par_5d": 0.1748,
    "historico": [
     [
+     "2026-09-14",
+     null,
+     66.4571
+    ],
+    [
+     "2026-09-15",
+     null,
+     67.5184
+    ],
+    [
+     "2026-09-16",
+     null,
+     67.6592
+    ],
+    [
+     "2026-09-17",
+     null,
+     67.8
+    ],
+    [
+     "2026-09-18",
+     null,
+     67.8
+    ],
+    [
+     "2026-09-21",
+     null,
+     67.8
+    ],
+    [
+     "2026-09-22",
+     null,
+     67.8
+    ],
+    [
+     "2026-09-23",
+     null,
+     67.8
+    ],
+    [
+     "2026-09-24",
+     null,
+     67.25
+    ],
+    [
+     "2026-09-25",
+     null,
+     68.25
+    ],
+    [
+     "2026-09-28",
+     null,
+     68.25
+    ],
+    [
+     "2026-09-29",
+     null,
+     68.25
+    ],
+    [
+     "2026-09-30",
+     null,
+     68.25
+    ],
+    [
+     "2026-10-01",
+     null,
+     67.8
+    ],
+    [
+     "2026-10-02",
+     null,
+     68.25
+    ],
+    [
      "2026-10-05",
      null,
      67.8507
@@ -8428,6 +8506,81 @@
    "var_pct_par_5d": 0.4639,
    "historico": [
     [
+     "2026-09-14",
+     null,
+     66.76
+    ],
+    [
+     "2026-09-15",
+     null,
+     67.8
+    ],
+    [
+     "2026-09-16",
+     null,
+     67.3333
+    ],
+    [
+     "2026-09-17",
+     null,
+     67.3333
+    ],
+    [
+     "2026-09-18",
+     null,
+     67.3333
+    ],
+    [
+     "2026-09-21",
+     null,
+     67.3333
+    ],
+    [
+     "2026-09-22",
+     null,
+     67.1296
+    ],
+    [
+     "2026-09-23",
+     null,
+     67.1932
+    ],
+    [
+     "2026-09-24",
+     null,
+     67.2808
+    ],
+    [
+     "2026-09-25",
+     null,
+     67.3216
+    ],
+    [
+     "2026-09-28",
+     null,
+     67.6
+    ],
+    [
+     "2026-09-29",
+     null,
+     67.25
+    ],
+    [
+     "2026-09-30",
+     null,
+     67.6667
+    ],
+    [
+     "2026-10-01",
+     null,
+     67.3333
+    ],
+    [
+     "2026-10-02",
+     null,
+     67.3333
+    ],
+    [
      "2026-10-05",
      null,
      66.1742
@@ -8492,6 +8645,81 @@
    "var_pct_par_5d": -0.3333,
    "historico": [
     [
+     "2026-09-14",
+     null,
+     67.25
+    ],
+    [
+     "2026-09-15",
+     null,
+     67.8
+    ],
+    [
+     "2026-09-16",
+     null,
+     67.8
+    ],
+    [
+     "2026-09-17",
+     null,
+     67.8
+    ],
+    [
+     "2026-09-18",
+     null,
+     67.8
+    ],
+    [
+     "2026-09-21",
+     null,
+     67.8
+    ],
+    [
+     "2026-09-22",
+     null,
+     67.8
+    ],
+    [
+     "2026-09-23",
+     null,
+     67.8
+    ],
+    [
+     "2026-09-24",
+     null,
+     67.25
+    ],
+    [
+     "2026-09-25",
+     null,
+     68.25
+    ],
+    [
+     "2026-09-28",
+     null,
+     68.25
+    ],
+    [
+     "2026-09-29",
+     null,
+     68.25
+    ],
+    [
+     "2026-09-30",
+     null,
+     68.25
+    ],
+    [
+     "2026-10-01",
+     null,
+     68.25
+    ],
+    [
+     "2026-10-02",
+     null,
+     68.25
+    ],
+    [
      "2026-10-05",
      null,
      69.0
@@ -8555,6 +8783,81 @@
    "var_pct_par_1d": 0.0,
    "var_pct_par_5d": 0.2667,
    "historico": [
+    [
+     "2026-09-14",
+     null,
+     67.3333
+    ],
+    [
+     "2026-09-15",
+     null,
+     67.25
+    ],
+    [
+     "2026-09-16",
+     null,
+     67.3333
+    ],
+    [
+     "2026-09-17",
+     null,
+     67.3333
+    ],
+    [
+     "2026-09-18",
+     null,
+     67.3333
+    ],
+    [
+     "2026-09-21",
+     null,
+     67.3333
+    ],
+    [
+     "2026-09-22",
+     null,
+     67.3333
+    ],
+    [
+     "2026-09-23",
+     null,
+     67.3333
+    ],
+    [
+     "2026-09-24",
+     null,
+     67.3333
+    ],
+    [
+     "2026-09-25",
+     null,
+     67.3333
+    ],
+    [
+     "2026-09-28",
+     null,
+     67.6667
+    ],
+    [
+     "2026-09-29",
+     null,
+     67.25
+    ],
+    [
+     "2026-09-30",
+     null,
+     67.6667
+    ],
+    [
+     "2026-10-01",
+     null,
+     67.3333
+    ],
+    [
+     "2026-10-02",
+     null,
+     67.3333
+    ],
     [
      "2026-10-05",
      null,
@@ -9209,6 +9512,81 @@
    "var_pct_par_1d": 0.0,
    "var_pct_par_5d": -0.6558,
    "historico": [
+    [
+     "2026-09-14",
+     null,
+     67.0
+    ],
+    [
+     "2026-09-15",
+     null,
+     67.3333
+    ],
+    [
+     "2026-09-16",
+     null,
+     67.3333
+    ],
+    [
+     "2026-09-17",
+     null,
+     67.0
+    ],
+    [
+     "2026-09-18",
+     null,
+     67.0
+    ],
+    [
+     "2026-09-21",
+     null,
+     67.3333
+    ],
+    [
+     "2026-09-22",
+     null,
+     67.0
+    ],
+    [
+     "2026-09-23",
+     null,
+     67.0
+    ],
+    [
+     "2026-09-24",
+     null,
+     67.0
+    ],
+    [
+     "2026-09-25",
+     null,
+     67.0
+    ],
+    [
+     "2026-09-28",
+     null,
+     68.25
+    ],
+    [
+     "2026-09-29",
+     null,
+     67.8
+    ],
+    [
+     "2026-09-30",
+     null,
+     67.1667
+    ],
+    [
+     "2026-10-01",
+     null,
+     67.0
+    ],
+    [
+     "2026-10-02",
+     null,
+     67.0
+    ],
     [
      "2026-10-05",
      null,
@@ -10049,6 +10427,81 @@
    "var_pct_par_5d": -0.6375,
    "historico": [
     [
+     "2026-09-14",
+     null,
+     46.3333
+    ],
+    [
+     "2026-09-15",
+     null,
+     47.25
+    ],
+    [
+     "2026-09-16",
+     null,
+     46.3333
+    ],
+    [
+     "2026-09-17",
+     null,
+     47.25
+    ],
+    [
+     "2026-09-18",
+     null,
+     46.3333
+    ],
+    [
+     "2026-09-21",
+     null,
+     46.3333
+    ],
+    [
+     "2026-09-22",
+     null,
+     46.3333
+    ],
+    [
+     "2026-09-23",
+     null,
+     46.5625
+    ],
+    [
+     "2026-09-24",
+     null,
+     46.5625
+    ],
+    [
+     "2026-09-25",
+     null,
+     46.5625
+    ],
+    [
+     "2026-09-28",
+     null,
+     null
+    ],
+    [
+     "2026-09-29",
+     null,
+     46.5625
+    ],
+    [
+     "2026-09-30",
+     null,
+     null
+    ],
+    [
+     "2026-10-01",
+     null,
+     46.5625
+    ],
+    [
+     "2026-10-02",
+     null,
+     46.5625
+    ],
+    [
      "2026-10-05",
      null,
      null
@@ -10422,6 +10875,1506 @@
     "n": 3.0,
     "pu_medio": 40.5831,
     "pct_curva": 35.05
+   }
+  },
+  {
+   "codigo": "UGEL11",
+   "emissor": "Unigel",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 290.0,
+   "pct_par": 28.34,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": 6.94,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2023-04-03",
+     null,
+     99.64
+    ],
+    [
+     "2023-04-05",
+     null,
+     99.49
+    ],
+    [
+     "2023-04-06",
+     null,
+     99.32
+    ],
+    [
+     "2023-04-10",
+     null,
+     99.72
+    ],
+    [
+     "2023-04-13",
+     null,
+     99.71
+    ],
+    [
+     "2023-04-17",
+     null,
+     99.39
+    ],
+    [
+     "2023-04-19",
+     null,
+     99.82
+    ],
+    [
+     "2023-04-25",
+     null,
+     99.77
+    ],
+    [
+     "2023-04-26",
+     null,
+     99.04
+    ],
+    [
+     "2023-04-27",
+     null,
+     99.79
+    ],
+    [
+     "2023-05-02",
+     null,
+     99.58
+    ],
+    [
+     "2023-05-08",
+     null,
+     98.52
+    ],
+    [
+     "2023-05-09",
+     null,
+     98.47
+    ],
+    [
+     "2023-05-12",
+     null,
+     98.47
+    ],
+    [
+     "2023-05-18",
+     null,
+     99.4
+    ],
+    [
+     "2023-05-19",
+     null,
+     92.44
+    ],
+    [
+     "2023-05-24",
+     null,
+     92.43
+    ],
+    [
+     "2023-05-25",
+     null,
+     92.32
+    ],
+    [
+     "2023-05-26",
+     null,
+     68.9
+    ],
+    [
+     "2023-05-29",
+     null,
+     68.93
+    ],
+    [
+     "2023-05-30",
+     null,
+     72.71
+    ],
+    [
+     "2023-06-05",
+     null,
+     78.7
+    ],
+    [
+     "2023-06-06",
+     null,
+     76.29
+    ],
+    [
+     "2023-06-07",
+     null,
+     79.85
+    ],
+    [
+     "2023-06-09",
+     null,
+     70.64
+    ],
+    [
+     "2023-08-16",
+     null,
+     77.8
+    ],
+    [
+     "2023-08-17",
+     null,
+     77.78
+    ],
+    [
+     "2023-09-01",
+     null,
+     62.77
+    ],
+    [
+     "2023-09-26",
+     null,
+     35.0
+    ],
+    [
+     "2023-10-11",
+     null,
+     37.64
+    ],
+    [
+     "2023-10-18",
+     null,
+     34.88
+    ],
+    [
+     "2023-10-19",
+     null,
+     34.86
+    ],
+    [
+     "2023-10-27",
+     null,
+     32.74
+    ],
+    [
+     "2023-10-30",
+     null,
+     32.76
+    ],
+    [
+     "2023-10-31",
+     null,
+     32.78
+    ],
+    [
+     "2023-11-01",
+     null,
+     32.71
+    ],
+    [
+     "2023-11-03",
+     null,
+     32.69
+    ],
+    [
+     "2023-11-13",
+     null,
+     34.69
+    ],
+    [
+     "2023-11-23",
+     null,
+     24.54
+    ],
+    [
+     "2023-11-24",
+     null,
+     25.6
+    ],
+    [
+     "2023-12-12",
+     null,
+     25.41
+    ],
+    [
+     "2024-01-31",
+     null,
+     19.55
+    ],
+    [
+     "2024-02-15",
+     null,
+     21.94
+    ],
+    [
+     "2024-02-16",
+     null,
+     22.04
+    ],
+    [
+     "2024-02-23",
+     null,
+     19.55
+    ],
+    [
+     "2024-02-26",
+     null,
+     19.55
+    ],
+    [
+     "2024-02-27",
+     null,
+     19.55
+    ],
+    [
+     "2024-02-28",
+     null,
+     19.55
+    ],
+    [
+     "2024-03-06",
+     null,
+     19.15
+    ],
+    [
+     "2024-03-07",
+     null,
+     18.94
+    ],
+    [
+     "2024-03-08",
+     null,
+     18.62
+    ],
+    [
+     "2024-03-11",
+     null,
+     18.03
+    ],
+    [
+     "2024-03-12",
+     null,
+     18.03
+    ],
+    [
+     "2024-03-13",
+     null,
+     17.59
+    ],
+    [
+     "2024-03-14",
+     null,
+     18.13
+    ],
+    [
+     "2024-05-13",
+     null,
+     19.55
+    ],
+    [
+     "2024-05-20",
+     null,
+     14.66
+    ],
+    [
+     "2024-06-05",
+     null,
+     10.75
+    ],
+    [
+     "2024-12-10",
+     null,
+     21.4
+    ],
+    [
+     "2025-01-22",
+     null,
+     28.34
+    ]
+   ],
+   "negocios_dias": 141,
+   "negocios_desde": "2022-07-12",
+   "ultimo_negocio": {
+    "data": "2025-01-22",
+    "qtd": 20.0,
+    "n": 2.0,
+    "pu_medio": 290.0,
+    "pct_curva": 28.34
+   }
+  },
+  {
+   "codigo": "CCCI13",
+   "emissor": "InterCement Brasil",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 603.752826,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-10-30",
+     null,
+     null
+    ]
+   ],
+   "negocios_dias": 1,
+   "negocios_desde": "2025-10-30",
+   "ultimo_negocio": {
+    "data": "2025-10-30",
+    "qtd": 175719.0,
+    "n": 4.0,
+    "pu_medio": 603.752826,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "CCCI23",
+   "emissor": "InterCement Brasil",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 603.752826,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-10-30",
+     null,
+     1004.48
+    ]
+   ],
+   "negocios_dias": 1,
+   "negocios_desde": "2025-10-30",
+   "ultimo_negocio": {
+    "data": "2025-10-30",
+    "qtd": 175719.0,
+    "n": 4.0,
+    "pu_medio": 603.752826,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "CCCI33",
+   "emissor": "InterCement Brasil",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 603.752826,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-10-30",
+     null,
+     1004.48
+    ]
+   ],
+   "negocios_dias": 1,
+   "negocios_desde": "2025-10-30",
+   "ultimo_negocio": {
+    "data": "2025-10-30",
+    "qtd": 175719.0,
+    "n": 4.0,
+    "pu_medio": 603.752826,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "CCCI43",
+   "emissor": "InterCement Brasil",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 848.893971,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-07-25",
+     null,
+     1481.94
+    ],
+    [
+     "2025-12-22",
+     null,
+     2007.72
+    ]
+   ],
+   "negocios_dias": 2,
+   "negocios_desde": "2025-07-25",
+   "ultimo_negocio": {
+    "data": "2025-12-22",
+    "qtd": 53863.0,
+    "n": 2.0,
+    "pu_medio": 848.893971,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "CCCI53",
+   "emissor": "InterCement Brasil",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 848.893971,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-07-25",
+     null,
+     1481.94
+    ],
+    [
+     "2025-12-22",
+     null,
+     2007.72
+    ]
+   ],
+   "negocios_dias": 2,
+   "negocios_desde": "2025-07-25",
+   "ultimo_negocio": {
+    "data": "2025-12-22",
+    "qtd": 53863.0,
+    "n": 2.0,
+    "pu_medio": 848.893971,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "CCCI63",
+   "emissor": "InterCement Brasil",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 848.893971,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-07-25",
+     null,
+     1481.94
+    ],
+    [
+     "2025-12-22",
+     null,
+     2007.72
+    ]
+   ],
+   "negocios_dias": 2,
+   "negocios_desde": "2025-07-25",
+   "ultimo_negocio": {
+    "data": "2025-12-22",
+    "qtd": 53863.0,
+    "n": 2.0,
+    "pu_medio": 848.893971,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "CCCI73",
+   "emissor": "InterCement Brasil",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 971.192254,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-06-12",
+     null,
+     1513.19
+    ],
+    [
+     "2025-09-09",
+     null,
+     1449.24
+    ],
+    [
+     "2025-09-15",
+     null,
+     1445.2
+    ],
+    [
+     "2025-12-22",
+     null,
+     2007.72
+    ],
+    [
+     "2025-12-29",
+     null,
+     2290.57
+    ]
+   ],
+   "negocios_dias": 5,
+   "negocios_desde": "2025-06-12",
+   "ultimo_negocio": {
+    "data": "2025-12-29",
+    "qtd": 13269.0,
+    "n": 4.0,
+    "pu_medio": 971.192254,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "CCCI83",
+   "emissor": "InterCement Brasil",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 971.192254,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-06-12",
+     null,
+     1513.19
+    ],
+    [
+     "2025-09-09",
+     null,
+     1449.24
+    ],
+    [
+     "2025-09-15",
+     null,
+     1445.2
+    ],
+    [
+     "2025-12-22",
+     null,
+     2007.72
+    ],
+    [
+     "2025-12-29",
+     null,
+     2290.57
+    ]
+   ],
+   "negocios_dias": 5,
+   "negocios_desde": "2025-06-12",
+   "ultimo_negocio": {
+    "data": "2025-12-29",
+    "qtd": 13269.0,
+    "n": 4.0,
+    "pu_medio": 971.192254,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "CCCI93",
+   "emissor": "InterCement Brasil",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 971.192254,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-06-12",
+     null,
+     1513.19
+    ],
+    [
+     "2025-09-09",
+     null,
+     1449.24
+    ],
+    [
+     "2025-09-15",
+     null,
+     1445.2
+    ],
+    [
+     "2025-12-22",
+     null,
+     2007.72
+    ],
+    [
+     "2025-12-29",
+     null,
+     2290.57
+    ]
+   ],
+   "negocios_dias": 5,
+   "negocios_desde": "2025-06-12",
+   "ultimo_negocio": {
+    "data": "2025-12-29",
+    "qtd": 13269.0,
+    "n": 4.0,
+    "pu_medio": 971.192254,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "ICBR14",
+   "emissor": "InterCement Brasil",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 603.752826,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-10-30",
+     null,
+     null
+    ]
+   ],
+   "negocios_dias": 1,
+   "negocios_desde": "2025-10-30",
+   "ultimo_negocio": {
+    "data": "2025-10-30",
+    "qtd": 103355.0,
+    "n": 4.0,
+    "pu_medio": 603.752826,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "ICBR24",
+   "emissor": "InterCement Brasil",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 603.752826,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-10-30",
+     null,
+     null
+    ]
+   ],
+   "negocios_dias": 1,
+   "negocios_desde": "2025-10-30",
+   "ultimo_negocio": {
+    "data": "2025-10-30",
+    "qtd": 103354.0,
+    "n": 4.0,
+    "pu_medio": 603.752826,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "ICBR34",
+   "emissor": "InterCement Brasil",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 603.752826,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-10-30",
+     null,
+     1014.63
+    ]
+   ],
+   "negocios_dias": 1,
+   "negocios_desde": "2025-10-30",
+   "ultimo_negocio": {
+    "data": "2025-10-30",
+    "qtd": 103354.0,
+    "n": 4.0,
+    "pu_medio": 603.752826,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "ICBR44",
+   "emissor": "InterCement Brasil",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 848.893971,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-07-25",
+     null,
+     1496.91
+    ],
+    [
+     "2025-12-22",
+     null,
+     2028.0
+    ]
+   ],
+   "negocios_dias": 2,
+   "negocios_desde": "2025-07-25",
+   "ultimo_negocio": {
+    "data": "2025-12-22",
+    "qtd": 31681.0,
+    "n": 2.0,
+    "pu_medio": 848.893971,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "ICBR54",
+   "emissor": "InterCement Brasil",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 848.893971,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-07-25",
+     null,
+     1412.77
+    ],
+    [
+     "2025-12-22",
+     null,
+     1914.01
+    ]
+   ],
+   "negocios_dias": 2,
+   "negocios_desde": "2025-07-25",
+   "ultimo_negocio": {
+    "data": "2025-12-22",
+    "qtd": 31681.0,
+    "n": 2.0,
+    "pu_medio": 848.893971,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "ICBR64",
+   "emissor": "InterCement Brasil",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 848.893971,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-07-25",
+     null,
+     1496.91
+    ],
+    [
+     "2025-12-22",
+     null,
+     2028.0
+    ]
+   ],
+   "negocios_dias": 2,
+   "negocios_desde": "2025-07-25",
+   "ultimo_negocio": {
+    "data": "2025-12-22",
+    "qtd": 31681.0,
+    "n": 2.0,
+    "pu_medio": 848.893971,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "ICBR74",
+   "emissor": "InterCement Brasil",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 971.192254,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-06-12",
+     null,
+     1528.48
+    ],
+    [
+     "2025-09-09",
+     null,
+     1463.87
+    ],
+    [
+     "2025-09-15",
+     null,
+     1459.8
+    ],
+    [
+     "2025-12-22",
+     null,
+     2028.0
+    ],
+    [
+     "2025-12-29",
+     null,
+     2313.71
+    ]
+   ],
+   "negocios_dias": 5,
+   "negocios_desde": "2025-06-12",
+   "ultimo_negocio": {
+    "data": "2025-12-29",
+    "qtd": 7804.0,
+    "n": 4.0,
+    "pu_medio": 971.192254,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "ICBR84",
+   "emissor": "InterCement Brasil",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 971.192254,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-06-12",
+     null,
+     1528.48
+    ],
+    [
+     "2025-09-09",
+     null,
+     1463.87
+    ],
+    [
+     "2025-09-15",
+     null,
+     1459.8
+    ],
+    [
+     "2025-12-22",
+     null,
+     2028.0
+    ],
+    [
+     "2025-12-29",
+     null,
+     2313.71
+    ]
+   ],
+   "negocios_dias": 5,
+   "negocios_desde": "2025-06-12",
+   "ultimo_negocio": {
+    "data": "2025-12-29",
+    "qtd": 7804.0,
+    "n": 4.0,
+    "pu_medio": 971.192254,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "ICBR94",
+   "emissor": "InterCement Brasil",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 971.192254,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-06-12",
+     null,
+     1528.48
+    ],
+    [
+     "2025-09-09",
+     null,
+     1463.87
+    ],
+    [
+     "2025-09-15",
+     null,
+     1459.8
+    ],
+    [
+     "2025-12-22",
+     null,
+     2028.0
+    ],
+    [
+     "2025-12-29",
+     null,
+     2313.71
+    ]
+   ],
+   "negocios_dias": 5,
+   "negocios_desde": "2025-06-12",
+   "ultimo_negocio": {
+    "data": "2025-12-29",
+    "qtd": 7804.0,
+    "n": 4.0,
+    "pu_medio": 971.192254,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "ITCT11",
+   "emissor": "InterCement Participações",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 798.964869,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-10-30",
+     null,
+     837.67
+    ]
+   ],
+   "negocios_dias": 1,
+   "negocios_desde": "2025-10-30",
+   "ultimo_negocio": {
+    "data": "2025-10-30",
+    "qtd": 307652.0,
+    "n": 4.0,
+    "pu_medio": 798.964869,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "ITCT21",
+   "emissor": "InterCement Participações",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 798.964869,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-10-30",
+     null,
+     930.74
+    ]
+   ],
+   "negocios_dias": 1,
+   "negocios_desde": "2025-10-30",
+   "ultimo_negocio": {
+    "data": "2025-10-30",
+    "qtd": 307651.0,
+    "n": 4.0,
+    "pu_medio": 798.964869,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "ITCT31",
+   "emissor": "InterCement Participações",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 798.964869,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-10-30",
+     null,
+     930.74
+    ]
+   ],
+   "negocios_dias": 1,
+   "negocios_desde": "2025-10-30",
+   "ultimo_negocio": {
+    "data": "2025-10-30",
+    "qtd": 307651.0,
+    "n": 4.0,
+    "pu_medio": 798.964869,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "ITCT41",
+   "emissor": "InterCement Participações",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 471.389273,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-07-25",
+     null,
+     576.2
+    ],
+    [
+     "2025-12-22",
+     null,
+     780.63
+    ]
+   ],
+   "negocios_dias": 2,
+   "negocios_desde": "2025-07-25",
+   "ultimo_negocio": {
+    "data": "2025-12-22",
+    "qtd": 94305.0,
+    "n": 2.0,
+    "pu_medio": 471.389273,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "ITCT51",
+   "emissor": "InterCement Participações",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 471.389273,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-07-25",
+     null,
+     576.2
+    ],
+    [
+     "2025-12-22",
+     null,
+     780.64
+    ]
+   ],
+   "negocios_dias": 2,
+   "negocios_desde": "2025-07-25",
+   "ultimo_negocio": {
+    "data": "2025-12-22",
+    "qtd": 94305.0,
+    "n": 2.0,
+    "pu_medio": 471.389273,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "ITCT61",
+   "emissor": "InterCement Participações",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 471.389273,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-07-25",
+     null,
+     576.2
+    ],
+    [
+     "2025-12-22",
+     null,
+     780.64
+    ]
+   ],
+   "negocios_dias": 2,
+   "negocios_desde": "2025-07-25",
+   "ultimo_negocio": {
+    "data": "2025-12-22",
+    "qtd": 94304.0,
+    "n": 2.0,
+    "pu_medio": 471.389273,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "ITCT71",
+   "emissor": "InterCement Participações",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 539.301287,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-06-12",
+     null,
+     588.36
+    ],
+    [
+     "2025-09-09",
+     null,
+     563.49
+    ],
+    [
+     "2025-09-15",
+     null,
+     561.92
+    ],
+    [
+     "2025-12-22",
+     null,
+     780.63
+    ],
+    [
+     "2025-12-29",
+     null,
+     890.61
+    ]
+   ],
+   "negocios_dias": 5,
+   "negocios_desde": "2025-06-12",
+   "ultimo_negocio": {
+    "data": "2025-12-29",
+    "qtd": 23230.0,
+    "n": 4.0,
+    "pu_medio": 539.301287,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "ITCT81",
+   "emissor": "InterCement Participações",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 539.301287,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-06-12",
+     null,
+     588.36
+    ],
+    [
+     "2025-09-09",
+     null,
+     563.49
+    ],
+    [
+     "2025-09-15",
+     null,
+     561.92
+    ],
+    [
+     "2025-12-22",
+     null,
+     780.63
+    ],
+    [
+     "2025-12-29",
+     null,
+     890.61
+    ]
+   ],
+   "negocios_dias": 5,
+   "negocios_desde": "2025-06-12",
+   "ultimo_negocio": {
+    "data": "2025-12-29",
+    "qtd": 23230.0,
+    "n": 4.0,
+    "pu_medio": 539.301287,
+    "pct_curva": null
+   }
+  },
+  {
+   "codigo": "ITCT91",
+   "emissor": "InterCement Participações",
+   "fonte": "snd",
+   "nome": null,
+   "vencimento": null,
+   "indice": null,
+   "ref_ntnb": null,
+   "taxa_indicativa": null,
+   "taxa_compra": null,
+   "taxa_venda": null,
+   "pu": 539.301287,
+   "pct_par": null,
+   "duration_anos": null,
+   "var_taxa_1d": null,
+   "var_taxa_5d": null,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
+   "historico": [
+    [
+     "2025-06-12",
+     null,
+     588.36
+    ],
+    [
+     "2025-09-09",
+     null,
+     563.49
+    ],
+    [
+     "2025-09-15",
+     null,
+     561.92
+    ],
+    [
+     "2025-12-22",
+     null,
+     780.63
+    ],
+    [
+     "2025-12-29",
+     null,
+     890.61
+    ]
+   ],
+   "negocios_dias": 5,
+   "negocios_desde": "2025-06-12",
+   "ultimo_negocio": {
+    "data": "2025-12-29",
+    "qtd": 23230.0,
+    "n": 4.0,
+    "pu_medio": 539.301287,
+    "pct_curva": null
    }
   }
  ]
