@@ -101,6 +101,11 @@ def carregar_emissores():
     return lista, mapa
 
 
+def carregar_snd_pu(lista) -> set[str]:
+    """Códigos só SND cujo % do PU da curva não faz sentido (ex.: pós-reestruturação); mostrar PU em R$."""
+    return {c.upper() for e in lista if e.get("snd_pu") for c in e.get("snd", [])}
+
+
 def carregar_so_snd(lista) -> dict[str, str]:
     """Séries que a ANBIMA não precifica, acompanhadas só pelos negócios do SND: {codigo: emissor}."""
     return {c.upper(): e["nome"] for e in lista for c in e.get("snd", [])}
@@ -166,6 +171,7 @@ def main():
 
     lista, mapa = carregar_emissores()
     so_snd = carregar_so_snd(lista)
+    snd_pu = carregar_snd_pu(lista)
     hist = ler_json(HISTORICO, {})
     fichas: dict = hist.pop("_fichas", {})
     # prefixos já acompanhados na última rodada; se entrou emissor novo, os dias ainda
@@ -274,6 +280,9 @@ def main():
         })
         u = neg[-1]
         ant = neg[-2] if len(neg) > 1 else None
+        if cod in snd_pu:  # % da curva distorcido: o número principal passa a ser o PU médio (R$)
+            u = u[:6] + [None]
+            ant = None
         series.append({
             "codigo": cod, "emissor": so_snd[cod], "fonte": "snd", "nome": None,
             "vencimento": None, "indice": None, "ref_ntnb": None,

@@ -16,5 +16,8 @@
   {"nome": "Tupi Energias Renováveis", "prefixos": ["TUPW"]},
   {"nome": "Qualicorp", "prefixos": ["QUAL"]},
   {"nome": "Americanas", "prefixos": ["AMER"], "snd": ["AMERE2", "AMERF2", "AMERG2"]},
-  {"nome": "Light", "prefixos": ["LIGH"], "snd": ["LIGH2B", "LIGHB9", "LIGHC0", "LIGHC4", "LIGHC5", "LIGHC7", "LIGHE2"]}
+  {"nome": "Light", "prefixos": ["LIGH"], "snd": ["LIGH2B", "LIGHB9", "LIGHC0", "LIGHC4", "LIGHC5", "LIGHC7", "LIGHE2"]},
+  {"nome": "Unigel", "prefixos": ["UGEL"], "snd": ["UGEL11"]},
+  {"nome": "InterCement Brasil", "prefixos": ["ICBR", "CCCI"], "snd": ["CCCI13", "CCCI23", "CCCI33", "CCCI43", "CCCI53", "CCCI63", "CCCI73", "CCCI83", "CCCI93", "ICBR14", "ICBR24", "ICBR34", "ICBR44", "ICBR54", "ICBR64", "ICBR74", "ICBR84", "ICBR94"], "snd_pu": true},
+  {"nome": "InterCement Participações", "prefixos": ["ITCT"], "snd": ["ITCT11", "ITCT21", "ITCT31", "ITCT41", "ITCT51", "ITCT61", "ITCT71", "ITCT81", "ITCT91"], "snd_pu": true}
 ]
