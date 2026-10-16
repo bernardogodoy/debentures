@@ -83,6 +83,7 @@ footer{color:var(--muted);font-size:11.5px;text-align:center;padding:10px 16px 3
 .kpis b{display:block;font-size:19px;font-variant-numeric:tabular-nums;margin:2px 0}
 .kpis small{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
 .kpis small.up,.kpis b.up{color:var(--up)} .kpis small.down,.kpis b.down{color:var(--down)}
+.kpis em{font-style:normal} .kpis em.up{color:var(--up)} .kpis em.down{color:var(--down)}
 .cmp{align-items:center;margin:8px 0 2px;flex-wrap:wrap}
 .cmp .rot{font-size:12px;color:var(--muted);margin-right:2px}
 .cmp .chip:disabled{opacity:.4;cursor:default}
@@ -744,7 +745,7 @@ function painelCurto(){
   const kpi = (rot, D, u) => {
     if (!u) return `<div><span>${rot}</span><b>—</b><small></small></div>`;
     const x = m1(D, u), y = a1(D, u);
-    return `<div><span>${rot} (${dataBR(u[0])})</span><b>${fmt(u[1], 2)}%</b><small>1 mês <span class="${corDelta(x == null ? null : u[1] - x)}">${x == null ? "—" : pb(u[1] - x)}</span> · 1 ano ${y == null ? "—" : pb(u[1] - y)}</small></div>`;
+    return `<div><span>${rot} (${dataBR(u[0])})</span><b>${fmt(u[1], 2)}%</b><small>1 mês <em class="${corDelta(x == null ? null : u[1] - x)}">${x == null ? "—" : pb(u[1] - x)}</em> · 1 ano ${y == null ? "—" : pb(u[1] - y)}</small></div>`;
   };
   box.querySelector(".kpis").innerHTML = kpi("CDI", C, uC) + kpi("SOFR", S, uS) +
     (uD ? `<div><span>CDI − SOFR</span><b>${fmt(uD[1], 2)} p.p.</b><small>1 ano antes ${(() => { const y = a1(dif, uD); return y == null ? "—" : fmt(y, 2) + " p.p."; })()}</small></div>` : "");
