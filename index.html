@@ -168,6 +168,19 @@ svg.curva .tx{font-size:11px;fill:var(--muted);font-variant-numeric:tabular-nums
       <div class="nota">Fonte: ICE BofA US High Yield Index OAS (FRED, BAMLH0A0HYM2). O FRED publica só os últimos ~3 anos deste índice; o site guarda tudo o que já coletou. Default implícito = spread ÷ 60% (perda dado default de 60%, isto é, recuperação de 40%).</div>
     </div>
   </section>
+  <section class="painel" id="p-emhy">
+    <h2>High Yield emergentes (corporativo) OAS <small>e default implícito</small></h2>
+    <div class="corpo">
+      <div class="kpis"></div>
+      <div class="histctl"><div class="seg" data-k="per"></div></div>
+      <div class="leitura"></div>
+      <div class="legmini"><span><i style="background:#2563eb"></i>Option-adjusted spread (% a.a.)</span></div>
+      <div class="chartbox hist1"></div>
+      <div class="legmini"><span><i style="background:#dc2626"></i>Default implícito (% a.a.) = OAS ÷ 60%</span></div>
+      <div class="chartbox hist2"></div>
+      <div class="nota">Fonte: ICE BofA High Yield Emerging Markets Corporate Plus Index OAS (FRED, BAMLEMHBHYCRPIOAS), spread sobre Treasuries de bonds corporativos high yield de emergentes em dólar. É o equivalente público do JP Morgan CEMBI HY, que só sai em terminais pagos. O FRED publica só os últimos ~3 anos; o site guarda tudo o que já coletou. Default implícito = spread ÷ 60%.</div>
+    </div>
+  </section>
 </main>
 <footer id="rodape-deb">
   Fontes: ANBIMA — taxas e PU indicativos (todo dia útil); SND/debentures.com.br — negócios efetivamente registrados (PU médio e % do PU da curva).<br>
@@ -459,7 +472,7 @@ $("#chips").addEventListener("click", e => {
 });
 
 // ===================================================================== aba "Juros e crédito"
-const MERC = { carregado: false, us: null, br: null, hy: null, graficos: [], redesenhos: [] };
+const MERC = { carregado: false, us: null, br: null, hy: null, emhy: null, graficos: [], redesenhos: [] };
 let _rz; addEventListener("resize", () => { clearTimeout(_rz); _rz = setTimeout(() => {
   if (!document.getElementById("mercado").hidden) MERC.redesenhos.forEach(f => f()); }, 200); });
 const LGD = 0.60;   // perda dado default usada no default implícito: default = OAS / 60%
@@ -482,12 +495,12 @@ async function abrirMercado(){
   if (MERC.carregado) { $("#sub").textContent = MERC.sub; return; }
   $("#sub").textContent = "Carregando…";
   const get = n => fetch(`data/mercado/${n}.json?t=${new Date().toISOString().slice(0,13)}`).then(r => r.ok ? r.json() : null).catch(() => null);
-  [MERC.us, MERC.br, MERC.hy] = await Promise.all([get("us"), get("br"), get("hy")]);
+  [MERC.us, MERC.br, MERC.hy, MERC.emhy] = await Promise.all([get("us"), get("br"), get("hy"), get("em_hy")]);
   MERC.carregado = true;
   const ult = [MERC.us && Object.keys(MERC.us.dados).at(-1), MERC.br && Object.keys(MERC.br.dados).at(-1), MERC.hy && MERC.hy.at(-1)[0]].filter(Boolean).sort().at(-1);
   MERC.sub = ult ? `Dados até ${dataBR(ult)} · Tesouro dos EUA, ANBIMA e FRED` : "Sem dados ainda";
   $("#sub").textContent = MERC.sub;
-  painelUS(); painelBR(); painelHY();
+  painelUS(); painelBR(); painelHY("p-hy", MERC.hy); painelHY("p-emhy", MERC.emhy);
 }
 
 // ---------- utilidades
@@ -701,8 +714,8 @@ function painelBR(){
 }
 
 // ---------- 3. High Yield OAS e default implícito
-function painelHY(){
-  const box = document.getElementById("p-hy"), D = MERC.hy;
+function painelHY(id, D){
+  const box = document.getElementById(id);
   if (!D || !D.length) { box.querySelector(".corpo").innerHTML = '<div class="nota">Dados ainda não coletados.</div>'; return; }
   const ult = D.at(-1), datas = D.map(p => p[0]);
   const em = n => { const d = dataAte(datas, diasAntes(ult[0], n)); return d ? D[datas.indexOf(d)][1] : null; };

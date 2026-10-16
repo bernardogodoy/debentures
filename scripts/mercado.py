@@ -7,6 +7,8 @@
    desse índice, então o histórico também é acumulado (nada é apagado).
    O download direto do FRED (fredgraph.csv) não responde a servidores do GitHub; por isso o
    robô usa a API oficial do FRED quando há a chave FRED_API_KEY (segredo do repositório).
+4. ICE BofA High Yield Emerging Markets Corporate Plus OAS (FRED BAMLEMHBHYCRPIOAS), o
+   equivalente público do JP Morgan CEMBI HY (que é pago). Mesmo esquema do HY americano.
 
 Uso: python scripts/mercado.py [--dias-br 30]
 """
@@ -39,6 +41,7 @@ TESOURO = ("https://home.treasury.gov/resource-center/data-chart-center/interest
            "{a}/all?type=daily_treasury_yield_curve&field_tdr_date_value={a}&page&_format=csv")
 FRED_API = "https://api.stlouisfed.org/fred/series/observations?series_id={}&api_key={}&file_type=json"
 HY_SERIE = "BAMLH0A0HYM2"
+EMHY_SERIE = "BAMLEMHBHYCRPIOAS"
 FRED = "https://fred.stlouisfed.org/graph/fredgraph.csv?id={}"
 ANBIMA_ETTJ = "https://www.anbima.com.br/informacoes/est-termo/CZ-down.asp"
 
@@ -139,16 +142,24 @@ def atualizar_us():
 
 
 # ---------------------------------------------------------------- HY OAS
-def atualizar_hy():
-    arq = DIR / "hy.json"
+def atualizar_oas(serie: str, nome_arq: str, rotulo: str):
+    arq = DIR / nome_arq
     atual = dict(ler(arq, []))
-    s = fred(HY_SERIE)
+    s = fred(serie)
     if s is None:
-        print("  HY OAS: falhou, mantendo dados salvos")
+        print(f"  {rotulo}: falhou, mantendo dados salvos")
         return
     atual.update(s)
     gravar(arq, [[d, atual[d]] for d in sorted(atual)])
-    print(f"  HY OAS: {len(atual)} dias, de {min(atual)} a {max(atual)}")
+    print(f"  {rotulo}: {len(atual)} dias, de {min(atual)} a {max(atual)}")
+
+
+def atualizar_hy():
+    atualizar_oas(HY_SERIE, "hy.json", "HY OAS")
+
+
+def atualizar_emhy():
+    atualizar_oas(EMHY_SERIE, "em_hy.json", "EM HY OAS")
 
 
 # ---------------------------------------------------------------- Brasil
@@ -242,7 +253,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dias-br", type=int, default=30)
     args = ap.parse_args()
-    for nome, f in (("EUA", atualizar_us), ("HY", atualizar_hy), ("Brasil", lambda: atualizar_br(args.dias_br))):
+    for nome, f in (("EUA", atualizar_us), ("HY", atualizar_hy), ("EM HY", atualizar_emhy), ("Brasil", lambda: atualizar_br(args.dias_br))):
         try:
             f()
         except Exception as e:  # uma fonte fora do ar não derruba as outras
