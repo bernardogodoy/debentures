@@ -155,6 +155,19 @@ svg.curva .tx{font-size:11px;fill:var(--muted);font-variant-numeric:tabular-nums
       <div class="nota">Fonte: ANBIMA, Estrutura a Termo das Taxas de Juros Estimada (prefixada, IPCA e inflação implícita), em % a.a., base 252.</div>
     </div>
   </section>
+  <section class="painel" id="p-curto">
+    <h2>Juros de curto prazo <small>CDI e SOFR</small></h2>
+    <div class="corpo">
+      <div class="kpis"></div>
+      <div class="histctl"><div class="seg" data-k="per"></div></div>
+      <div class="leitura"></div>
+      <div class="legmini"><span><i style="background:#0d9488"></i>CDI (% a.a., base 252)</span><span><i style="background:#2563eb"></i>SOFR (% a.a.)</span></div>
+      <div class="chartbox hist1"></div>
+      <div class="legmini"><span><i style="background:#7c3aed"></i>Diferencial CDI − SOFR (p.p.)</span></div>
+      <div class="chartbox hist2 baixo"></div>
+      <div class="nota">Fontes: CDI anualizado base 252, Banco Central do Brasil (SGS 4389), desde 2000; SOFR (Secured Overnight Financing Rate), Federal Reserve Bank of New York via FRED, desde abr/2018. O diferencial é um carry nominal bruto, sem custo de hedge cambial nem diferença de convenção (252 × 360 dias).</div>
+    </div>
+  </section>
   <section class="painel" id="p-hy">
     <h2>ICE BofA US High Yield OAS <small>e default implícito</small></h2>
     <div class="corpo">
@@ -472,7 +485,7 @@ $("#chips").addEventListener("click", e => {
 });
 
 // ===================================================================== aba "Juros e crédito"
-const MERC = { carregado: false, us: null, br: null, hy: null, emhy: null, graficos: [], redesenhos: [] };
+const MERC = { carregado: false, us: null, br: null, hy: null, emhy: null, sofr: null, cdi: null, graficos: [], redesenhos: [] };
 let _rz; addEventListener("resize", () => { clearTimeout(_rz); _rz = setTimeout(() => {
   if (!document.getElementById("mercado").hidden) MERC.redesenhos.forEach(f => f()); }, 200); });
 const LGD = 0.60;   // perda dado default usada no default implícito: default = OAS / 60%
@@ -495,12 +508,12 @@ async function abrirMercado(){
   if (MERC.carregado) { $("#sub").textContent = MERC.sub; return; }
   $("#sub").textContent = "Carregando…";
   const get = n => fetch(`data/mercado/${n}.json?t=${new Date().toISOString().slice(0,13)}`).then(r => r.ok ? r.json() : null).catch(() => null);
-  [MERC.us, MERC.br, MERC.hy, MERC.emhy] = await Promise.all([get("us"), get("br"), get("hy"), get("em_hy")]);
+  [MERC.us, MERC.br, MERC.hy, MERC.emhy, MERC.sofr, MERC.cdi] = await Promise.all([get("us"), get("br"), get("hy"), get("em_hy"), get("sofr"), get("cdi")]);
   MERC.carregado = true;
   const ult = [MERC.us && Object.keys(MERC.us.dados).at(-1), MERC.br && Object.keys(MERC.br.dados).at(-1), MERC.hy && MERC.hy.at(-1)[0]].filter(Boolean).sort().at(-1);
-  MERC.sub = ult ? `Dados até ${dataBR(ult)} · Tesouro dos EUA, ANBIMA e FRED` : "Sem dados ainda";
+  MERC.sub = ult ? `Dados até ${dataBR(ult)} · Tesouro dos EUA, ANBIMA, BCB e FRED` : "Sem dados ainda";
   $("#sub").textContent = MERC.sub;
-  painelUS(); painelBR(); painelHY("p-hy", MERC.hy); painelHY("p-emhy", MERC.emhy);
+  painelUS(); painelBR(); painelCurto(); painelHY("p-hy", MERC.hy); painelHY("p-emhy", MERC.emhy);
 }
 
 // ---------- utilidades
@@ -711,6 +724,50 @@ function painelBR(){
     box.querySelector(".nota-hist").textContent = `Histórico coletado desde ${dataBR(datas[0])} (a ANBIMA só disponibiliza ~1 mês para trás; a série cresce a cada dia útil).`;
   }
   desenhar(); MERC.redesenhos.push(desenhar);
+}
+
+// ---------- Juros de curto prazo: CDI e SOFR
+function painelCurto(){
+  const box = document.getElementById("p-curto"), C = MERC.cdi || [], S = MERC.sofr || [];
+  if (!C.length && !S.length) { box.querySelector(".corpo").innerHTML = '<div class="nota">Dados ainda não coletados.</div>'; return; }
+  const valorEm = (D, iso) => { let r = null; for (const p of D) { if (p[0] <= iso) r = p[1]; else break; } return r; };
+  // diferencial: em cada dia com CDI, o SOFR mais recente até essa data (só a partir do início do SOFR)
+  const mS = new Map(S), datasS = S.map(p => p[0]);
+  const dif = []; let j = -1;
+  for (const [d, v] of C) {
+    while (j + 1 < datasS.length && datasS[j + 1] <= d) j++;
+    if (j >= 0) dif.push([d, +(v - S[j][1]).toFixed(4)]);
+  }
+  const uC = C.at(-1), uS = S.at(-1), uD = dif.at(-1);
+  const m1 = (D, u) => u ? valorEm(D, diasAntes(u[0], 30)) : null;
+  const a1 = (D, u) => u ? valorEm(D, diasAntes(u[0], 365)) : null;
+  const kpi = (rot, D, u) => {
+    if (!u) return `<div><span>${rot}</span><b>—</b><small></small></div>`;
+    const x = m1(D, u), y = a1(D, u);
+    return `<div><span>${rot} (${dataBR(u[0])})</span><b>${fmt(u[1], 2)}%</b><small>1 mês <span class="${corDelta(x == null ? null : u[1] - x)}">${x == null ? "—" : pb(u[1] - x)}</span> · 1 ano ${y == null ? "—" : pb(u[1] - y)}</small></div>`;
+  };
+  box.querySelector(".kpis").innerHTML = kpi("CDI", C, uC) + kpi("SOFR", S, uS) +
+    (uD ? `<div><span>CDI − SOFR</span><b>${fmt(uD[1], 2)} p.p.</b><small>1 ano antes ${(() => { const y = a1(dif, uD); return y == null ? "—" : fmt(y, 2) + " p.p."; })()}</small></div>` : "");
+  const loc = { localization: { locale: "pt-BR", priceFormatter: v => fmt(v, 2) + "%", dateFormat: "dd/MM/yy" } };
+  const g1 = graficoTempo(box.querySelector(".hist1"), loc);
+  const sC = g1.addLineSeries({ color: "#0d9488", lineWidth: 2, priceLineVisible: false });
+  sC.setData(C.map(([d, v]) => ({ time: d, value: v })));
+  const sS = g1.addLineSeries({ color: "#2563eb", lineWidth: 2, priceLineVisible: false });
+  sS.setData(S.map(([d, v]) => ({ time: d, value: v })));
+  const g2 = graficoTempo(box.querySelector(".hist2"), { localization: { locale: "pt-BR", priceFormatter: v => fmt(v, 2) + " p.p.", dateFormat: "dd/MM/yy" } });
+  const sD = g2.addAreaSeries({ lineColor: "#7c3aed", topColor: "rgba(124,58,237,.20)", bottomColor: "rgba(124,58,237,.02)", lineWidth: 2, priceLineVisible: false });
+  sD.setData(dif.map(([d, v]) => ({ time: d, value: v })));
+  const mC = new Map(C), mD = new Map(dif);
+  const lei = box.querySelector(".leitura");
+  const ler = t => {
+    const iso = typeof t === "string" ? t : `${t.year}-${String(t.month).padStart(2,"0")}-${String(t.day).padStart(2,"0")}`;
+    const c = mC.has(iso) ? mC.get(iso) : valorEm(C, iso), s = mS.has(iso) ? mS.get(iso) : valorEm(S, iso), d = mD.get(iso);
+    lei.innerHTML = `<b>${dataBR(iso)}</b> · <span style="color:#0d9488">CDI <b>${fmt(c, 2)}%</b></span> · <span style="color:#2563eb">SOFR <b>${s == null ? "—" : fmt(s, 2) + "%"}</b></span>${d == null ? "" : ` · <span style="color:#7c3aed">dif. <b>${fmt(d, 2)} p.p.</b></span>`}`;
+  };
+  const fim = [uC && uC[0], uS && uS[0]].filter(Boolean).sort().at(-1);
+  [g1, g2].forEach(g => g.subscribeCrosshairMove(p => p && p.time ? ler(p.time) : ler(fim)));
+  ler(fim);
+  periodos(box.querySelector(".histctl"), [g1, g2], fim, [["1A",12],["3A",36],["5A",60],["10A",120],["Tudo",0]], "3A");
 }
 
 // ---------- 3. High Yield OAS e default implícito

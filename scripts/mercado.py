@@ -9,6 +9,8 @@
    robô usa a API oficial do FRED quando há a chave FRED_API_KEY (segredo do repositório).
 4. ICE BofA High Yield Emerging Markets Corporate Plus OAS (FRED BAMLEMHBHYCRPIOAS), o
    equivalente público do JP Morgan CEMBI HY (que é pago). Mesmo esquema do HY americano.
+5. Juros de curto prazo: SOFR (FRED SOFR, desde abr/2018) e CDI anualizado base 252
+   (Banco Central, SGS série 4389, desde 2000).
 
 Uso: python scripts/mercado.py [--dias-br 30]
 """
@@ -42,6 +44,9 @@ TESOURO = ("https://home.treasury.gov/resource-center/data-chart-center/interest
 FRED_API = "https://api.stlouisfed.org/fred/series/observations?series_id={}&api_key={}&file_type=json"
 HY_SERIE = "BAMLH0A0HYM2"
 EMHY_SERIE = "BAMLEMHBHYCRPIOAS"
+SOFR_SERIE = "SOFR"
+SGS = "https://api.bcb.gov.br/dados/serie/bcdata.sgs.{}/dados?formato=json&dataInicial={}&dataFinal={}"
+CDI_SGS = 4389  # CDI anualizado base 252 (% a.a.)
 FRED = "https://fred.stlouisfed.org/graph/fredgraph.csv?id={}"
 ANBIMA_ETTJ = "https://www.anbima.com.br/informacoes/est-termo/CZ-down.asp"
 
@@ -162,6 +167,42 @@ def atualizar_emhy():
     atualizar_oas(EMHY_SERIE, "em_hy.json", "EM HY OAS")
 
 
+def atualizar_sofr():
+    atualizar_oas(SOFR_SERIE, "sofr.json", "SOFR")
+
+
+def sgs(serie: int, ini: dt.date, fim: dt.date) -> dict[str, float] | None:
+    """Série diária do SGS/BCB. O BCB limita cada consulta de série diária a 10 anos."""
+    out = {}
+    while ini <= fim:
+        ate = min(fim, ini.replace(year=ini.year + 9))
+        bruto = http(SGS.format(serie, ini.strftime("%d/%m/%Y"), ate.strftime("%d/%m/%Y")), timeout=60)
+        if bruto is None:
+            return None
+        for o in json.loads(bruto or b"[]"):
+            try:
+                d, m, a = o["data"].split("/")
+                out[f"{a}-{m}-{d}"] = float(o["valor"])
+            except (KeyError, ValueError):
+                pass
+        ini = ate + dt.timedelta(days=1)
+    return out
+
+
+def atualizar_cdi():
+    arq = DIR / "cdi.json"
+    atual = dict(ler(arq, []))
+    hoje = dt.date.today()
+    ini = dt.date.fromisoformat(max(atual)) - dt.timedelta(days=15) if atual else dt.date(2000, 1, 1)
+    s = sgs(CDI_SGS, ini, hoje)
+    if s is None:
+        print("  CDI: falhou, mantendo dados salvos")
+        return
+    atual.update(s)
+    gravar(arq, [[d, atual[d]] for d in sorted(atual)])
+    print(f"  CDI: {len(atual)} dias, de {min(atual)} a {max(atual)}")
+
+
 # ---------------------------------------------------------------- Brasil
 def _num(txt: str):
     txt = (txt or "").strip()
@@ -253,7 +294,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dias-br", type=int, default=30)
     args = ap.parse_args()
-    for nome, f in (("EUA", atualizar_us), ("HY", atualizar_hy), ("EM HY", atualizar_emhy), ("Brasil", lambda: atualizar_br(args.dias_br))):
+    for nome, f in (("EUA", atualizar_us), ("HY", atualizar_hy), ("EM HY", atualizar_emhy), ("SOFR", atualizar_sofr), ("CDI", atualizar_cdi), ("Brasil", lambda: atualizar_br(args.dias_br))):
         try:
             f()
         except Exception as e:  # uma fonte fora do ar não derruba as outras
