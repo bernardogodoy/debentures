@@ -2,7 +2,7 @@
  "data_referencia": "2026-10-30",
  "data_anterior": "2026-10-29",
  "anbima_desde": "2026-09-14",
- "gerado_em": "2026-11-03T04:01+00:00",
+ "gerado_em": "2026-11-03T17:53+00:00",
  "fonte": "ANBIMA (taxas indicativas) e SND/debentures.com.br (negócios)",
  "emissores": [
   "CSN",
@@ -7381,14 +7381,14 @@
      68.6633
     ]
    ],
-   "negocios_dias": 309,
+   "negocios_dias": 310,
    "negocios_desde": "2025-04-04",
    "ultimo_negocio": {
-    "data": "2026-10-29",
-    "qtd": 2800.0,
-    "n": 4.0,
-    "pu_medio": 752.224977,
-    "pct_curva": 68.4
+    "data": "2026-10-30",
+    "qtd": 188.0,
+    "n": 2.0,
+    "pu_medio": 720.331406,
+    "pct_curva": 65.47
    }
   },
   {
