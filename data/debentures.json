@@ -2,7 +2,7 @@
  "data_referencia": "2026-11-16",
  "data_anterior": "2026-11-13",
  "anbima_desde": "2026-09-14",
- "gerado_em": "2026-11-17T05:15+00:00",
+ "gerado_em": "2026-11-17T19:14+00:00",
  "fonte": "ANBIMA (taxas indicativas) e SND/debentures.com.br (negócios)",
  "emissores": [
   "CSN",
@@ -267,14 +267,14 @@
      82.1818
     ]
    ],
-   "negocios_dias": 1094,
+   "negocios_dias": 1095,
    "negocios_desde": "2022-03-08",
    "ultimo_negocio": {
-    "data": "2026-11-13",
-    "qtd": 286.0,
-    "n": 5.0,
-    "pu_medio": 830.670444,
-    "pct_curva": 82.92
+    "data": "2026-11-16",
+    "qtd": 56.0,
+    "n": 4.0,
+    "pu_medio": 898.286005,
+    "pct_curva": 89.62
    }
   },
   {
@@ -2010,14 +2010,14 @@
      68.5956
     ]
    ],
-   "negocios_dias": 1240,
+   "negocios_dias": 1241,
    "negocios_desde": "2021-08-05",
    "ultimo_negocio": {
-    "data": "2026-11-13",
-    "qtd": 514.0,
-    "n": 11.0,
-    "pu_medio": 823.366425,
-    "pct_curva": 61.05
+    "data": "2026-11-16",
+    "qtd": 255.0,
+    "n": 7.0,
+    "pu_medio": 885.413037,
+    "pct_curva": 65.5
    }
   },
   {
@@ -2259,14 +2259,14 @@
      71.0638
     ]
    ],
-   "negocios_dias": 1058,
+   "negocios_dias": 1059,
    "negocios_desde": "2022-08-12",
    "ultimo_negocio": {
-    "data": "2026-11-13",
-    "qtd": 420.0,
+    "data": "2026-11-16",
+    "qtd": 730.0,
     "n": 11.0,
-    "pu_medio": 770.097331,
-    "pct_curva": 62.69
+    "pu_medio": 796.66779,
+    "pct_curva": 64.7
    }
   },
   {
@@ -2757,14 +2757,14 @@
      61.7049
     ]
    ],
-   "negocios_dias": 1055,
+   "negocios_dias": 1056,
    "negocios_desde": "2022-08-17",
    "ultimo_negocio": {
-    "data": "2026-11-13",
-    "qtd": 224.0,
-    "n": 16.0,
-    "pu_medio": 748.851018,
-    "pct_curva": 60.93
+    "data": "2026-11-16",
+    "qtd": 376.0,
+    "n": 25.0,
+    "pu_medio": 754.61309,
+    "pct_curva": 61.25
    }
   },
   {
@@ -3006,14 +3006,14 @@
      45.0786
     ]
    ],
-   "negocios_dias": 670,
+   "negocios_dias": 671,
    "negocios_desde": "2022-09-09",
    "ultimo_negocio": {
-    "data": "2026-11-13",
-    "qtd": 3028.0,
-    "n": 8.0,
-    "pu_medio": 493.811664,
-    "pct_curva": 49.35
+    "data": "2026-11-16",
+    "qtd": 7274.0,
+    "n": 16.0,
+    "pu_medio": 485.892468,
+    "pct_curva": 48.53
    }
   },
   {
@@ -3255,14 +3255,14 @@
      45.2073
     ]
    ],
-   "negocios_dias": 681,
+   "negocios_dias": 682,
    "negocios_desde": "2023-03-20",
    "ultimo_negocio": {
-    "data": "2026-11-13",
-    "qtd": 98.0,
-    "n": 2.0,
-    "pu_medio": 234.384231,
-    "pct_curva": 23.38
+    "data": "2026-11-16",
+    "qtd": 5987.0,
+    "n": 19.0,
+    "pu_medio": 466.542878,
+    "pct_curva": 46.52
    }
   },
   {
@@ -3504,14 +3504,14 @@
      44.7033
     ]
    ],
-   "negocios_dias": 225,
+   "negocios_dias": 226,
    "negocios_desde": "2022-09-12",
    "ultimo_negocio": {
-    "data": "2026-11-05",
-    "qtd": 112.0,
-    "n": 2.0,
-    "pu_medio": 511.27978,
-    "pct_curva": 47.5
+    "data": "2026-11-16",
+    "qtd": 2422.0,
+    "n": 14.0,
+    "pu_medio": 483.343236,
+    "pct_curva": 48.28
    }
   },
   {
@@ -3753,14 +3753,14 @@
      45.3833
     ]
    ],
-   "negocios_dias": 148,
+   "negocios_dias": 149,
    "negocios_desde": "2023-03-28",
    "ultimo_negocio": {
-    "data": "2026-11-05",
-    "qtd": 98.0,
-    "n": 2.0,
-    "pu_medio": 515.013317,
-    "pct_curva": 47.83
+    "data": "2026-11-16",
+    "qtd": 386.0,
+    "n": 14.0,
+    "pu_medio": 500.652622,
+    "pct_curva": 49.92
    }
   },
   {
@@ -4500,13 +4500,13 @@
      51.2533
     ]
    ],
-   "negocios_dias": 326,
+   "negocios_dias": 327,
    "negocios_desde": "2024-10-10",
    "ultimo_negocio": {
-    "data": "2026-11-13",
-    "qtd": 1088.0,
+    "data": "2026-11-16",
+    "qtd": 2243.0,
     "n": 4.0,
-    "pu_medio": 655.260636,
+    "pu_medio": 632.684429,
     "pct_curva": null
    }
   },
@@ -5247,14 +5247,14 @@
      63.5102
     ]
    ],
-   "negocios_dias": 331,
+   "negocios_dias": 332,
    "negocios_desde": "2024-05-15",
    "ultimo_negocio": {
-    "data": "2026-11-11",
-    "qtd": 121508.0,
-    "n": 4.0,
-    "pu_medio": 501.03613,
-    "pct_curva": 50.08
+    "data": "2026-11-16",
+    "qtd": 143033.0,
+    "n": 20.0,
+    "pu_medio": 669.601553,
+    "pct_curva": 66.81
    }
   },
   {
@@ -5496,14 +5496,14 @@
      65.4981
     ]
    ],
-   "negocios_dias": 154,
+   "negocios_dias": 155,
    "negocios_desde": "2024-11-06",
    "ultimo_negocio": {
-    "data": "2026-11-13",
-    "qtd": 10772.0,
-    "n": 5.0,
-    "pu_medio": 666.911785,
-    "pct_curva": 65.96
+    "data": "2026-11-16",
+    "qtd": 152811.0,
+    "n": 23.0,
+    "pu_medio": 653.565665,
+    "pct_curva": 64.6
    }
   },
   {
@@ -5745,14 +5745,14 @@
      62.1561
     ]
    ],
-   "negocios_dias": 207,
+   "negocios_dias": 208,
    "negocios_desde": "2025-05-26",
    "ultimo_negocio": {
-    "data": "2026-11-13",
-    "qtd": 228024.0,
-    "n": 11.0,
-    "pu_medio": 631.596814,
-    "pct_curva": 58.88
+    "data": "2026-11-16",
+    "qtd": 74566.0,
+    "n": 38.0,
+    "pu_medio": 608.002515,
+    "pct_curva": 60.8
    }
   },
   {
@@ -6243,14 +6243,14 @@
      61.4916
     ]
    ],
-   "negocios_dias": 197,
+   "negocios_dias": 198,
    "negocios_desde": "2025-10-21",
    "ultimo_negocio": {
-    "data": "2026-11-13",
-    "qtd": 37221.0,
-    "n": 41.0,
-    "pu_medio": 569.954168,
-    "pct_curva": 56.37
+    "data": "2026-11-16",
+    "qtd": 30720.0,
+    "n": 14.0,
+    "pu_medio": 632.755781,
+    "pct_curva": 62.55
    }
   },
   {
@@ -7737,14 +7737,14 @@
      79.124
     ]
    ],
-   "negocios_dias": 1052,
+   "negocios_dias": 1053,
    "negocios_desde": "2021-07-30",
    "ultimo_negocio": {
-    "data": "2026-11-13",
-    "qtd": 104.0,
-    "n": 1.0,
-    "pu_medio": 1043.114615,
-    "pct_curva": 76.67
+    "data": "2026-11-16",
+    "qtd": 2822.0,
+    "n": 14.0,
+    "pu_medio": 1066.719852,
+    "pct_curva": 78.39
    }
   },
   {
@@ -8235,14 +8235,14 @@
      81.1181
     ]
    ],
-   "negocios_dias": 1048,
+   "negocios_dias": 1049,
    "negocios_desde": "2022-08-11",
    "ultimo_negocio": {
-    "data": "2026-11-13",
-    "qtd": 205.0,
-    "n": 3.0,
-    "pu_medio": 935.56093,
-    "pct_curva": 77.04
+    "data": "2026-11-16",
+    "qtd": 99.0,
+    "n": 4.0,
+    "pu_medio": 1042.80165,
+    "pct_curva": 85.67
    }
   },
   {
@@ -8733,14 +8733,14 @@
      94.8865
     ]
    ],
-   "negocios_dias": 171,
+   "negocios_dias": 172,
    "negocios_desde": "2025-06-03",
    "ultimo_negocio": {
-    "data": "2026-11-11",
-    "qtd": 158.0,
+    "data": "2026-11-16",
+    "qtd": 1738.0,
     "n": 5.0,
-    "pu_medio": 1143.708513,
-    "pct_curva": 95.76
+    "pu_medio": 1179.249696,
+    "pct_curva": 99.19
    }
   },
   {
@@ -8982,14 +8982,14 @@
      null
     ]
    ],
-   "negocios_dias": 316,
+   "negocios_dias": 317,
    "negocios_desde": "2025-03-12",
    "ultimo_negocio": {
-    "data": "2026-11-10",
-    "qtd": 32.0,
+    "data": "2026-11-16",
+    "qtd": 2.0,
     "n": 2.0,
-    "pu_medio": 723.554117,
-    "pct_curva": 65.6
+    "pu_medio": 725.268354,
+    "pct_curva": 65.55
    }
   },
   {
@@ -9231,14 +9231,14 @@
      68.8843
     ]
    ],
-   "negocios_dias": 314,
+   "negocios_dias": 315,
    "negocios_desde": "2025-04-04",
    "ultimo_negocio": {
-    "data": "2026-11-12",
-    "qtd": 112.0,
-    "n": 2.0,
-    "pu_medio": 724.149088,
-    "pct_curva": 65.6
+    "data": "2026-11-16",
+    "qtd": 30564.0,
+    "n": 22.0,
+    "pu_medio": 760.725188,
+    "pct_curva": 68.75
    }
   },
   {
@@ -9480,14 +9480,14 @@
      75.0055
     ]
    ],
-   "negocios_dias": 1151,
+   "negocios_dias": 1152,
    "negocios_desde": "2022-03-30",
    "ultimo_negocio": {
-    "data": "2026-11-13",
-    "qtd": 174.0,
+    "data": "2026-11-16",
+    "qtd": 262.0,
     "n": 11.0,
-    "pu_medio": 1004.325948,
-    "pct_curva": 77.72
+    "pu_medio": 989.122962,
+    "pct_curva": 76.36
    }
   },
   {
@@ -10227,14 +10227,14 @@
      98.0823
     ]
    ],
-   "negocios_dias": 981,
+   "negocios_dias": 982,
    "negocios_desde": "2022-01-14",
    "ultimo_negocio": {
-    "data": "2026-11-12",
-    "qtd": 2300.0,
-    "n": 8.0,
-    "pu_medio": 661.328754,
-    "pct_curva": 97.7
+    "data": "2026-11-16",
+    "qtd": 202.0,
+    "n": 4.0,
+    "pu_medio": 664.934914,
+    "pct_curva": 98.12
    }
   },
   {
@@ -10476,14 +10476,14 @@
      97.5284
     ]
    ],
-   "negocios_dias": 1049,
+   "negocios_dias": 1050,
    "negocios_desde": "2022-08-10",
    "ultimo_negocio": {
-    "data": "2026-11-13",
-    "qtd": 104.0,
+    "data": "2026-11-16",
+    "qtd": 50.0,
     "n": 6.0,
-    "pu_medio": 994.609556,
-    "pct_curva": 92.05
+    "pu_medio": 919.040237,
+    "pct_curva": 91.9
    }
   },
   {
@@ -11472,14 +11472,14 @@
      87.7948
     ]
    ],
-   "negocios_dias": 234,
+   "negocios_dias": 235,
    "negocios_desde": "2025-09-01",
    "ultimo_negocio": {
-    "data": "2026-11-12",
-    "qtd": 62850.0,
-    "n": 45.0,
-    "pu_medio": 877.3215,
-    "pct_curva": 84.97
+    "data": "2026-11-16",
+    "qtd": 468.0,
+    "n": 4.0,
+    "pu_medio": 906.183158,
+    "pct_curva": 87.67
    }
   },
   {
@@ -11721,14 +11721,14 @@
      90.0454
     ]
    ],
-   "negocios_dias": 164,
+   "negocios_dias": 165,
    "negocios_desde": "2026-01-08",
    "ultimo_negocio": {
-    "data": "2026-11-13",
-    "qtd": 31.0,
-    "n": 1.0,
-    "pu_medio": 968.643659,
-    "pct_curva": 91.02
+    "data": "2026-11-16",
+    "qtd": 5785.0,
+    "n": 10.0,
+    "pu_medio": 919.591117,
+    "pct_curva": 86.36
    }
   },
   {
@@ -12468,14 +12468,14 @@
      84.0646
     ]
    ],
-   "negocios_dias": 445,
+   "negocios_dias": 446,
    "negocios_desde": "2024-12-04",
    "ultimo_negocio": {
-    "data": "2026-11-13",
-    "qtd": 2302.0,
-    "n": 5.0,
-    "pu_medio": 904.187769,
-    "pct_curva": 84.4
+    "data": "2026-11-16",
+    "qtd": 2262.0,
+    "n": 6.0,
+    "pu_medio": 903.84631,
+    "pct_curva": 84.32
    }
   },
   {
@@ -13215,14 +13215,14 @@
      99.3552
     ]
    ],
-   "negocios_dias": 989,
+   "negocios_dias": 990,
    "negocios_desde": "2022-06-15",
    "ultimo_negocio": {
-    "data": "2026-11-13",
-    "qtd": 113447.0,
-    "n": 20.0,
-    "pu_medio": 265.735164,
-    "pct_curva": 99.43
+    "data": "2026-11-16",
+    "qtd": 277.0,
+    "n": 9.0,
+    "pu_medio": 264.775992,
+    "pct_curva": 99.02
    }
   },
   {
@@ -16599,19 +16599,14 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 47.055172,
-   "pct_par": 39.86,
+   "pu": 40.687181,
+   "pct_par": 35.13,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
-   "var_pct_par_1d": 5.51,
+   "var_pct_par_1d": -4.73,
    "var_pct_par_5d": null,
    "historico": [
-    [
-     "2025-10-14",
-     null,
-     29.83
-    ],
     [
      "2025-10-16",
      null,
@@ -16906,16 +16901,21 @@
      "2026-11-06",
      null,
      39.86
+    ],
+    [
+     "2026-11-16",
+     null,
+     35.13
     ]
    ],
-   "negocios_dias": 91,
+   "negocios_dias": 92,
    "negocios_desde": "2025-01-16",
    "ultimo_negocio": {
-    "data": "2026-11-06",
-    "qtd": 2471.0,
-    "n": 1.0,
-    "pu_medio": 47.055172,
-    "pct_curva": 39.86
+    "data": "2026-11-16",
+    "qtd": 258.0,
+    "n": 3.0,
+    "pu_medio": 40.687181,
+    "pct_curva": 35.13
    }
   },
   {
