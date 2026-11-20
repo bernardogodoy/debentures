@@ -1,8 +1,8 @@
 {
- "data_referencia": "2026-11-18",
- "data_anterior": "2026-11-17",
+ "data_referencia": "2026-11-19",
+ "data_anterior": "2026-11-18",
  "anbima_desde": "2026-09-14",
- "gerado_em": "2026-11-19T19:01+00:00",
+ "gerado_em": "2026-11-20T04:15+00:00",
  "fonte": "ANBIMA (taxas indicativas) e SND/debentures.com.br (negócios)",
  "emissores": [
   "CSN",
@@ -35,16 +35,16 @@
    "vencimento": "10/11/2028",
    "indice": "DI + 1,65%",
    "ref_ntnb": "",
-   "taxa_indicativa": 17.9144,
+   "taxa_indicativa": 17.881,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 824.075492,
-   "pct_par": 82.1249,
-   "duration_anos": 1.31,
-   "var_taxa_1d": 0.122,
-   "var_taxa_5d": 0.3014,
-   "var_pct_par_1d": -0.059,
-   "var_pct_par_5d": -0.0157,
+   "pu": 825.55314,
+   "pct_par": 82.225,
+   "duration_anos": 1.3,
+   "var_taxa_1d": -0.0334,
+   "var_taxa_5d": 0.2083,
+   "var_pct_par_1d": 0.1001,
+   "var_pct_par_5d": 0.0852,
    "historico": [
     [
      "2026-09-14",
@@ -275,6 +275,11 @@
      "2026-11-18",
      17.9144,
      82.1249
+    ],
+    [
+     "2026-11-19",
+     17.881,
+     82.225
     ]
    ],
    "negocios_dias": 1095,
@@ -294,16 +299,16 @@
    "vencimento": "20/12/2027",
    "indice": "DI + 2,5%",
    "ref_ntnb": "",
-   "taxa_indicativa": 18.4897,
+   "taxa_indicativa": 18.4526,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 989.830997,
-   "pct_par": 92.863,
+   "pu": 991.188036,
+   "pct_par": 92.934,
    "duration_anos": 0.49,
-   "var_taxa_1d": -0.0889,
-   "var_taxa_5d": -0.2043,
-   "var_pct_par_1d": 0.0885,
-   "var_pct_par_5d": 0.3516,
+   "var_taxa_1d": -0.0371,
+   "var_taxa_5d": -0.3317,
+   "var_pct_par_1d": 0.071,
+   "var_pct_par_5d": 0.4041,
    "historico": [
     [
      "2026-09-14",
@@ -534,6 +539,11 @@
      "2026-11-18",
      18.4897,
      92.863
+    ],
+    [
+     "2026-11-19",
+     18.4526,
+     92.934
     ]
    ],
    "negocios_dias": 652,
@@ -556,13 +566,13 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 586.213049,
-   "pct_par": 49.5544,
+   "pu": 586.338217,
+   "pct_par": 49.5432,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
-   "var_pct_par_1d": 0.0064,
-   "var_pct_par_5d": 2.5683,
+   "var_pct_par_1d": -0.0112,
+   "var_pct_par_5d": 4.0432,
    "historico": [
     [
      "2026-09-14",
@@ -793,6 +803,11 @@
      "2026-11-18",
      null,
      49.5544
+    ],
+    [
+     "2026-11-19",
+     null,
+     49.5432
     ]
    ],
    "negocios_dias": 698,
@@ -1052,6 +1067,11 @@
      "2026-11-18",
      null,
      null
+    ],
+    [
+     "2026-11-19",
+     null,
+     null
     ]
    ],
    "negocios_dias": 550,
@@ -1074,13 +1094,13 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 532.727682,
-   "pct_par": 48.6925,
+   "pu": 532.052996,
+   "pct_par": 48.6075,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
-   "var_pct_par_1d": 0.0125,
-   "var_pct_par_5d": 0.9642,
+   "var_pct_par_1d": -0.085,
+   "var_pct_par_5d": 3.1075,
    "historico": [
     [
      "2026-09-14",
@@ -1311,6 +1331,11 @@
      "2026-11-18",
      null,
      48.6925
+    ],
+    [
+     "2026-11-19",
+     null,
+     48.6075
     ]
    ],
    "negocios_dias": 367,
@@ -1333,13 +1358,13 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 576.72235,
-   "pct_par": 48.7048,
+   "pu": 576.726452,
+   "pct_par": 48.6832,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
-   "var_pct_par_1d": 0.004,
-   "var_pct_par_5d": 2.7048,
+   "var_pct_par_1d": -0.0216,
+   "var_pct_par_5d": 2.8499,
    "historico": [
     [
      "2026-09-14",
@@ -1570,6 +1595,11 @@
      "2026-11-18",
      null,
      48.7048
+    ],
+    [
+     "2026-11-19",
+     null,
+     48.6832
     ]
    ],
    "negocios_dias": 506,
@@ -1829,6 +1859,11 @@
      "2026-11-18",
      null,
      null
+    ],
+    [
+     "2026-11-19",
+     null,
+     null
     ]
    ],
    "negocios_dias": 370,
@@ -1848,16 +1883,16 @@
    "vencimento": "15/07/2031",
    "indice": "IPCA + 4,879%",
    "ref_ntnb": "15/05/2031",
-   "taxa_indicativa": 14.9362,
+   "taxa_indicativa": 14.9708,
    "taxa_compra": null,
-   "taxa_venda": 12.1534,
-   "pu": 931.218054,
-   "pct_par": 68.9758,
-   "duration_anos": 3.99,
-   "var_taxa_1d": -0.0103,
-   "var_taxa_5d": 0.1351,
-   "var_pct_par_1d": 0.0497,
-   "var_pct_par_5d": -0.1999,
+   "taxa_venda": 12.5131,
+   "pu": 930.793383,
+   "pct_par": 68.9182,
+   "duration_anos": 3.98,
+   "var_taxa_1d": 0.0346,
+   "var_taxa_5d": 0.063,
+   "var_pct_par_1d": -0.0576,
+   "var_pct_par_5d": -0.0256,
    "historico": [
     [
      "2026-09-14",
@@ -2088,6 +2123,11 @@
      "2026-11-18",
      14.9362,
      68.9758
+    ],
+    [
+     "2026-11-19",
+     14.9708,
+     68.9182
     ]
    ],
    "negocios_dias": 1242,
@@ -2107,16 +2147,16 @@
    "vencimento": "15/07/2032",
    "indice": "IPCA + 6,8798%",
    "ref_ntnb": "15/08/2032",
-   "taxa_indicativa": 15.1326,
+   "taxa_indicativa": 15.3168,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 876.987462,
-   "pct_par": 71.3053,
-   "duration_anos": 4.43,
-   "var_taxa_1d": 0.0306,
-   "var_taxa_5d": 0.2068,
-   "var_pct_par_1d": -0.063,
-   "var_pct_par_5d": -0.4668,
+   "pu": 871.464107,
+   "pct_par": 70.8241,
+   "duration_anos": 4.42,
+   "var_taxa_1d": 0.1842,
+   "var_taxa_5d": 0.3313,
+   "var_pct_par_1d": -0.4812,
+   "var_pct_par_5d": -0.803,
    "historico": [
     [
      "2026-09-14",
@@ -2347,6 +2387,11 @@
      "2026-11-18",
      15.1326,
      71.3053
+    ],
+    [
+     "2026-11-19",
+     15.3168,
+     70.8241
     ]
    ],
    "negocios_dias": 1061,
@@ -2366,16 +2411,16 @@
    "vencimento": "15/07/2036",
    "indice": "IPCA + 5,021%",
    "ref_ntnb": "15/05/2033",
-   "taxa_indicativa": 15.158,
+   "taxa_indicativa": 15.2062,
    "taxa_compra": null,
-   "taxa_venda": 12.5283,
-   "pu": 755.973309,
-   "pct_par": 55.9692,
+   "taxa_venda": 12.9666,
+   "pu": 754.665751,
+   "pct_par": 55.8509,
    "duration_anos": 5.93,
-   "var_taxa_1d": 0.0314,
-   "var_taxa_5d": 0.0813,
-   "var_pct_par_1d": -0.0702,
-   "var_pct_par_5d": -0.1333,
+   "var_taxa_1d": 0.0482,
+   "var_taxa_5d": 0.0258,
+   "var_pct_par_1d": -0.1183,
+   "var_pct_par_5d": 0.0281,
    "historico": [
     [
      "2026-09-14",
@@ -2606,6 +2651,11 @@
      "2026-11-18",
      15.158,
      55.9692
+    ],
+    [
+     "2026-11-19",
+     15.2062,
+     55.8509
     ]
    ],
    "negocios_dias": 1162,
@@ -2625,16 +2675,16 @@
    "vencimento": "15/07/2037",
    "indice": "IPCA + 7,0673%",
    "ref_ntnb": "15/05/2035",
-   "taxa_indicativa": 15.221,
+   "taxa_indicativa": 15.2552,
    "taxa_compra": null,
-   "taxa_venda": 13.2023,
-   "pu": 761.110072,
-   "pct_par": 61.8462,
-   "duration_anos": 6.1,
-   "var_taxa_1d": 0.0348,
-   "var_taxa_5d": 0.1476,
-   "var_pct_par_1d": -0.0961,
-   "var_pct_par_5d": -0.3967,
+   "taxa_venda": 13.8942,
+   "pu": 760.307128,
+   "pct_par": 61.7525,
+   "duration_anos": 6.09,
+   "var_taxa_1d": 0.0342,
+   "var_taxa_5d": 0.0722,
+   "var_pct_par_1d": -0.0937,
+   "var_pct_par_5d": -0.1464,
    "historico": [
     [
      "2026-09-14",
@@ -2865,6 +2915,11 @@
      "2026-11-18",
      15.221,
      61.8462
+    ],
+    [
+     "2026-11-19",
+     15.2552,
+     61.7525
     ]
    ],
    "negocios_dias": 1058,
@@ -2887,13 +2942,13 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 477.764319,
-   "pct_par": 44.2069,
+   "pu": 482.384703,
+   "pct_par": 44.6087,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
-   "var_pct_par_1d": -0.4742,
-   "var_pct_par_5d": -1.5453,
+   "var_pct_par_1d": 0.4018,
+   "var_pct_par_5d": -1.1885,
    "historico": [
     [
      "2026-09-14",
@@ -3124,6 +3179,11 @@
      "2026-11-18",
      null,
      44.2069
+    ],
+    [
+     "2026-11-19",
+     null,
+     44.6087
     ]
    ],
    "negocios_dias": 671,
@@ -3146,13 +3206,13 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 477.776531,
-   "pct_par": 44.1928,
+   "pu": 486.738495,
+   "pct_par": 44.9959,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
-   "var_pct_par_1d": 0.0288,
-   "var_pct_par_5d": -0.7249,
+   "var_pct_par_1d": 0.8031,
+   "var_pct_par_5d": -0.7035,
    "historico": [
     [
      "2026-09-14",
@@ -3383,6 +3443,11 @@
      "2026-11-18",
      null,
      44.1928
+    ],
+    [
+     "2026-11-19",
+     null,
+     44.9959
     ]
    ],
    "negocios_dias": 684,
@@ -3405,13 +3470,13 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 480.450508,
-   "pct_par": 44.3983,
+   "pu": 486.977965,
+   "pct_par": 44.9752,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
-   "var_pct_par_1d": 2.5705,
-   "var_pct_par_5d": -1.4605,
+   "var_pct_par_1d": 0.5769,
+   "var_pct_par_5d": -1.6368,
    "historico": [
     [
      "2026-09-14",
@@ -3642,6 +3707,11 @@
      "2026-11-18",
      null,
      44.3983
+    ],
+    [
+     "2026-11-19",
+     null,
+     44.9752
     ]
    ],
    "negocios_dias": 226,
@@ -3664,13 +3734,13 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 477.174434,
-   "pct_par": 44.08,
+   "pu": 486.183575,
+   "pct_par": 44.886,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
-   "var_pct_par_1d": 2.28,
-   "var_pct_par_5d": -2.835,
+   "var_pct_par_1d": 0.806,
+   "var_pct_par_5d": -2.029,
    "historico": [
     [
      "2026-09-14",
@@ -3901,6 +3971,11 @@
      "2026-11-18",
      null,
      44.08
+    ],
+    [
+     "2026-11-19",
+     null,
+     44.886
     ]
    ],
    "negocios_dias": 149,
@@ -3923,13 +3998,13 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 607.25192,
-   "pct_par": 55.1385,
+   "pu": 621.614345,
+   "pct_par": 56.4426,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
-   "var_pct_par_1d": -0.4459,
-   "var_pct_par_5d": -0.899,
+   "var_pct_par_1d": 1.3041,
+   "var_pct_par_5d": 0.4238,
    "historico": [
     [
      "2026-09-14",
@@ -4160,6 +4235,11 @@
      "2026-11-18",
      null,
      55.1385
+    ],
+    [
+     "2026-11-19",
+     null,
+     56.4426
     ]
    ],
    "negocios_dias": 318,
@@ -4182,13 +4262,13 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 602.220083,
-   "pct_par": 58.8946,
+   "pu": 602.899007,
+   "pct_par": 58.9609,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
-   "var_pct_par_1d": -0.072,
-   "var_pct_par_5d": 1.975,
+   "var_pct_par_1d": 0.0663,
+   "var_pct_par_5d": 1.1692,
    "historico": [
     [
      "2026-09-14",
@@ -4419,6 +4499,11 @@
      "2026-11-18",
      null,
      58.8946
+    ],
+    [
+     "2026-11-19",
+     null,
+     58.9609
     ]
    ],
    "negocios_dias": 91,
@@ -4441,13 +4526,13 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 579.371542,
-   "pct_par": 52.609,
+   "pu": 569.286585,
+   "pct_par": 51.6933,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
-   "var_pct_par_1d": -0.8969,
-   "var_pct_par_5d": 3.1548,
+   "var_pct_par_1d": -0.9157,
+   "var_pct_par_5d": 2.0783,
    "historico": [
     [
      "2026-09-14",
@@ -4678,6 +4763,11 @@
      "2026-11-18",
      null,
      52.609
+    ],
+    [
+     "2026-11-19",
+     null,
+     51.6933
     ]
    ],
    "negocios_dias": 329,
@@ -4700,13 +4790,13 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 422.903278,
-   "pct_par": 40.1936,
+   "pu": null,
+   "pct_par": null,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
-   "var_pct_par_1d": -0.8372,
-   "var_pct_par_5d": -0.6204,
+   "var_pct_par_1d": null,
+   "var_pct_par_5d": null,
    "historico": [
     [
      "2026-09-14",
@@ -4937,6 +5027,11 @@
      "2026-11-18",
      null,
      40.1936
+    ],
+    [
+     "2026-11-19",
+     null,
+     null
     ]
    ],
    "negocios_dias": 704,
@@ -4959,13 +5054,13 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 729.595235,
-   "pct_par": 68.8604,
+   "pu": 750.825774,
+   "pct_par": 70.8233,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
-   "var_pct_par_1d": 3.29,
-   "var_pct_par_5d": 14.9505,
+   "var_pct_par_1d": 1.9629,
+   "var_pct_par_5d": 10.6168,
    "historico": [
     [
      "2026-09-14",
@@ -5196,6 +5291,11 @@
      "2026-11-18",
      null,
      68.8604
+    ],
+    [
+     "2026-11-19",
+     null,
+     70.8233
     ]
    ],
    "negocios_dias": 345,
@@ -5218,13 +5318,13 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 657.84909,
-   "pct_par": 65.56,
+   "pu": 687.219682,
+   "pct_par": 68.448,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
-   "var_pct_par_1d": 1.6867,
-   "var_pct_par_5d": 13.1892,
+   "var_pct_par_1d": 2.888,
+   "var_pct_par_5d": 7.7312,
    "historico": [
     [
      "2026-09-14",
@@ -5455,6 +5555,11 @@
      "2026-11-18",
      null,
      65.56
+    ],
+    [
+     "2026-11-19",
+     null,
+     68.448
     ]
    ],
    "negocios_dias": 333,
@@ -5477,13 +5582,13 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 693.140889,
-   "pct_par": 68.441,
+   "pu": 712.895304,
+   "pct_par": 70.3527,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
-   "var_pct_par_1d": 2.8962,
-   "var_pct_par_5d": 11.5658,
+   "var_pct_par_1d": 1.9117,
+   "var_pct_par_5d": 5.2222,
    "historico": [
     [
      "2026-09-14",
@@ -5714,6 +5819,11 @@
      "2026-11-18",
      null,
      68.441
+    ],
+    [
+     "2026-11-19",
+     null,
+     70.3527
     ]
    ],
    "negocios_dias": 156,
@@ -5736,13 +5846,13 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 655.983768,
-   "pct_par": 65.5264,
+   "pu": 687.816237,
+   "pct_par": 68.6684,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
-   "var_pct_par_1d": 3.7099,
-   "var_pct_par_5d": 12.0097,
+   "var_pct_par_1d": 3.142,
+   "var_pct_par_5d": 10.5164,
    "historico": [
     [
      "2026-09-14",
@@ -5973,6 +6083,11 @@
      "2026-11-18",
      null,
      65.5264
+    ],
+    [
+     "2026-11-19",
+     null,
+     68.6684
     ]
    ],
    "negocios_dias": 209,
@@ -5995,13 +6110,13 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 690.010505,
-   "pct_par": 68.1257,
+   "pu": 708.121087,
+   "pct_par": 69.875,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
-   "var_pct_par_1d": 3.985,
-   "var_pct_par_5d": 15.9681,
+   "var_pct_par_1d": 1.7493,
+   "var_pct_par_5d": 9.118,
    "historico": [
     [
      "2026-09-14",
@@ -6232,6 +6347,11 @@
      "2026-11-18",
      null,
      68.1257
+    ],
+    [
+     "2026-11-19",
+     null,
+     69.875
     ]
    ],
    "negocios_dias": 177,
@@ -6254,13 +6374,13 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 644.396285,
-   "pct_par": 63.6308,
+   "pu": 655.242459,
+   "pct_par": 64.6663,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
-   "var_pct_par_1d": 1.0833,
-   "var_pct_par_5d": 10.9728,
+   "var_pct_par_1d": 1.0355,
+   "var_pct_par_5d": 9.8662,
    "historico": [
     [
      "2026-09-14",
@@ -6491,6 +6611,11 @@
      "2026-11-18",
      null,
      63.6308
+    ],
+    [
+     "2026-11-19",
+     null,
+     64.6663
     ]
    ],
    "negocios_dias": 199,
@@ -6519,7 +6644,7 @@
    "var_taxa_1d": null,
    "var_taxa_5d": null,
    "var_pct_par_1d": 0.0,
-   "var_pct_par_5d": 0.0,
+   "var_pct_par_5d": null,
    "historico": [
     [
      "2026-09-14",
@@ -6750,6 +6875,11 @@
      "2026-11-18",
      null,
      60.0
+    ],
+    [
+     "2026-11-19",
+     null,
+     60.0
     ]
    ],
    "negocios_dias": 346,
@@ -6778,7 +6908,7 @@
    "var_taxa_1d": null,
    "var_taxa_5d": null,
    "var_pct_par_1d": 0.0,
-   "var_pct_par_5d": 0.0,
+   "var_pct_par_5d": null,
    "historico": [
     [
      "2026-09-14",
@@ -7009,6 +7139,11 @@
      "2026-11-18",
      null,
      60.0
+    ],
+    [
+     "2026-11-19",
+     null,
+     60.0
     ]
    ],
    "negocios_dias": 156,
@@ -7031,12 +7166,12 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 511.641001,
+   "pu": 511.9351,
    "pct_par": 67.75,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
-   "var_pct_par_1d": null,
+   "var_pct_par_1d": 0.0,
    "var_pct_par_5d": 0.0,
    "historico": [
     [
@@ -7268,6 +7403,11 @@
      "2026-11-18",
      null,
      67.75
+    ],
+    [
+     "2026-11-19",
+     null,
+     67.75
     ]
    ],
    "negocios_dias": 390,
@@ -7290,13 +7430,13 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 674.636105,
+   "pu": 675.023895,
    "pct_par": 67.0,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
    "var_pct_par_1d": 0.0,
-   "var_pct_par_5d": 0.0,
+   "var_pct_par_5d": -0.8,
    "historico": [
     [
      "2026-09-14",
@@ -7527,6 +7667,11 @@
      "2026-11-18",
      null,
      67.0
+    ],
+    [
+     "2026-11-19",
+     null,
+     67.0
     ]
    ],
    "negocios_dias": 354,
@@ -7549,13 +7694,13 @@
    "taxa_indicativa": null,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 674.636105,
+   "pu": 675.023895,
    "pct_par": 67.0,
    "duration_anos": null,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
    "var_pct_par_1d": 0.0,
-   "var_pct_par_5d": 0.0,
+   "var_pct_par_5d": -0.8,
    "historico": [
     [
      "2026-09-14",
@@ -7786,6 +7931,11 @@
      "2026-11-18",
      null,
      67.0
+    ],
+    [
+     "2026-11-19",
+     null,
+     67.0
     ]
    ],
    "negocios_dias": 265,
@@ -7805,16 +7955,16 @@
    "vencimento": "15/04/2031",
    "indice": "IPCA + 4,26%",
    "ref_ntnb": "15/08/2030",
-   "taxa_indicativa": 12.2621,
-   "taxa_compra": 12.3817,
-   "taxa_venda": 11.7997,
-   "pu": 1081.306768,
-   "pct_par": 79.4059,
+   "taxa_indicativa": 12.342,
+   "taxa_compra": 12.4599,
+   "taxa_venda": 11.8532,
+   "pu": 1079.64197,
+   "pct_par": 79.2555,
    "duration_anos": 3.08,
-   "var_taxa_1d": 0.0184,
-   "var_taxa_5d": 0.4074,
-   "var_pct_par_1d": -0.0169,
-   "var_pct_par_5d": -0.7833,
+   "var_taxa_1d": 0.0799,
+   "var_taxa_5d": 0.385,
+   "var_pct_par_1d": -0.1504,
+   "var_pct_par_5d": -0.729,
    "historico": [
     [
      "2026-09-14",
@@ -8045,6 +8195,11 @@
      "2026-11-18",
      12.2621,
      79.4059
+    ],
+    [
+     "2026-11-19",
+     12.342,
+     79.2555
     ]
    ],
    "negocios_dias": 1055,
@@ -8064,16 +8219,16 @@
    "vencimento": "04/10/2028",
    "indice": "DI + 1,64%",
    "ref_ntnb": "",
-   "taxa_indicativa": 2.1113,
-   "taxa_compra": 2.8769,
-   "taxa_venda": 1.3445,
-   "pu": 1011.455905,
-   "pct_par": 99.4238,
-   "duration_anos": 1.25,
-   "var_taxa_1d": 0.0224,
-   "var_taxa_5d": 0.0025,
-   "var_pct_par_1d": -0.0254,
-   "var_pct_par_5d": 0.0067,
+   "taxa_indicativa": 2.1038,
+   "taxa_compra": 2.8956,
+   "taxa_venda": 1.1571,
+   "pu": 1012.152777,
+   "pct_par": 99.4354,
+   "duration_anos": 1.24,
+   "var_taxa_1d": -0.0075,
+   "var_taxa_5d": -0.0297,
+   "var_pct_par_1d": 0.0116,
+   "var_pct_par_5d": 0.0467,
    "historico": [
     [
      "2026-09-14",
@@ -8304,6 +8459,11 @@
      "2026-11-18",
      2.1113,
      99.4238
+    ],
+    [
+     "2026-11-19",
+     2.1038,
+     99.4354
     ]
    ],
    "negocios_dias": 217,
@@ -8323,16 +8483,16 @@
    "vencimento": "15/04/2032",
    "indice": "IPCA + 6,1385%",
    "ref_ntnb": "15/05/2031",
-   "taxa_indicativa": 12.1719,
-   "taxa_compra": 12.4436,
-   "taxa_venda": 11.8389,
-   "pu": 984.282014,
-   "pct_par": 80.9591,
+   "taxa_indicativa": 12.2628,
+   "taxa_compra": 12.5631,
+   "taxa_venda": 11.844,
+   "pu": 981.915844,
+   "pct_par": 80.7301,
    "duration_anos": 3.77,
-   "var_taxa_1d": 0.071,
-   "var_taxa_5d": 0.3536,
-   "var_pct_par_1d": -0.1761,
-   "var_pct_par_5d": -0.8862,
+   "var_taxa_1d": 0.0909,
+   "var_taxa_5d": 0.3093,
+   "var_pct_par_1d": -0.229,
+   "var_pct_par_5d": -0.7578,
    "historico": [
     [
      "2026-09-14",
@@ -8563,6 +8723,11 @@
      "2026-11-18",
      12.1719,
      80.9591
+    ],
+    [
+     "2026-11-19",
+     12.2628,
+     80.7301
     ]
    ],
    "negocios_dias": 1051,
@@ -8582,16 +8747,16 @@
    "vencimento": "15/05/2028",
    "indice": "DI + 1,1%",
    "ref_ntnb": "",
-   "taxa_indicativa": 2.8356,
-   "taxa_compra": 3.0894,
-   "taxa_venda": 2.5,
-   "pu": 977.99075,
-   "pct_par": 97.6913,
+   "taxa_indicativa": 2.8086,
+   "taxa_compra": 3.0897,
+   "taxa_venda": 2.2812,
+   "pu": 978.971601,
+   "pct_par": 97.7354,
    "duration_anos": 1.37,
-   "var_taxa_1d": 0.0368,
-   "var_taxa_5d": 0.002,
-   "var_pct_par_1d": -0.041,
-   "var_pct_par_5d": -0.1273,
+   "var_taxa_1d": -0.027,
+   "var_taxa_5d": 0.001,
+   "var_pct_par_1d": 0.0441,
+   "var_pct_par_5d": -0.1224,
    "historico": [
     [
      "2026-09-14",
@@ -8822,6 +8987,11 @@
      "2026-11-18",
      2.8356,
      97.6913
+    ],
+    [
+     "2026-11-19",
+     2.8086,
+     97.7354
     ]
    ],
    "negocios_dias": 62,
@@ -8841,16 +9011,16 @@
    "vencimento": "15/06/2029",
    "indice": "IPCA + 8,3%",
    "ref_ntnb": "15/05/2029",
-   "taxa_indicativa": 10.6373,
-   "taxa_compra": 11.0162,
-   "taxa_venda": 10.2036,
-   "pu": 1127.056852,
-   "pct_par": 94.7056,
-   "duration_anos": 2.55,
-   "var_taxa_1d": 0.0672,
-   "var_taxa_5d": 0.3529,
-   "var_pct_par_1d": -0.1389,
-   "var_pct_par_5d": -0.7396,
+   "taxa_indicativa": 10.7065,
+   "taxa_compra": null,
+   "taxa_venda": 10.1987,
+   "pu": 1125.930708,
+   "pct_par": 94.5631,
+   "duration_anos": 2.54,
+   "var_taxa_1d": 0.0692,
+   "var_taxa_5d": 0.3398,
+   "var_pct_par_1d": -0.1425,
+   "var_pct_par_5d": -0.7066,
    "historico": [
     [
      "2026-09-14",
@@ -9081,6 +9251,11 @@
      "2026-11-18",
      10.6373,
      94.7056
+    ],
+    [
+     "2026-11-19",
+     10.7065,
+     94.5631
     ]
    ],
    "negocios_dias": 174,
@@ -9100,16 +9275,16 @@
    "vencimento": "15/12/2041",
    "indice": "IPCA + 8,7219%",
    "ref_ntnb": "15/08/2032",
-   "taxa_indicativa": 16.46,
-   "taxa_compra": 16.7366,
-   "taxa_venda": 15.1775,
-   "pu": 761.663166,
-   "pct_par": 68.9099,
-   "duration_anos": 4.91,
-   "var_taxa_1d": 0.0422,
-   "var_taxa_5d": 0.1323,
-   "var_pct_par_1d": -0.1041,
-   "var_pct_par_5d": -0.2935,
+   "taxa_indicativa": 16.5019,
+   "taxa_compra": 16.787,
+   "taxa_venda": 15.2759,
+   "pu": 760.924731,
+   "pct_par": 68.8072,
+   "duration_anos": 4.9,
+   "var_taxa_1d": 0.0419,
+   "var_taxa_5d": 0.1761,
+   "var_pct_par_1d": -0.1027,
+   "var_pct_par_5d": -0.4203,
    "historico": [
     [
      "2026-09-14",
@@ -9340,6 +9515,11 @@
      "2026-11-18",
      16.46,
      68.9099
+    ],
+    [
+     "2026-11-19",
+     16.5019,
+     68.8072
     ]
    ],
    "negocios_dias": 316,
@@ -9359,16 +9539,16 @@
    "vencimento": "15/01/2031",
    "indice": "IPCA + 6,6739%",
    "ref_ntnb": "15/08/2030",
-   "taxa_indicativa": 15.6675,
-   "taxa_compra": 16.1055,
-   "taxa_venda": 14.8681,
-   "pu": 989.326469,
-   "pct_par": 75.0521,
+   "taxa_indicativa": 15.6362,
+   "taxa_compra": 16.1365,
+   "taxa_venda": 14.8757,
+   "pu": 991.020245,
+   "pct_par": 75.147,
    "duration_anos": 3.49,
-   "var_taxa_1d": 0.0556,
-   "var_taxa_5d": 0.7979,
-   "var_pct_par_1d": -0.102,
-   "var_pct_par_5d": -1.7247,
+   "var_taxa_1d": -0.0313,
+   "var_taxa_5d": 0.3975,
+   "var_pct_par_1d": 0.0949,
+   "var_pct_par_5d": -0.7917,
    "historico": [
     [
      "2026-09-14",
@@ -9599,6 +9779,11 @@
      "2026-11-18",
      15.6675,
      75.0521
+    ],
+    [
+     "2026-11-19",
+     15.6362,
+     75.147
     ]
    ],
    "negocios_dias": 1154,
@@ -9618,16 +9803,16 @@
    "vencimento": "30/10/2028",
    "indice": "DI + 4,5%",
    "ref_ntnb": "",
-   "taxa_indicativa": 6.7105,
-   "taxa_compra": 8.0928,
-   "taxa_venda": 5.9912,
-   "pu": 0.452362,
-   "pct_par": 98.2725,
+   "taxa_indicativa": 6.7155,
+   "taxa_compra": 8.1444,
+   "taxa_venda": 6.3047,
+   "pu": 0.452697,
+   "pct_par": 98.2782,
    "duration_anos": 0.83,
-   "var_taxa_1d": -0.0595,
-   "var_taxa_5d": -0.0851,
-   "var_pct_par_1d": 0.0538,
-   "var_pct_par_5d": 0.1084,
+   "var_taxa_1d": 0.005,
+   "var_taxa_5d": -0.0257,
+   "var_pct_par_1d": 0.0057,
+   "var_pct_par_5d": 0.0627,
    "historico": [
     [
      "2026-09-14",
@@ -9858,6 +10043,11 @@
      "2026-11-18",
      6.7105,
      98.2725
+    ],
+    [
+     "2026-11-19",
+     6.7155,
+     98.2782
     ]
    ],
    "negocios_dias": 432,
@@ -9877,16 +10067,16 @@
    "vencimento": "12/04/2027",
    "indice": "DI + 2,15%",
    "ref_ntnb": "",
-   "taxa_indicativa": 2.9312,
-   "taxa_compra": 4.4563,
-   "taxa_venda": null,
-   "pu": 337.330977,
-   "pct_par": 99.7072,
+   "taxa_indicativa": 2.8779,
+   "taxa_compra": 4.3308,
+   "taxa_venda": 2.1259,
+   "pu": 337.607606,
+   "pct_par": 99.7299,
    "duration_anos": 0.38,
-   "var_taxa_1d": 0.0848,
-   "var_taxa_5d": 0.4867,
-   "var_pct_par_1d": -0.0289,
-   "var_pct_par_5d": -0.1763,
+   "var_taxa_1d": -0.0533,
+   "var_taxa_5d": 0.44,
+   "var_pct_par_1d": 0.0227,
+   "var_pct_par_5d": -0.1574,
    "historico": [
     [
      "2026-09-14",
@@ -10117,6 +10307,11 @@
      "2026-11-18",
      2.9312,
      99.7072
+    ],
+    [
+     "2026-11-19",
+     2.8779,
+     99.7299
     ]
    ],
    "negocios_dias": 594,
@@ -10136,16 +10331,16 @@
    "vencimento": "04/10/2028",
    "indice": "DI + 1,9%",
    "ref_ntnb": "",
-   "taxa_indicativa": 3.9275,
-   "taxa_compra": 4.0799,
-   "taxa_venda": 3.3669,
-   "pu": 662.01228,
-   "pct_par": 97.5769,
+   "taxa_indicativa": 3.7091,
+   "taxa_compra": 3.7499,
+   "taxa_venda": 3.2253,
+   "pu": 664.195205,
+   "pct_par": 97.8417,
    "duration_anos": 1.24,
-   "var_taxa_1d": -0.3867,
-   "var_taxa_5d": 0.1351,
-   "var_pct_par_1d": 0.4586,
-   "var_pct_par_5d": -0.1195,
+   "var_taxa_1d": -0.2184,
+   "var_taxa_5d": -0.0517,
+   "var_pct_par_1d": 0.2648,
+   "var_pct_par_5d": 0.0999,
    "historico": [
     [
      "2026-09-14",
@@ -10376,6 +10571,11 @@
      "2026-11-18",
      3.9275,
      97.5769
+    ],
+    [
+     "2026-11-19",
+     3.7091,
+     97.8417
     ]
    ],
    "negocios_dias": 984,
@@ -10395,16 +10595,16 @@
    "vencimento": "15/05/2029",
    "indice": "PREFIXADO 16,762%",
    "ref_ntnb": "",
-   "taxa_indicativa": 18.1777,
+   "taxa_indicativa": 18.1652,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 975.97125,
-   "pct_par": 97.4772,
-   "duration_anos": 2.12,
-   "var_taxa_1d": 0.0119,
-   "var_taxa_5d": 0.1451,
-   "var_pct_par_1d": -0.0161,
-   "var_pct_par_5d": -0.404,
+   "pu": 976.836707,
+   "pct_par": 97.5036,
+   "duration_anos": 2.11,
+   "var_taxa_1d": -0.0125,
+   "var_taxa_5d": 0.1126,
+   "var_pct_par_1d": 0.0264,
+   "var_pct_par_5d": -0.3491,
    "historico": [
     [
      "2026-09-14",
@@ -10635,6 +10835,11 @@
      "2026-11-18",
      18.1777,
      97.4772
+    ],
+    [
+     "2026-11-19",
+     18.1652,
+     97.5036
     ]
    ],
    "negocios_dias": 1052,
@@ -10654,16 +10859,16 @@
    "vencimento": "25/10/2028",
    "indice": "DI + 3,47%",
    "ref_ntnb": "",
-   "taxa_indicativa": 5.5758,
-   "taxa_compra": 7.0863,
+   "taxa_indicativa": 5.7257,
+   "taxa_compra": 7.227,
    "taxa_venda": 4.0,
-   "pu": 653.101372,
-   "pct_par": 97.3998,
+   "pu": 652.391308,
+   "pct_par": 97.2313,
    "duration_anos": 1.3,
-   "var_taxa_1d": 0.4399,
-   "var_taxa_5d": 0.849,
-   "var_pct_par_1d": -0.5256,
-   "var_pct_par_5d": -1.0069,
+   "var_taxa_1d": 0.1499,
+   "var_taxa_5d": 0.9367,
+   "var_pct_par_1d": -0.1685,
+   "var_pct_par_5d": -1.1035,
    "historico": [
     [
      "2026-09-14",
@@ -10894,6 +11099,11 @@
      "2026-11-18",
      5.5758,
      97.3998
+    ],
+    [
+     "2026-11-19",
+     5.7257,
+     97.2313
     ]
    ],
    "negocios_dias": 305,
@@ -10913,16 +11123,16 @@
    "vencimento": "15/01/2031",
    "indice": "PREFIXADO 16,3433%",
    "ref_ntnb": "",
-   "taxa_indicativa": 18.9317,
+   "taxa_indicativa": 19.0168,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": 986.278085,
-   "pct_par": 93.6058,
-   "duration_anos": 2.98,
-   "var_taxa_1d": -0.0438,
-   "var_taxa_5d": 0.2294,
-   "var_pct_par_1d": 0.1109,
-   "var_pct_par_5d": -0.5031,
+   "pu": 984.858595,
+   "pct_par": 93.415,
+   "duration_anos": 2.97,
+   "var_taxa_1d": 0.0851,
+   "var_taxa_5d": 0.2902,
+   "var_pct_par_1d": -0.1908,
+   "var_pct_par_5d": -0.6436,
    "historico": [
     [
      "2026-09-14",
@@ -11153,6 +11363,11 @@
      "2026-11-18",
      18.9317,
      93.6058
+    ],
+    [
+     "2026-11-19",
+     19.0168,
+     93.415
     ]
    ],
    "negocios_dias": 517,
@@ -11172,16 +11387,16 @@
    "vencimento": "25/06/2029",
    "indice": "DI + 2,75%",
    "ref_ntnb": "",
-   "taxa_indicativa": 4.1918,
-   "taxa_compra": 4.3555,
-   "taxa_venda": 3.8069,
-   "pu": 1039.890437,
-   "pct_par": 97.6465,
-   "duration_anos": 1.71,
-   "var_taxa_1d": 0.0393,
-   "var_taxa_5d": 1.3927,
-   "var_pct_par_1d": -0.0565,
-   "var_pct_par_5d": -2.2706,
+   "taxa_indicativa": 4.1724,
+   "taxa_compra": 4.3992,
+   "taxa_venda": 3.8911,
+   "pu": 1040.969786,
+   "pct_par": 97.6878,
+   "duration_anos": 1.7,
+   "var_taxa_1d": -0.0194,
+   "var_taxa_5d": 1.1686,
+   "var_pct_par_1d": 0.0413,
+   "var_pct_par_5d": -1.8862,
    "historico": [
     [
      "2026-09-14",
@@ -11412,6 +11627,11 @@
      "2026-11-18",
      4.1918,
      97.6465
+    ],
+    [
+     "2026-11-19",
+     4.1724,
+     97.6878
     ]
    ],
    "negocios_dias": 240,
@@ -11431,16 +11651,16 @@
    "vencimento": "22/08/2032",
    "indice": "DI + 1,8%",
    "ref_ntnb": "",
-   "taxa_indicativa": 6.6537,
-   "taxa_compra": 7.402,
-   "taxa_venda": 5.256,
-   "pu": 889.076738,
-   "pct_par": 85.9114,
-   "duration_anos": 3.19,
-   "var_taxa_1d": 0.8022,
-   "var_taxa_5d": 1.5476,
-   "var_pct_par_1d": -2.0699,
-   "var_pct_par_5d": -4.0251,
+   "taxa_indicativa": 6.774,
+   "taxa_compra": 7.3311,
+   "taxa_venda": 5.6704,
+   "pu": 887.301798,
+   "pct_par": 85.6903,
+   "duration_anos": 3.17,
+   "var_taxa_1d": 0.1203,
+   "var_taxa_5d": 0.7729,
+   "var_pct_par_1d": -0.2211,
+   "var_pct_par_5d": -1.8442,
    "historico": [
     [
      "2026-09-14",
@@ -11671,6 +11891,11 @@
      "2026-11-18",
      6.6537,
      85.9114
+    ],
+    [
+     "2026-11-19",
+     6.774,
+     85.6903
     ]
    ],
    "negocios_dias": 237,
@@ -11690,16 +11915,16 @@
    "vencimento": "15/12/2030",
    "indice": "DI + 1,8%",
    "ref_ntnb": "",
-   "taxa_indicativa": 6.4996,
-   "taxa_compra": 7.3027,
-   "taxa_venda": 5.0,
-   "pu": 936.33622,
-   "pct_par": 87.8286,
-   "duration_anos": 2.83,
-   "var_taxa_1d": 0.8074,
-   "var_taxa_5d": 1.3787,
-   "var_pct_par_1d": -1.8903,
-   "var_pct_par_5d": -3.2168,
+   "taxa_indicativa": 6.3796,
+   "taxa_compra": 7.2741,
+   "taxa_venda": 5.2,
+   "pu": 940.592178,
+   "pct_par": 88.1768,
+   "duration_anos": 2.81,
+   "var_taxa_1d": -0.12,
+   "var_taxa_5d": 1.1049,
+   "var_pct_par_1d": 0.3482,
+   "var_pct_par_5d": -2.5189,
    "historico": [
     [
      "2026-09-14",
@@ -11930,6 +12155,11 @@
      "2026-11-18",
      6.4996,
      87.8286
+    ],
+    [
+     "2026-11-19",
+     6.3796,
+     88.1768
     ]
    ],
    "negocios_dias": 167,
@@ -11949,16 +12179,16 @@
    "vencimento": "15/09/2028",
    "indice": "DI + 2,95%",
    "ref_ntnb": "",
-   "taxa_indicativa": 3.8661,
-   "taxa_compra": 4.8892,
-   "taxa_venda": 2.6877,
-   "pu": 1017.060393,
-   "pct_par": 98.9537,
-   "duration_anos": 1.19,
-   "var_taxa_1d": 0.0937,
-   "var_taxa_5d": 0.3627,
-   "var_pct_par_1d": -0.1026,
-   "var_pct_par_5d": -0.4003,
+   "taxa_indicativa": 3.869,
+   "taxa_compra": 4.8527,
+   "taxa_venda": 2.8183,
+   "pu": 1017.708318,
+   "pct_par": 98.955,
+   "duration_anos": 1.18,
+   "var_taxa_1d": 0.0029,
+   "var_taxa_5d": 0.2103,
+   "var_pct_par_1d": 0.0013,
+   "var_pct_par_5d": -0.2222,
    "historico": [
     [
      "2026-09-14",
@@ -12189,6 +12419,11 @@
      "2026-11-18",
      3.8661,
      98.9537
+    ],
+    [
+     "2026-11-19",
+     3.869,
+     98.955
     ]
    ],
    "negocios_dias": 343,
@@ -12208,16 +12443,16 @@
    "vencimento": "11/03/2034",
    "indice": "DI + 3,9%",
    "ref_ntnb": "",
-   "taxa_indicativa": 6.7458,
-   "taxa_compra": 9.0172,
-   "taxa_venda": 4.4717,
-   "pu": 944.973341,
-   "pct_par": 91.6701,
-   "duration_anos": 3.17,
-   "var_taxa_1d": -0.0554,
-   "var_taxa_5d": -0.692,
-   "var_pct_par_1d": 0.1747,
-   "var_pct_par_5d": 1.9612,
+   "taxa_indicativa": 6.7645,
+   "taxa_compra": 8.8911,
+   "taxa_venda": 4.64,
+   "pu": 945.633637,
+   "pct_par": 91.6737,
+   "duration_anos": 3.14,
+   "var_taxa_1d": 0.0187,
+   "var_taxa_5d": -0.4821,
+   "var_pct_par_1d": 0.0036,
+   "var_pct_par_5d": 1.4126,
    "historico": [
     [
      "2026-09-14",
@@ -12448,6 +12683,11 @@
      "2026-11-18",
      6.7458,
      91.6701
+    ],
+    [
+     "2026-11-19",
+     6.7645,
+     91.6737
     ]
    ],
    "negocios_dias": 459,
@@ -12467,16 +12707,16 @@
    "vencimento": "15/06/2035",
    "indice": "DI + 3,4%",
    "ref_ntnb": "",
-   "taxa_indicativa": 8.5652,
-   "taxa_compra": 10.3699,
-   "taxa_venda": 6.75,
-   "pu": 900.650512,
-   "pct_par": 83.9133,
-   "duration_anos": 3.45,
-   "var_taxa_1d": 0.0703,
-   "var_taxa_5d": 0.372,
-   "var_pct_par_1d": -0.1399,
-   "var_pct_par_5d": -0.8378,
+   "taxa_indicativa": 8.5898,
+   "taxa_compra": 10.3896,
+   "taxa_venda": 7.2208,
+   "pu": 901.75507,
+   "pct_par": 83.9625,
+   "duration_anos": 3.42,
+   "var_taxa_1d": 0.0246,
+   "var_taxa_5d": 0.2315,
+   "var_pct_par_1d": 0.0492,
+   "var_pct_par_5d": -0.414,
    "historico": [
     [
      "2026-09-14",
@@ -12707,6 +12947,11 @@
      "2026-11-18",
      8.5652,
      83.9133
+    ],
+    [
+     "2026-11-19",
+     8.5898,
+     83.9625
     ]
    ],
    "negocios_dias": 448,
@@ -12726,16 +12971,16 @@
    "vencimento": "15/10/2034",
    "indice": "DI + 2,9%",
    "ref_ntnb": "",
-   "taxa_indicativa": 7.3217,
-   "taxa_compra": 8.873,
+   "taxa_indicativa": 7.4194,
+   "taxa_compra": 8.746,
    "taxa_venda": 6.0,
-   "pu": 866.133898,
-   "pct_par": 88.0255,
-   "duration_anos": 2.95,
-   "var_taxa_1d": 0.457,
-   "var_taxa_5d": 0.5815,
-   "var_pct_par_1d": -1.0858,
-   "var_pct_par_5d": -1.3075,
+   "pu": 865.114541,
+   "pct_par": 87.8673,
+   "duration_anos": 2.92,
+   "var_taxa_1d": 0.0977,
+   "var_taxa_5d": 0.5179,
+   "var_pct_par_1d": -0.1582,
+   "var_pct_par_5d": -1.1096,
    "historico": [
     [
      "2026-09-14",
@@ -12966,6 +13211,11 @@
      "2026-11-18",
      7.3217,
      88.0255
+    ],
+    [
+     "2026-11-19",
+     7.4194,
+     87.8673
     ]
    ],
    "negocios_dias": 105,
@@ -12985,16 +13235,16 @@
    "vencimento": "15/10/2036",
    "indice": "IPCA + 8,2194%",
    "ref_ntnb": "15/08/2032",
-   "taxa_indicativa": 13.5543,
+   "taxa_indicativa": 13.8068,
    "taxa_compra": null,
-   "taxa_venda": 13.3555,
-   "pu": 847.532074,
-   "pct_par": 79.7344,
-   "duration_anos": 4.51,
-   "var_taxa_1d": 0.1495,
-   "var_taxa_5d": 0.3104,
-   "var_pct_par_1d": -0.4609,
-   "var_pct_par_5d": -0.9203,
+   "taxa_venda": 13.4268,
+   "pu": 839.689991,
+   "pct_par": 78.9569,
+   "duration_anos": 4.49,
+   "var_taxa_1d": 0.2525,
+   "var_taxa_5d": 0.3933,
+   "var_pct_par_1d": -0.7775,
+   "var_pct_par_5d": -1.1658,
    "historico": [
     [
      "2026-09-14",
@@ -13225,6 +13475,11 @@
      "2026-11-18",
      13.5543,
      79.7344
+    ],
+    [
+     "2026-11-19",
+     13.8068,
+     78.9569
     ]
    ],
    "negocios_dias": 73,
@@ -13244,16 +13499,16 @@
    "vencimento": "03/06/2027",
    "indice": "DI + 1,85%",
    "ref_ntnb": "",
-   "taxa_indicativa": 3.0389,
-   "taxa_compra": 3.3084,
+   "taxa_indicativa": 3.0358,
+   "taxa_compra": 3.2894,
    "taxa_venda": 2.75,
-   "pu": 266.188198,
-   "pct_par": 99.4298,
+   "pu": 266.358947,
+   "pct_par": 99.4358,
    "duration_anos": 0.49,
-   "var_taxa_1d": -0.0152,
-   "var_taxa_5d": -0.3574,
-   "var_pct_par_1d": 0.0119,
-   "var_pct_par_5d": 0.1992,
+   "var_taxa_1d": -0.0031,
+   "var_taxa_5d": -0.3364,
+   "var_pct_par_1d": 0.006,
+   "var_pct_par_5d": 0.1875,
    "historico": [
     [
      "2026-09-14",
@@ -13484,6 +13739,11 @@
      "2026-11-18",
      3.0389,
      99.4298
+    ],
+    [
+     "2026-11-19",
+     3.0358,
+     99.4358
     ]
    ],
    "negocios_dias": 992,
@@ -13503,16 +13763,16 @@
    "vencimento": "15/03/2028",
    "indice": "DI + 3,5%",
    "ref_ntnb": "",
-   "taxa_indicativa": 6.8189,
-   "taxa_compra": null,
-   "taxa_venda": null,
-   "pu": 502.195124,
-   "pct_par": 97.6301,
-   "duration_anos": 0.76,
-   "var_taxa_1d": 0.0362,
-   "var_taxa_5d": 0.1959,
-   "var_pct_par_1d": -0.0129,
-   "var_pct_par_5d": -0.0772,
+   "taxa_indicativa": 6.9909,
+   "taxa_compra": 12.738,
+   "taxa_venda": 6.6177,
+   "pu": 501.979577,
+   "pct_par": 97.5254,
+   "duration_anos": 0.75,
+   "var_taxa_1d": 0.172,
+   "var_taxa_5d": 0.3224,
+   "var_pct_par_1d": -0.1047,
+   "var_pct_par_5d": -0.1614,
    "historico": [
     [
      "2026-09-14",
@@ -13743,6 +14003,11 @@
      "2026-11-18",
      6.8189,
      97.6301
+    ],
+    [
+     "2026-11-19",
+     6.9909,
+     97.5254
     ]
    ],
    "negocios_dias": 40,
@@ -13762,16 +14027,16 @@
    "vencimento": "15/10/2029",
    "indice": "DI + 2,5%",
    "ref_ntnb": "",
-   "taxa_indicativa": 5.6821,
-   "taxa_compra": 6.2435,
+   "taxa_indicativa": 5.6541,
+   "taxa_compra": null,
    "taxa_venda": 5.25,
-   "pu": 967.02545,
-   "pct_par": 95.3646,
+   "pu": 968.209722,
+   "pct_par": 95.4236,
    "duration_anos": 1.54,
-   "var_taxa_1d": -0.0632,
-   "var_taxa_5d": -0.6783,
-   "var_pct_par_1d": 0.1018,
-   "var_pct_par_5d": 1.016,
+   "var_taxa_1d": -0.028,
+   "var_taxa_5d": -0.6334,
+   "var_pct_par_1d": 0.059,
+   "var_pct_par_5d": 0.9563,
    "historico": [
     [
      "2026-09-14",
@@ -14002,6 +14267,11 @@
      "2026-11-18",
      5.6821,
      95.3646
+    ],
+    [
+     "2026-11-19",
+     5.6541,
+     95.4236
     ]
    ],
    "negocios_dias": 89,
@@ -14671,6 +14941,11 @@
      "2026-11-18",
      null,
      null
+    ],
+    [
+     "2026-11-19",
+     null,
+     null
     ]
    ],
    "negocios_dias": 300,
@@ -14975,16 +15250,16 @@
    "vencimento": "13/11/2032",
    "indice": "IPCA + 5%",
    "ref_ntnb": "15/08/2030",
-   "taxa_indicativa": null,
+   "taxa_indicativa": 20.2627,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": null,
-   "pct_par": null,
-   "duration_anos": null,
+   "pu": 73.178106,
+   "pct_par": 64.5077,
+   "duration_anos": 3.08,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
    "var_pct_par_1d": null,
-   "var_pct_par_5d": null,
+   "var_pct_par_5d": -5.4923,
    "historico": [
     [
      "2026-09-14",
@@ -15215,6 +15490,11 @@
      "2026-11-18",
      null,
      null
+    ],
+    [
+     "2026-11-19",
+     20.2627,
+     64.5077
     ]
    ],
    "negocios_dias": 274,
@@ -15474,6 +15754,11 @@
      "2026-11-18",
      null,
      null
+    ],
+    [
+     "2026-11-19",
+     null,
+     null
     ]
    ],
    "negocios_dias": 447,
@@ -15493,16 +15778,16 @@
    "vencimento": "13/11/2032",
    "indice": "IPCA + 5%",
    "ref_ntnb": "15/08/2030",
-   "taxa_indicativa": null,
+   "taxa_indicativa": 19.4998,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": null,
-   "pct_par": null,
-   "duration_anos": null,
+   "pu": 74.629626,
+   "pct_par": 65.7872,
+   "duration_anos": 3.09,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
    "var_pct_par_1d": null,
-   "var_pct_par_5d": null,
+   "var_pct_par_5d": -4.2128,
    "historico": [
     [
      "2026-09-14",
@@ -15733,6 +16018,11 @@
      "2026-11-18",
      null,
      null
+    ],
+    [
+     "2026-11-19",
+     19.4998,
+     65.7872
     ]
    ],
    "negocios_dias": 41,
@@ -16347,16 +16637,16 @@
    "vencimento": "13/11/2032",
    "indice": "IPCA + 5%",
    "ref_ntnb": "15/08/2030",
-   "taxa_indicativa": null,
+   "taxa_indicativa": 19.5806,
    "taxa_compra": null,
    "taxa_venda": null,
-   "pu": null,
-   "pct_par": null,
-   "duration_anos": null,
+   "pu": 74.473785,
+   "pct_par": 65.6498,
+   "duration_anos": 3.09,
    "var_taxa_1d": null,
    "var_taxa_5d": null,
    "var_pct_par_1d": null,
-   "var_pct_par_5d": null,
+   "var_pct_par_5d": -4.3502,
    "historico": [
     [
      "2026-09-14",
@@ -16587,6 +16877,11 @@
      "2026-11-18",
      null,
      null
+    ],
+    [
+     "2026-11-19",
+     19.5806,
+     65.6498
     ]
    ],
    "negocios_dias": 101,
@@ -17619,6 +17914,11 @@
     ],
     [
      "2026-11-18",
+     null,
+     null
+    ],
+    [
+     "2026-11-19",
      null,
      null
     ]
